@@ -72,7 +72,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Valor del minuto vendido</label>
-                                <input type="text" class="form-control" id="vlrminvend" name="vlrminvend" placeholder="Valor del minuto vendido"value="<?= $key['lin_vlorminvend'] ?>">
+                                <input type="text" class="form-control" id="vlorminvend" name="vlorminvend" placeholder="Valor del minuto vendido"value="<?= $key['lin_vlorminvend'] ?>">
                             </div>
 
 

@@ -9,6 +9,12 @@ class linea_model extends CI_Model{
         return $query->result_array();
 
     }
+    function get_lista_historial(){
+        $query = $this->db->get("historialinea");
+
+        return $query->result_array();
+
+    }
 
     function guardar_linea(){
 
@@ -24,9 +30,26 @@ class linea_model extends CI_Model{
 
         $this->db->insert("linea", $data);
     }
+    function guardar_historial(){
+
+        $data = array(
+            "his_lin_id" => $this->input->post("linea"),
+            "his_alq_id" => $this->input->post("alquiler"),
+            "his_valor_minvend" => $this->input->post("vlrminvend"),
+
+        );
+
+        $this->db->insert("historialinea", $data);
+    }
 
     function get_linea($id){
         $query = $this->db->get_where('linea', array('lin_id' => $id));
+
+        return $query->result_array();
+
+    }
+    function get_historial($id){
+        $query = $this->db->get_where('historialinea', array('his_id' => $id));
 
         return $query->result_array();
 
@@ -46,6 +69,18 @@ class linea_model extends CI_Model{
         $this->db->where("lin_id", $this->input->post("lin_id"));
         $this->db->update('linea', $data);
     }
+    function upd_historial()
+    {
+        $data = array(
+            "his_lin_id" => $this->input->post("linea"),
+            "his_alq_id" => $this->input->post("alquiler"),
+            "his_valor_minvend" => $this->input->post("vlrminvend"),
+        );
+
+        $this->db->where("his_id", $this->input->post("hid_id"));
+        $this->db->update('historialinea', $data);
+    }
+
 
     function del_linea()
     {
@@ -54,6 +89,15 @@ class linea_model extends CI_Model{
         $this->db->delete('linea');
 
     }
+
+    function del_historial()
+    {
+
+        $this->db->where("his_id", $this->input->post("his_id"));
+        $this->db->delete('historialinea');
+
+    }
+
 
 
 }
