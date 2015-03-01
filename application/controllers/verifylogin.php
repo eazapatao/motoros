@@ -25,7 +25,6 @@ class VerifyLogin extends CI_Controller {
         {
             //Go to private area
             $arr = $arr = $this->session->userdata('logged_in');
-            print_r($arr);
             if ($arr['role'] == 1){
 
                 redirect('admin', 'refresh');
@@ -44,7 +43,6 @@ class VerifyLogin extends CI_Controller {
 
         //Field validation succeeded.  Validate against database
         $username = $this->input->post('username');
-
         //query the database
         $result = $this->usuario_model->login($username, $password);
         if($result)
