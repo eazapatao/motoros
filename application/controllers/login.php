@@ -15,5 +15,12 @@ class Login extends CI_Controller{
             $this->load->view('login_view');
         }
     }
+
+    function logout()
+    {
+        $this->session->unset_userdata('logged_in');
+        redirect('login', 'refresh');
+    }
+
 }
 

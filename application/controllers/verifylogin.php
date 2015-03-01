@@ -25,6 +25,7 @@ class VerifyLogin extends CI_Controller {
         {
             //Go to private area
             $arr = $arr = $this->session->userdata('logged_in');
+            print_r($arr);
             if ($arr['role'] == 1){
 
                 redirect('admin', 'refresh');
@@ -46,7 +47,6 @@ class VerifyLogin extends CI_Controller {
 
         //query the database
         $result = $this->usuario_model->login($username, $password);
-        print_r($result);
         if($result)
         {
             foreach($result as $row)
@@ -54,8 +54,7 @@ class VerifyLogin extends CI_Controller {
                 $sess_array = array(
                     'id' => $row->usu_id,
                     'username' => $row->usu_nick,
-                    'role' => $row->usu_contrasena,
-                    'user_state' => $row->usu_tipo
+                    'role' => $row->usu_tipo
                 );
                 $this->session->set_userdata('logged_in', $sess_array);
             }

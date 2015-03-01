@@ -20,7 +20,6 @@ class Usuario_model extends CI_Model{
         $this -> db -> limit(1);
 
         $query = $this -> db -> get();
-        print_r($query);
         if($query -> num_rows() == 1)
         {
             return $query->result();
