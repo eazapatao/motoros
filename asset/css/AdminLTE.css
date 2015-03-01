@@ -2413,7 +2413,7 @@ Component: timeline
   border-top-right-radius: 4px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-  background: #3d9970;
+  background: #222222
   box-shadow: inset 0px -3px 0px rgba(0, 0, 0, 0.2);
   padding: 20px 10px;
   text-align: center;
@@ -2424,7 +2424,7 @@ Component: timeline
 .form-box .body,
 .form-box .footer {
   padding: 10px 20px;
-  background: #fff;
+  background: #222222
   color: #444;
 }
 .form-box .body > .form-group,

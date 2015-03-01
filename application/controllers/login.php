@@ -2,10 +2,18 @@
 
 class Login extends CI_Controller{
 
-    public function index(){
-
-        $this->load->view("login_view");
-
+    function index()
+    {
+        if($this->session->userdata('logged_in'))
+        {
+            //If no session, redirect to login page
+            redirect('admin', 'refresh');
+        }
+        else
+        {
+            $this->load->helper(array('form'));
+            $this->load->view('login_view');
+        }
     }
 }
 

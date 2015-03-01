@@ -10,6 +10,27 @@ class Usuario_model extends CI_Model{
 
     }
 
+    function login($username, $password)
+    {
+
+        $this -> db -> select('usu_id, usu_nick, usu_contrasena, usu_tipo');
+        $this -> db -> from('usuario');
+        $this -> db -> where('usu_nick', $username);
+        $this -> db -> where('usu_contrasena', MD5($password));
+        $this -> db -> limit(1);
+
+        $query = $this -> db -> get();
+        print_r($query);
+        if($query -> num_rows() == 1)
+        {
+            return $query->result();
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     function guardar_usuario(){
 
         $data = array(
