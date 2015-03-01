@@ -33,8 +33,26 @@ class Linea extends CI_Controller{
         $this->load->view("templates/user_template", $content);
     }
 
+    public function nuevo_historial()
+    {
+        $content = array(
+            "menu" => "Historial linea",
+            "label" => "his",
+            "label2" => "new",
+            "titulo" => "Nuevo_historial",
+            "main_content" => "user/nuevo_historial_view"
+        );
+
+        $this->load->view("templates/user_template", $content);
+    }
+
     function guardar_linea(){
         $this->linea_model->guardar_linea();
+        redirect('linea', 'refresh');
+
+    }
+    function guardar_historial(){
+        $this->linea_model->guardar_historial();
         redirect('linea', 'refresh');
 
     }
@@ -52,11 +70,37 @@ class Linea extends CI_Controller{
 
         $this->load->view("templates/user_template", $content);
     }
+    function editar_historial($id)
+    {
+        $content = array(
+            "menu" => "Historial",
+            "label" => "his",
+            "label2" => "list",
+            "titulo" => "Editar_historial",
+            "historial" => $this->linea_model->get_historial($id),
+            "main_content" => "user/editar_historial_view"
+        );
+
+        $this->load->view("templates/user_template", $content);
+    }
 
     function del($id)
     {
         $content = array(
             "menu" => "Linea",
+            "label" => "lin",
+            "label2" => "del",
+            "titulo" => "Eliminar_Linea",
+            "linea" => $this->linea_model->get_linea($id),
+            "main_content" => "user/eliminar_linea_view"
+        );
+
+        $this->load->view("templates/user_template", $content);
+    }
+    function del_historial($id)
+    {
+        $content = array(
+            "menu" => "historial",
             "label" => "lin",
             "label2" => "del",
             "titulo" => "Eliminar_Linea",
