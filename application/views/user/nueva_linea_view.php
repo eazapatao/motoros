@@ -25,6 +25,18 @@
                     <form action="<?= base_url()?>index.php/linea/guardar_linea/" method="POST" enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="form-group">
+                                <label>Plan</label>
+
+                                <select class="form-control" id="plan" name="plan" placeholder="Plan">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label>Número celular</label>
                                 <input type="text" class="form-control" id="numero" name="numero" placeholder="Número celular">
                             </div>
@@ -33,7 +45,7 @@
 
                                 <select class="form-control" id="corte" name="corte" placeholder="Fecha de corte">
                                     <option value="4">4</option>
-                                    <option value="6">6</option>
+                                    <option value="6">5</option>
                                     <option value="10">10</option>
                                     <option value="15">15</option>
                                 </select>
@@ -49,10 +61,6 @@
 
                             </div>
                             <div class="form-group">
-                                <label>Cargo fijo mensual</label>
-                                <input type="text" class="form-control" id="cargofijo" name="cargofijo" placeholder="Cargo fijo mensual">
-                            </div>
-                            <div class="form-group">
                                 <label>Operador</label>
                                 <select class="form-control" id="operador" name="operador" placeholder="Operador" >
                                     <option value="Claro">Claro</option>
@@ -62,6 +70,11 @@
                                     <option value="Virgin mobile">Virgin mobile</option>
                                 </select>
 
+                            </div>
+
+                            <div class="form-group">
+                                <label>Valor del minuto vendido</label>
+                                <input type="text" class="form-control" id="vlorminvend" name="vlorminvend" placeholder="Valor del minuto vendido">
                             </div>
 
                         </div><!-- /.box-body -->

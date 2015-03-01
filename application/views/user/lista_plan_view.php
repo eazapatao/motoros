@@ -20,8 +20,8 @@
                 <div class="box box-primary">
                     <div class="box-header">
                         <br>
-                        <a class="btn btn-app"  href="<?= base_url()?>linea/nueva_linea">
-                            <i class="fa fa-edit"></i> Nueva linea
+                        <a class="btn btn-app"  href="<?= base_url()?>plan/nuevo_plan">
+                            <i class="fa fa-edit"></i> Nuevo Plan
                         </a>
                     </div><!-- /.box-header -->
                     <!-- form start -->
@@ -30,41 +30,36 @@
                             <table id="line_list" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
-                                    <th>Plan</th>
-                                    <th>Número celular</th>
-                                    <th>Fecha de corte</th>
-                                    <th>Estado de la línea</th>
-                                    <th>Operador</th>
-                                    <th>Valor del minuto vendido</th>
+                                    <th>Nombre</th>
+                                    <th>Minutos</th>
+                                    <th>Valor del minuto</th>
+                                    <th>Cargo básico</th>
                                     <th>Opciones</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
-                                    <th>Plan</th>
-                                    <th>Número celular</th>
-                                    <th>Fecha de corte</th>
-                                    <th>Estado de la línea</th>
-                                    <th>Operador</th>
-                                    <th>Valor del minuto vendido</th>
+                                    <th>Nombre</th>
+                                    <th>Minutos</th>
+                                    <th>Valor del minuto</th>
+                                    <th>Cargo básico</th>
                                     <th>Opciones</th>
                                 </tr>
                                 </tfoot>
 
                                 <tbody>
-                                <?php foreach ($lineas as $key) {?>
+                                <?php foreach ($plan as $key) {?>
                                     <tr>
-                                        <td><?= $key['lin_pla_id']?></td>
-                                        <td><?= $key['lin_numero']?></td>
-                                        <td><?= $key['lin_corte']?></td>
-                                        <td><?= $key['lin_estado']?></td>
-                                        <td><?= $key['lin_operador']?></td>
-                                        <td><?= $key['lin_vlorminvend']?></td>
+                                        <td><?= $key['pla_nombre']?></td>
+                                        <td><?= $key['pla_totalmin']?></td>
+                                        <td><?= $key['pla_vlrmin']?></td>
+                                        <td><?= $key['pla_cargobasico']?></td>
+
                                     <td>
-                                            <a href="<?php echo base_url()?>linea/editar/<?php echo $key['lin_id']?>" type="button" class="btn btn-xs btn-warning">
+                                            <a href="<?php echo base_url()?>plan/editar/<?php echo $key['pla_id']?>" type="button" class="btn btn-xs btn-warning">
                                                 <i class="glyphicon glyphicon-edit"></i>
                                             </a>
-                                            <a href="<?php echo base_url()?>linea/del/<?php echo $key['lin_id']?>" type="button" class="btn btn-xs btn-danger">
+                                            <a href="<?php echo base_url()?>plan/del/<?php echo $key['pla_id']?>" type="button" class="btn btn-xs btn-danger">
                                                 <i class="glyphicon glyphicon-trash"></i>
                                             </a>
                                         </td>

@@ -13,11 +13,12 @@ class linea_model extends CI_Model{
     function guardar_linea(){
 
         $data = array(
+            "lin_pla_id" => $this->input->post("plan"),
             "lin_numero" => $this->input->post("numero"),
             "lin_corte" => $this->input->post("corte"),
             "lin_estado" => $this->input->post("estado"),
-            "lin_cargofijo" => $this->input->post("cargofijo"),
-            "lin_operador" => $this->input->post("operador")
+            "lin_operador" => $this->input->post("operador"),
+            "lin_vlorminvend" => $this->input->post("vlorminvend")
 
         );
 
@@ -34,12 +35,12 @@ class linea_model extends CI_Model{
     function upd_linea()
     {
         $data = array(
+            "lin_pla_id" => $this->input->post("plan"),
             "lin_numero" => $this->input->post("numero"),
             "lin_corte" => $this->input->post("corte"),
             "lin_estado" => $this->input->post("estado"),
-            "lin_cargofijo" => $this->input->post("cargofijo"),
-            "lin_operador" => $this->input->post("operador")
-
+            "lin_operador" => $this->input->post("operador"),
+            "lin_vlorminvend" => $this->input->post("vlorminvend")
         );
 
         $this->db->where("lin_id", $this->input->post("lin_id"));

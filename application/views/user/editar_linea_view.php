@@ -26,6 +26,16 @@
                     <form action="<?= base_url()?>index.php/linea/upd_linea/" method="POST" enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="form-group">
+                                <label>Plan</label>
+
+                                <select class="form-control" id="plan" name="plan" placeholder="Plan" value="<?= $key['lin_pla_id'] ?>">
+                                    <option value="4">4</option>
+                                    <option value="6">6</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label>Número celular</label>
                                 <input type="text" class="form-control" id="numero" name="numero" placeholder="Número celular" value="<?= $key['lin_numero'] ?>">
                             </div>
@@ -50,10 +60,6 @@
 
                             </div>
                             <div class="form-group">
-                                <label>Cargo fijo mensual</label>
-                                <input type="text" class="form-control" id="cargofijo" name="cargofijo" placeholder="Cargo fijo mensual"value="<?= $key['lin_cargofijo'] ?>">
-                            </div>
-                            <div class="form-group">
                                 <label>Operador</label>
                                 <select class="form-control" id="operador" name="operador" placeholder="Operador" value="<?= $key['lin_operador'] ?>">
                                     <option value="Claro">Claro</option>
@@ -64,6 +70,11 @@
                                 </select>
 
                             </div>
+                            <div class="form-group">
+                                <label>Valor del minuto vendido</label>
+                                <input type="text" class="form-control" id="vlrminvend" name="vlrminvend" placeholder="Valor del minuto vendido"value="<?= $key['lin_vlorminvend'] ?>">
+                            </div>
+
 
                         </div><!-- /.box-body -->
                         <input type="hidden" value="<?= $key["lin_id"] ?>" name="lin_id">
