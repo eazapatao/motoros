@@ -59,7 +59,8 @@
                             </div>
                             <div class="form-group">
                                 <label>Tipo de cliente</label>
-                                <select class="form-control" id="tipo" name="tipo" placeholder="Tipo de cliente" value="<?= $key['cli_tipo'] ?>">
+                                <select class="form-control" id="tipo" name="tipo" placeholder="Tipo de cliente">
+                                    <option value="<?= $key['cli_tipo'] ?>"><?= $key['cli_tipo'] ?></option>
                                     <option value="Paga Diario">Paga Diario</option>
                                     <option value="Regular">Regular</option>
                                 </select>

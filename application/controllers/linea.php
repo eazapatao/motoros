@@ -77,7 +77,7 @@ class Linea extends CI_Controller{
             "label" => "his",
             "label2" => "list",
             "titulo" => "Editar_historial",
-            "historial" => $this->linea_model->get_historial($id),
+            "linea" => $this->linea_model->get_historial($id),
             "main_content" => "user/editar_historial_view"
         );
 
@@ -88,19 +88,6 @@ class Linea extends CI_Controller{
     {
         $content = array(
             "menu" => "Linea",
-            "label" => "lin",
-            "label2" => "del",
-            "titulo" => "Eliminar_Linea",
-            "linea" => $this->linea_model->get_linea($id),
-            "main_content" => "user/eliminar_linea_view"
-        );
-
-        $this->load->view("templates/user_template", $content);
-    }
-    function del_historial($id)
-    {
-        $content = array(
-            "menu" => "historial",
             "label" => "lin",
             "label2" => "del",
             "titulo" => "Eliminar_Linea",
