@@ -21,6 +21,8 @@ class alquiler_model extends CI_Model{
         );
 
         $this->db->insert("alquiler", $data);
+        $last_id = $this->db->insert_id();
+        return $last_id;
     }
 
     function get_alquiler($id){
@@ -52,5 +54,12 @@ class alquiler_model extends CI_Model{
 
     }
 
+    function get_last()
+    {
+        $this->db->select('alq_id');
+        $this->db->from('alquiler');
+
+        $query = $this->db->get();
+    }
 
 }

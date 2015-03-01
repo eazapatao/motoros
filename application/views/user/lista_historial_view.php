@@ -53,10 +53,10 @@
                                         <td><?= $key['his_valor_minvend']?></td>
 
                                         <td>
-                                            <a href="<?php echo base_url()?>linea/editarh/<?php echo $key['lin_id']?>" type="button" class="btn btn-xs btn-warning">
+                                            <a href="<?php echo base_url()?>linea/editarh/<?php echo $key['his_id']?>" type="button" class="btn btn-xs btn-warning">
                                                 <i class="glyphicon glyphicon-edit"></i>
                                             </a>
-                                            <a href="<?php echo base_url()?>linea/delh/<?php echo $key['lin_id']?>" type="button" class="btn btn-xs btn-danger">
+                                            <a href="<?php echo base_url()?>linea/delh/<?php echo $key['his_id']?>" type="button" class="btn btn-xs btn-danger">
                                                 <i class="glyphicon glyphicon-trash"></i>
                                             </a>
                                         </td>

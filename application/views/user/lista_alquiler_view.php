@@ -23,6 +23,9 @@
                         <a class="btn btn-app"  href="<?= base_url()?>alquiler/nuevo_alquiler">
                             <i class="fa fa-edit"></i> Nuevo alquiler
                         </a>
+                        <a class="btn btn-app"  href="<?= base_url()?>linea/verhistorial">
+                            <i class="fa fa-edit"></i> Historial
+                        </a>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <form role="form">

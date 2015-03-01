@@ -35,3 +35,4 @@
     <![endif]-->
 </head>
 <body class="skin-black fixed">
+<input type="hidden" id="base_url" value="<?= base_url()?>">

@@ -34,8 +34,12 @@ class Alquiler extends CI_Controller{
     }
 
     function guardar_alquiler(){
-        $this->alquiler_model->guardar_alquiler();
-        redirect('alquiler', 'refresh');
+
+        $last_id = $this->alquiler_model->guardar_alquiler();
+        //$last_id = $this->alquiler_model->get_last();
+        //redirect('alquiler', 'refresh');
+
+        echo $last_id;
 
     }
 
