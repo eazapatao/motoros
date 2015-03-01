@@ -56,6 +56,11 @@
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary" href="<?= base_url()?>linea/nuevo_historial">Asociar lineas</button>
+                        </div>
+
+
                     </form>
                 </div>
             </div>
