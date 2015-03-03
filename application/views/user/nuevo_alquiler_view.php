@@ -22,7 +22,7 @@
                         <h3 class="box-title">Nuevo alquiler</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form action="<?= base_url()?>index.php/alquiler/guardar_alquiler/" method="POST" enctype="multipart/form-data">
+                    <form id="form_alquiler">
                         <div class="box-body">
                             <div class="form-group">
                                 <label>Cliente</label><br>
@@ -57,16 +57,14 @@
 
 
                         </div><!-- /.box-body -->
-
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary" href="<?= base_url()?>linea/nuevo_historial">Asociar lineas</button>
-                        </div>
-
-
                     </form>
+                        <div class="box-footer">
+                            <button id="guardar_alquiler" type="submit" class="btn btn-primary">Guardar</button>
+                            <a id="asociar_alquiler" style="display: none;" class="btn btn-primary" href="">Asociar lineas</a>
+                        </div>
+
+
+
                 </div>
             </div>
 

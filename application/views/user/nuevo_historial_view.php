@@ -19,10 +19,11 @@
             <div class="col-lg-12">
                 <div class="box box-success">
                     <div class="box-header">
-                        <h3 class="box-title">Nuevo historial</h3>
+                        <h3 class="box-title">Nuevo historial | Ticket de alquiler: <?= $id_ticket?></h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <form action="<?= base_url()?>index.php/linea/guardar_historial/" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="alquiler" id="alquiler" value="<?= $id_ticket?>">
                         <div class="box-body">
                             <div class="form-group">
                                 <label>Linea</label>
@@ -36,19 +37,6 @@
 
                                 </select>
                             </div>
-
-                            <div class="form-group">
-                                <label>Ticket Alquiler</label>
-
-                                <select class="form-control" id="alquiler" name="alquiler" placeholder="Alquiler">
-                                    <option value="4">4</option>
-                                    <option value="6">5</option>
-                                    <option value="10">10</option>
-                                    <option value="15">15</option>
-                                </select>
-                            </div>
-
-
 
                             <div class="form-group">
                                 <label>Valor del minuto vendido</label>

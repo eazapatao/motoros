@@ -35,7 +35,7 @@ class linea_model extends CI_Model{
         $data = array(
             "his_lin_id" => $this->input->post("linea"),
             "his_alq_id" => $this->input->post("alquiler"),
-            "his_valor_minvend" => $this->input->post("vlrminvend"),
+            "his_valor_minvend" => $this->input->post("vlorminvend"),
 
         );
 
@@ -71,13 +71,14 @@ class linea_model extends CI_Model{
     }
     function upd_historial()
     {
+
         $data = array(
             "his_lin_id" => $this->input->post("linea"),
             "his_alq_id" => $this->input->post("alquiler"),
-            "his_valor_minvend" => $this->input->post("vlrminvend"),
+            "his_valor_minvend" => $this->input->post("vlorminvend"),
         );
 
-        $this->db->where("his_id", $this->input->post("hid_id"));
+        $this->db->where("his_id", $this->input->post("his_id"));
         $this->db->update('historialinea', $data);
     }
 

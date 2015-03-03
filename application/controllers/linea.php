@@ -29,7 +29,7 @@ class Linea extends CI_Controller{
             "label2" => "list",
             "titulo" => "Lista",
             "main_content" => "user/lista_historial_view",
-            "lineas" => $this->linea_model->get_lista_historial()//Pendiente
+            "historial" => $this->linea_model->get_lista_historial()//Pendiente
         );
 
         $this->load->view("templates/user_template", $content);
@@ -48,14 +48,15 @@ class Linea extends CI_Controller{
         $this->load->view("templates/user_template", $content);
     }
 
-    public function nuevo_historial()
+    public function nuevo_historial($id_ticket)
     {
         $content = array(
             "menu" => "Historial linea",
             "label" => "his",
             "label2" => "new",
             "titulo" => "Nuevo_historial",
-            "main_content" => "user/nuevo_historial_view"
+            "main_content" => "user/nuevo_historial_view",
+            "id_ticket" => $id_ticket
         );
 
         $this->load->view("templates/user_template", $content);
@@ -92,7 +93,7 @@ class Linea extends CI_Controller{
             "label" => "lin",
             "label2" => "list",
             "titulo" => "Editar_historial",
-            "linea" => $this->linea_model->get_historial($id),
+            "historial" => $this->linea_model->get_historial($id),
             "main_content" => "user/editar_historial_view"
         );
 
@@ -120,7 +121,7 @@ class Linea extends CI_Controller{
             "label" => "his",
             "label2" => "del",
             "titulo" => "Eliminar_Historial",
-            "linea" => $this->linea_model->get_historial($id),
+            "historial" => $this->linea_model->get_historial($id),
             "main_content" => "user/eliminar_historial_view"
         );
 
@@ -134,18 +135,18 @@ class Linea extends CI_Controller{
     function upd_historial()
     {
         $this->linea_model->upd_historial();
-        redirect("linea", "refresh");
+        redirect("linea/verhistorial", "refresh");
     }
 
 
     function del_linea()
     {
         $this->linea_model->del_linea();
-        redirect("linea", "refresh");
+        redirect("linea/verhistorial", "refresh");
     }
     function del_historial()
     {
         $this->linea_model->del_historial();
-        redirect("linea", "refresh");
+        redirect("linea/verhistorial", "refresh");
     }
 }
