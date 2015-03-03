@@ -5,6 +5,7 @@ class Linea extends CI_Controller{
     function __construct()    {
         parent::__construct();
         $this->load->model("linea_model");
+        $this->load->model("plan_model");
     }
 
     public function index(){
@@ -40,6 +41,7 @@ class Linea extends CI_Controller{
             "label" => "lin",
             "label2" => "new",
             "titulo" => "Nueva_linea",
+            "planes" => $this->plan_model->get_lista_planes(),
             "main_content" => "user/nueva_linea_view"
         );
 

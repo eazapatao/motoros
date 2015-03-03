@@ -30,3 +30,6 @@ $('#prestamo_list').DataTable({
 $('#operacion_list').DataTable({
 
 });
+
+
+

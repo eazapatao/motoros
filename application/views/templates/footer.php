@@ -27,7 +27,8 @@
 <!-- Datatables -->
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.js"></script>
 <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js" type="text/javascript"></script>
-
+<!-- Selectpicker-->
+<script src="<?php echo base_url()?>asset/js/bootstrap-select.js" type="text/javascript"></script>
 
 
 <!-- AdminLTE App -->

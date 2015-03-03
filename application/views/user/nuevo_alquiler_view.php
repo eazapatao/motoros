@@ -25,8 +25,13 @@
                     <form action="<?= base_url()?>index.php/alquiler/guardar_alquiler/" method="POST" enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="form-group">
-                                <label>Cliente</label>
-                                <input type="text" class="form-control" id="cliente" name="cliente" placeholder="Cliente">
+                                <label>Cliente</label><br>
+                                <select class="selectpicker" name="cliente" id="cliente_alq" data-live-search="true">
+                                    <option>Seleccione Cliente</option>
+                                    <?php foreach($clientes as $cliente){?>
+                                        <option value="<?= $cliente['cli_id']?>"><?= $cliente['cli_nombre'].' '.$cliente['cli_apellido']?></option>
+                                    <?php }?>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Observaciones</label>

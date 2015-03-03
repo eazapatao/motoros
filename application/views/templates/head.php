@@ -25,7 +25,10 @@
 
     <link href="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
 
+    <!-- Selectpicker-->
 
+
+    <link href="<?php echo base_url()?>asset/css/selectpicker/bootstrap-select.css" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

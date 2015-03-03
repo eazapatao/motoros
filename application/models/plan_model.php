@@ -10,6 +10,7 @@ class plan_model extends CI_Model{
 
     }
 
+
     function guardar_plan(){
 
         $data = array(
@@ -30,6 +31,15 @@ class plan_model extends CI_Model{
         return $query->result_array();
 
     }
+
+
+    function get_lista_planes(){
+        $query = $this->db->get('plan');
+
+        return $query->result_array();
+    }
+
+
     function upd_plan()
     {
         $data = array(
