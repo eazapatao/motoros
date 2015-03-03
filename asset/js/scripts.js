@@ -32,9 +32,6 @@ $('#operacion_list').DataTable({
 
 });
 
-<<<<<<< HEAD
-
-=======
 $("#guardar_alquiler").click(function(){
     $.ajax({
         type: "POST",
@@ -47,5 +44,4 @@ $("#guardar_alquiler").click(function(){
 
     });
 });
->>>>>>> 317c85a7b18de0c914a488eacb14ab3853e976bc
 
