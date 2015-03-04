@@ -43,10 +43,14 @@
                                 <label>Corte</label>
 
                                 <select class="form-control" id="corte" name="corte" placeholder="Fecha de corte" value="<?= $key['lin_corte'] ?>">
+                                    <option value="2">2</option>
                                     <option value="4">4</option>
                                     <option value="6">6</option>
-                                    <option value="10">10</option>
-                                    <option value="15">15</option>
+                                    <option value="9">9</option>
+                                    <option value="12">12</option>
+                                    <option value="14">14</option>
+                                    <option value="18">18</option>
+                                    <option value="24">24</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -56,6 +60,8 @@
                                     <option value="Alquilada">Alquilada</option>
                                     <option value="Devuelta al operador">Devuelta al operador</option>
                                     <option value="Perdida">Perdida</option>
+                                    <option value="Suspendida a petición del cliente">Suspendida a petición</option>
+                                    <option value="Suspendida falta de pago">Suspendida falta de pago</option>
                                 </select>
 
                             </div>

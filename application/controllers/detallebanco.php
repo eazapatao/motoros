@@ -5,6 +5,7 @@ class Detallebanco extends CI_Controller{
     function __construct()    {
         parent::__construct();
         $this->load->model("detallebanco_model");
+        $this->load->model("directorio_model");
     }
 
     public function index(){
@@ -27,6 +28,7 @@ class Detallebanco extends CI_Controller{
             "label" => "dir",
             "label2" => "new",
             "titulo" => "Registro Bancario",
+            "clientes" => $this->directorio_model->get_lista_clientes(),
             "main_content" => "user/nuevo_detallebanco_view"
         );
 

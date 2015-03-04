@@ -5,6 +5,8 @@ class Operacion extends CI_Controller{
     function __construct()    {
         parent::__construct();
         $this->load->model("operacion_model");
+        $this->load->model("usuario_model");
+        $this->load->model("directorio_model");
     }
 
     public function index(){
@@ -27,6 +29,8 @@ class Operacion extends CI_Controller{
             "label" => "ope",
             "label2" => "new",
             "titulo" => "Nueva operación",
+            "usuarios" => $this->usuario_model->get_lista_usuario(),
+            "clientes" => $this->directorio_model->get_lista_clientes(),
             "main_content" => "user/nuevo_operacion_view"
         );
 

@@ -22,15 +22,25 @@
                         <h3 class="box-title">Nueva operación</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form action="<?= base_url()?>index.php/operacion/guardar_operacion/" method="POST" enctype="multipart/form-data">
+                    <form action="<?= base_url()?>index.php/operacion/guardar_operacion/" method="POST" enctype="multipart/form-data" id="form_guardar_operacion">
                         <div class="box-body">
                             <div class="form-group">
-                                <label>Cliente</label>
-                                <input type="text" class="form-control" id="cliente" name="cliente" placeholder="Cliente">
+                                <label>Cliente</label><br>
+                                <select class="selectpicker" name="cliente" id="cliente_ope" data-live-search="true">
+                                    <option>Seleccione Cliente</option>
+                                    <?php foreach($clientes as $cliente){?>
+                                        <option value="<?= $cliente['cli_id']?>"><?= $cliente['cli_nombre'].' '.$cliente['cli_apellido']?></option>
+                                    <?php }?>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label>Usuario</label>
-                                <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario">
+                                <label>Usuario</label><br>
+                                <select class="selectpicker" name="usuario" id="usuario_ope" data-live-search="true">
+                                    <option>Seleccione Usuario</option>
+                                    <?php foreach($usuarios as $usuario){?>
+                                        <option value="<?= $usuario['usu_id']?>"><?= $usuario['usu_nombre'].' '.$usuario['usu_apellido']?></option>
+                                    <?php }?>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Tipo</label>
@@ -67,7 +77,7 @@
                         </div><!-- /.box-body -->
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button id="guardar_operacion" type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form>
                 </div>

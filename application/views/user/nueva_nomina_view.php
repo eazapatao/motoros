@@ -22,11 +22,16 @@
                         <h3 class="box-title">Nuevo cliente</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form action="<?= base_url()?>index.php/nomina/guardar_nomina/" method="POST" enctype="multipart/form-data">
+                    <form action="<?= base_url()?>index.php/nomina/guardar_nomina/" method="POST" enctype="multipart/form-data" id="form_nomina">
                         <div class="box-body">
                             <div class="form-group">
-                                <label>Usuario</label>
-                                <input type="text" class="form-control"  id="usuario" name="usuario" placeholder="Usuario">
+                                <label>Usuario</label><br>
+                                <select class="selectpicker" name="usuario" id="usuario_nom" data-live-search="true">
+                                    <option>Seleccione Usuario</option>
+                                    <?php foreach($usuarios as $usuario){?>
+                                        <option value="<?= $usuario['usu_id']?>"><?= $usuario['usu_nombre'].' '.$usuario['usu_apellido']?></option>
+                                    <?php }?>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Nómina</label>
@@ -65,7 +70,7 @@
 
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button id="guardar_nomina" type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form>
                 </div>

@@ -24,6 +24,7 @@ class Detallebanco_model extends CI_Model{
         );
 
         $this->db->insert("detalle_banco", $data);
+
     }
 
     function get_detallebanco($id){

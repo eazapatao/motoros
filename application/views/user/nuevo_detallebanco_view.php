@@ -22,7 +22,7 @@
                         <h3 class="box-title">Transacción Bancaria</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form action="<?= base_url()?>index.php/detallebanco/guardar_detallebanco/" method="POST" enctype="multipart/form-data">
+                    <form action="<?= base_url()?>index.php/detallebanco/guardar_detallebanco/" method="POST" enctype="multipart/form-data" id="form_detallebanco">
                         <div class="box-body">
                             <div class="form-group">
                                 <label>Banco</label>
@@ -32,8 +32,13 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Cliente</label>
-                                <input type="text" class="form-control" id="cliente" name="cliente" placeholder="Cliente">
+                                <label>Cliente</label><br>
+                                <select class="selectpicker" name="cliente" id="cliente_detban" data-live-search="true">
+                                    <option>Seleccione Cliente</option>
+                                    <?php foreach($clientes as $cliente){?>
+                                        <option value="<?= $cliente['cli_id']?>"><?= $cliente['cli_nombre'].' '.$cliente['cli_apellido']?></option>
+                                    <?php }?>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Fecha de facturación</label>
@@ -63,8 +68,10 @@
                         </div><!-- /.box-body -->
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button id="guardar_detallebanco" type="submit" class="btn btn-primary">Guardar</button>
+
                         </div>
+
                     </form>
                 </div>
             </div>

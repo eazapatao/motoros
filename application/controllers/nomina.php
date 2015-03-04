@@ -5,6 +5,7 @@ class Nomina extends CI_Controller{
     function __construct()    {
         parent::__construct();
         $this->load->model("nomina_model");
+        $this->load->model("usuario_model");
     }
 
 
@@ -54,6 +55,7 @@ class Nomina extends CI_Controller{
             "label" => "dir",
             "label2" => "new",
             "titulo" => "Nuevo registro de nómina",
+            "usuarios" => $this->usuario_model->get_lista_usuario(),
             "main_content" => "user/nueva_nomina_view"
         );
 
@@ -66,6 +68,7 @@ class Nomina extends CI_Controller{
             "label" => "dir",
             "label2" => "new",
             "titulo" => "Nuevo registro de prestamo",
+            "usuarios" => $this->usuario_model->get_lista_usuario(),
             "main_content" => "user/nuevo_prestamo_view"
         );
 
