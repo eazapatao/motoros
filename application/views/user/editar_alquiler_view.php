@@ -27,16 +27,7 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label>Cliente</label>
-                                <input type="text" class="form-control" id="cliente" name="cliente" placeholder="Cliente" >
-                            </div>
-                            <div class="form-group">
-                                <label>Cliente</label><br>
-                                <select class="selectpicker" name="cliente" id="cliente_alq" data-live-search="true">
-                                    <option>Seleccione Cliente</option>
-                                    <?php foreach($clientes as $cliente){?>
-                                        <option value="<?= $cliente['cli_id']?>"><?= $cliente['cli_nombre'].' '.$cliente['cli_apellido']?></option>
-                                    <?php }?>
-                                </select>
+                                <input type="text" class="form-control" id="cliente" name="cliente" placeholder="Cliente" value="<?= $key['alq_cli_id'] ?>">
                             </div>
                             <div class="form-group">
                                 <label>Observaciones</label>

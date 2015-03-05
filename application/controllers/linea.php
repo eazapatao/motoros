@@ -55,7 +55,6 @@ class Linea extends CI_Controller{
             "label" => "his",
             "label2" => "new",
             "titulo" => "Nuevo_historial",
-            "lineas" => $this->linea_model->get_lista_lineas(),
             "main_content" => "user/nuevo_historial_view",
             "id_ticket" => $id_ticket
         );
