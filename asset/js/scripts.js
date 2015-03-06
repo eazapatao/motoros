@@ -53,11 +53,11 @@ $("#guardar_detallebanco").click(function(){
     })
 });
 
-$("#guardar_historialinea").click(function(){
+$("#guardar_historial").click(function(){
     $.ajax({
         type: "POST",
         url: base_url+"index.php/linea/guardar_historial/",
-        data: $("#form_historialinea").serialize()
+        data: $("#form_historial").serialize()
     })
 });
 
@@ -84,5 +84,15 @@ $("#guardar_nomina").click(function(){
         data: $("#form_nomina").serialize()
     })
 });
+
+$("#guardar_linea").click(function(){
+    $.ajax({
+        type: "POST",
+        url: base_url+"index.php/linea/guardar_linea/",
+        data: $("#form_linea").serialize()
+    })
+});
+
+
 
 

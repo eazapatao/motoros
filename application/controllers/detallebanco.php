@@ -29,6 +29,7 @@ class Detallebanco extends CI_Controller{
             "label2" => "new",
             "titulo" => "Registro Bancario",
             "clientes" => $this->directorio_model->get_lista_clientes(),
+            "bancos" => $this->detallebanco_model->get_lista_banco(),
             "main_content" => "user/nuevo_detallebanco_view"
         );
 

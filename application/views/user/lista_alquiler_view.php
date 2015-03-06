@@ -55,7 +55,7 @@
                                 <tbody>
                                 <?php foreach ($alquiler as $key) {?>
                                     <tr>
-                                        <td><?= $key['alq_cli_id']?></td>
+                                        <td><?= $key['cli_nombre'].' '.$key['cli_apellido']?></td>
                                         <td><?= $key['alq_observaciones']?></td>
                                         <td><?= $key['alq_tipo']?></td>
                                         <td><?= $key['alq_fecha']?></td>
