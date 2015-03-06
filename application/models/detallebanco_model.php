@@ -4,7 +4,16 @@ class Detallebanco_model extends CI_Model{
 
 
     function get_lista_detallebanco(){
-        $query = $this->db->get("detalle_banco");
+        $this->db->select('*');
+        $this->db->from('detalle_banco');
+        $this->db->join('cliente', 'cliente.cli_id = detalle_banco.detban_cli_id');
+        $this->db->join('banco', 'banco.ban_id = detalle_banco.detban_ban_id');
+        $query = $this->db->get();
+        return $query->result_array();
+
+    }
+    function get_lista_banco(){
+        $query = $this->db->get("banco");
 
         return $query->result_array();
 

@@ -22,22 +22,18 @@
                         <h3 class="box-title">Nuevo historial | Ticket de alquiler: <?= $id_ticket?></h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form action="<?= base_url()?>index.php/linea/guardar_historial/" method="POST" enctype="multipart/form-data">
+                    <form action="<?= base_url()?>index.php/linea/guardar_historial/" method="POST" enctype="multipart/form-data" id="form_alquiler">
                         <input type="hidden" name="alquiler" id="alquiler" value="<?= $id_ticket?>">
                         <div class="box-body">
                             <div class="form-group">
-                                <label>Linea</label>
-
-                                <select class="form-control" id="linea" name="linea" placeholder="Linea">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-
+                                <label>Línea</label><br>
+                                <select class="selectpicker" name="linea" id="linea_alq" data-live-search="true">
+                                    <option>Seleccione línea</option>
+                                    <?php foreach($lineas as $linea){?>
+                                        <option value="<?= $linea['lin_id']?>"><?= $linea['lin_numero']?></option>
+                                    <?php }?>
                                 </select>
                             </div>
-
                             <div class="form-group">
                                 <label>Valor del minuto vendido</label>
                                 <input type="text" class="form-control" id="vlorminvend" name="vlorminvend" placeholder="Valor del minuto vendido">
@@ -46,7 +42,7 @@
                         </div><!-- /.box-body -->
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button id="guardar_historial" type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form>
                 </div>

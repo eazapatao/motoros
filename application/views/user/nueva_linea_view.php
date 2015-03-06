@@ -22,18 +22,15 @@
                         <h3 class="box-title">Nueva línea</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form action="<?= base_url()?>index.php/linea/guardar_linea/" method="POST" enctype="multipart/form-data">
+                    <form action="<?= base_url()?>index.php/linea/guardar_linea/" method="POST" enctype="multipart/form-data" id="form_linea">
                         <div class="box-body">
                             <div class="form-group">
-                                <label>Plan</label>
-
-                                <select class="form-control" id="plan" name="plan" placeholder="Plan">
-                                    <option>Seleccione Plan</option>
-                                    <?php foreach ($planes as $plan) {?>
-
+                                <label>Plan</label><br>
+                                <select class="selectpicker" name="plan" id="plan_detban" data-live-search="true">
+                                    <option>Seleccione el plan</option>
+                                    <?php foreach($planes as $plan){?>
                                         <option value="<?= $plan['pla_id']?>"><?= $plan['pla_nombre']?></option>
-                                <?php }?>
-
+                                    <?php }?>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -80,7 +77,7 @@
                         </div><!-- /.box-body -->
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button id="guardar_linea" type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form>
                 </div>

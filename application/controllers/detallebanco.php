@@ -32,6 +32,7 @@ class Detallebanco extends CI_Controller{
     }
 
     public function nuevo_detallebanco(){
+<<<<<<< HEAD
         $arr = $this->session->userdata('logged_in');
         if($this->session->userdata('logged_in'))
         {
@@ -52,6 +53,19 @@ class Detallebanco extends CI_Controller{
             redirect('login', 'refresh');
         }
 
+=======
+        $content = array(
+            "menu" => "Banco",
+            "label" => "dir",
+            "label2" => "new",
+            "titulo" => "Registro Bancario",
+            "clientes" => $this->directorio_model->get_lista_clientes(),
+            "bancos" => $this->detallebanco_model->get_lista_banco(),
+            "main_content" => "user/nuevo_detallebanco_view"
+        );
+
+        $this->load->view("templates/user_template", $content);
+>>>>>>> ea641ac716df32a45838db9c1ce55835b196325a
     }
 
     function guardar_detallebanco(){

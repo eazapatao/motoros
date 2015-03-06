@@ -25,10 +25,12 @@
                     <form action="<?= base_url()?>index.php/detallebanco/guardar_detallebanco/" method="POST" enctype="multipart/form-data" id="form_detallebanco">
                         <div class="box-body">
                             <div class="form-group">
-                                <label>Banco</label>
-                                <select class="form-control" id="banco" name="banco" placeholder="Banco">
-                                    <option value="1">Bancolombia</option>
-                                    <option value="2">Davivienda</option>
+                                <label>Banco</label><br>
+                                <select class="selectpicker" name="banco" id="banco_det" data-live-search="true">
+                                    <option>Seleccione banco</option>
+                                    <?php foreach($bancos as $banco){?>
+                                        <option value="<?= $banco['ban_id']?>"><?= $banco['ban_nombre']?></option>
+                                    <?php }?>
                                 </select>
                             </div>
                             <div class="form-group">

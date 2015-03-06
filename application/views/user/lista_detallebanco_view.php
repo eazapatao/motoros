@@ -54,8 +54,8 @@
                                 <tbody>
                                 <?php foreach ($detallebanco as $key) {?>
                                     <tr>
-                                        <td><?= $key['detban_ban_id']?></td>
-                                        <td><?= $key['detban_cli_id']?></td>
+                                        <td><?= $key['ban_nombre']?></td>
+                                        <td><?= $key['cli_nombre'].' '.$key['cli_apellido']?></td>
                                         <td><?= $key['detban_fecha']?></td>
                                         <td><?= $key['detban_transaccion']?></td>
                                         <td><?= $key['detban_valor']?></td>
