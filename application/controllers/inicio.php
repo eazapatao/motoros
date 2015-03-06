@@ -7,13 +7,22 @@ class Inicio extends CI_Controller{
     }
 
     public function index(){
+        $arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in'))
+        {
+            $content = array(
+                "main_content" => "welcome_view"
 
-        $content = array(
-            "main_content" => "welcome_view"
+            );
 
-        );
+            $this->load->view("templates/user_template", $content);
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
 
-        $this->load->view("templates/user_template", $content);
     }
 }
 

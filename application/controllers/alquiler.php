@@ -10,78 +10,147 @@ class Alquiler extends CI_Controller{
 
     public function index(){
 
-        $content = array(
-            "menu" => "Alquiler",
-            "label" => "alq",
-            "label2" => "list",
-            "titulo" => "Lista",
-            "main_content" => "user/lista_alquiler_view",
-            "alquiler" => $this->alquiler_model->get_lista_alquiler()//Pendiente
-        );
+        $arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in'))
+        {
+            $content = array(
+                "menu" => "Alquiler",
+                "label" => "alq",
+                "label2" => "list",
+                "titulo" => "Lista",
+                "main_content" => "user/lista_alquiler_view",
+                "alquiler" => $this->alquiler_model->get_lista_alquiler()//Pendiente
+            );
 
-        $this->load->view("templates/user_template", $content);
+            $this->load->view("templates/user_template", $content);
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
+
     }
 
     public function nuevo_alquiler(){
-        $content = array(
-            "menu" => "Directorio",
-            "label" => "lin",
-            "label2" => "new",
-            "titulo" => "Nuevo alquiler",
-            "clientes" => $this->directorio_model->get_lista_clientes(),
-            "main_content" => "user/nuevo_alquiler_view"
-        );
 
-        $this->load->view("templates/user_template", $content);
+        $arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in'))
+        {
+            $content = array(
+                "menu" => "Directorio",
+                "label" => "lin",
+                "label2" => "new",
+                "titulo" => "Nuevo alquiler",
+                "clientes" => $this->directorio_model->get_lista_clientes(),
+                "main_content" => "user/nuevo_alquiler_view"
+            );
+
+            $this->load->view("templates/user_template", $content);
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
+
     }
 
     function guardar_alquiler(){
+        $arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in'))
+        {
+            $last_id = $this->alquiler_model->guardar_alquiler();
+            //$last_id = $this->alquiler_model->get_last();
+            //redirect('alquiler', 'refresh');
 
-        $last_id = $this->alquiler_model->guardar_alquiler();
-        //$last_id = $this->alquiler_model->get_last();
-        //redirect('alquiler', 'refresh');
+            echo $last_id;
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
 
-        echo $last_id;
 
     }
 
     function editar($id)
     {
-        $content = array(
-            "menu" => "Alquiler",
-            "label" => "alq",
-            "label2" => "list",
-            "titulo" => "Editar_Alquiler",
-            "alquiler" => $this->alquiler_model->get_alquiler($id),
-            "main_content" => "user/editar_alquiler_view"
-        );
+        $arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in'))
+        {
+            $content = array(
+                "menu" => "Alquiler",
+                "label" => "alq",
+                "label2" => "list",
+                "titulo" => "Editar_Alquiler",
+                "alquiler" => $this->alquiler_model->get_alquiler($id),
+                "main_content" => "user/editar_alquiler_view"
+            );
 
-        $this->load->view("templates/user_template", $content);
+            $this->load->view("templates/user_template", $content);
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
+
     }
 
     function del($id)
     {
-        $content = array(
-            "menu" => "Alquiler",
-            "label" => "alq",
-            "label2" => "del",
-            "titulo" => "Eliminar_Alquiler",
-            "linea" => $this->alquiler_model->get_alquiler($id),
-            "main_content" => "user/eliminar_alquiler_view"
-        );
+        $arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in'))
+        {
+            $content = array(
+                "menu" => "Alquiler",
+                "label" => "alq",
+                "label2" => "del",
+                "titulo" => "Eliminar_Alquiler",
+                "linea" => $this->alquiler_model->get_alquiler($id),
+                "main_content" => "user/eliminar_alquiler_view"
+            );
 
-        $this->load->view("templates/user_template", $content);
+            $this->load->view("templates/user_template", $content);
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
+
     }
 
     function upd_alquiler()
     {
-       $this->alquiler_model->upd_alquiler();
-        redirect("alquiler", "refresh");
+        $arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in'))
+        {
+            $this->alquiler_model->upd_alquiler();
+            redirect("alquiler", "refresh");
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
+
     }
 
     function del_alquiler()
-    {
-        $this->alquiler_model->del_alquiler();
-        redirect("alquiler", "refresh");
+    {$arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in'))
+        {
+            $this->alquiler_model->del_alquiler();
+            redirect("alquiler", "refresh");
+
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
     }
 }

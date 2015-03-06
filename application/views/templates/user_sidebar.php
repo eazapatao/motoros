@@ -34,7 +34,7 @@
             </ul>
             </li>
 
-                <li class="treeview <?php if($label == "fac") echo "active" ?>">
+            <li class="treeview <?php if($label == "fac") echo "active" ?>">
                 <a href="#">
                     <i class="fa fa-building-o"></i>
                     <span>Facturación</span>
@@ -48,21 +48,6 @@
                     <li <?php if($label2 == "list") echo "class=active" ?>><a href="<?= base_url()?>operacion"><i class="fa fa-angle-double-right"></i>Ingresos/Egresos</a></li>
 
                 </ul>
-
-            <li class="treeview <?php if($label == "usu") echo "active" ?>">
-                <a href="#">
-                    <i class="fa fa-user"></i>
-                    <span>Usuarios</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-
-                <ul class="treeview-menu">
-
-                    <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>usuario"><i class="fa fa-angle-double-right"></i>Listar usuarios</a></li>
-
-
-                </ul>
-
             </li>
 
 

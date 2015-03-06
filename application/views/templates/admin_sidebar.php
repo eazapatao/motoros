@@ -5,84 +5,92 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-            <li class="active">
+            <li class="<?php if($label == "dash") echo "class=active" ?>">
                 <a href="index.html">
-                    <i class="fa fa-dashboard"></i> <span>Inicio</span>
+                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
-            <li class="treeview">
+
+            <li class="treeview <?php if($label == "dir")  ?>">
                 <a href="#">
-                    <i class="fa fa-bar-chart-o"></i>
-                    <span>Charts</span>
+                    <i class="fa fa-newspaper-o"></i>
+                    <span>Directorio</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/charts/morris.html"><i class="fa fa-angle-double-right"></i> Morris</a></li>
-                    <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li>
+                    <li <?php if($label2 == "list") echo "class=active" ?>><a href="<?= base_url()?>directorio"><i class="fa fa-angle-double-right"></i> Lista de clientes</a></li>
+
                 </ul>
             </li>
-            <li class="treeview">
+
+            <li class="treeview <?php if($label == "lin")  ?>">
                 <a href="#">
-                    <i class="fa fa-laptop"></i>
-                    <span>UI Elements</span>
+                    <i class="fa fa-tty"></i>
+                    <span>Administración de líneas</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/UI/general.html"><i class="fa fa-angle-double-right"></i> General</a></li>
-                    <li><a href="pages/UI/icons.html"><i class="fa fa-angle-double-right"></i> Icons</a></li>
-                    <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Buttons</a></li>
-                    <li><a href="pages/UI/sliders.html"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
-                    <li><a href="pages/UI/timeline.html"><i class="fa fa-angle-double-right"></i> Timeline</a></li>
+                    <li <?php if($label2 == "list") echo "class=active" ?>><a href="<?= base_url()?>linea"><i class="fa fa-angle-double-right"></i>Líneas</a></li>
+                    <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>alquiler"><i class="fa fa-angle-double-right"></i>Alquiler de líneas</a></li>
+                    <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>plan"><i class="fa fa-angle-double-right"></i>Administración de planes</a></li>
+
                 </ul>
             </li>
-            <li class="treeview">
+
+            <li class="treeview <?php if($label == "fac") echo "active" ?>">
                 <a href="#">
-                    <i class="fa fa-edit"></i> <span>Forms</span>
+                    <i class="fa fa-building-o"></i>
+                    <span>Facturación</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
+
                 <ul class="treeview-menu">
-                    <li><a href="pages/forms/general.html"><i class="fa fa-angle-double-right"></i> General Elements</a></li>
-                    <li><a href="pages/forms/advanced.html"><i class="fa fa-angle-double-right"></i> Advanced Elements</a></li>
-                    <li><a href="pages/forms/editors.html"><i class="fa fa-angle-double-right"></i> Editors</a></li>
+
+
+                    <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>detallebanco"><i class="fa fa-angle-double-right"></i>Bancos</a></li>
+                    <li <?php if($label2 == "list") echo "class=active" ?>><a href="<?= base_url()?>operacion"><i class="fa fa-angle-double-right"></i>Ingresos/Egresos</a></li>
+
                 </ul>
             </li>
-            <li class="treeview">
+
+            <li class="treeview <?php if($label == "usu") echo "active" ?>">
                 <a href="#">
-                    <i class="fa fa-table"></i> <span>Tables</span>
+                    <i class="fa fa-user"></i>
+                    <span>Usuarios</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
+
                 <ul class="treeview-menu">
-                    <li><a href="pages/tables/simple.html"><i class="fa fa-angle-double-right"></i> Simple tables</a></li>
-                    <li><a href="pages/tables/data.html"><i class="fa fa-angle-double-right"></i> Data tables</a></li>
+
+                    <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>usuario"><i class="fa fa-angle-double-right"></i>Listar usuarios</a></li>
+
+
                 </ul>
+
             </li>
-            <li>
-                <a href="pages/calendar.html">
-                    <i class="fa fa-calendar"></i> <span>Calendar</span>
-                    <small class="badge pull-right bg-red">3</small>
-                </a>
-            </li>
-            <li>
-                <a href="pages/mailbox.html">
-                    <i class="fa fa-envelope"></i> <span>Mailbox</span>
-                    <small class="badge pull-right bg-yellow">12</small>
-                </a>
-            </li>
-            <li class="treeview">
+
+
+            <li class="treeview <?php if($label == "nom") echo "active" ?>">
                 <a href="#">
-                    <i class="fa fa-folder"></i> <span>Examples</span>
+                    <i class="fa fa-users"></i>
+                    <span>Nómina</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
+
                 <ul class="treeview-menu">
-                    <li><a href="pages/examples/invoice.html"><i class="fa fa-angle-double-right"></i> Invoice</a></li>
-                    <li><a href="pages/examples/login.html"><i class="fa fa-angle-double-right"></i> Login</a></li>
-                    <li><a href="pages/examples/register.html"><i class="fa fa-angle-double-right"></i> Register</a></li>
-                    <li><a href="pages/examples/lockscreen.html"><i class="fa fa-angle-double-right"></i> Lockscreen</a></li>
-                    <li><a href="pages/examples/404.html"><i class="fa fa-angle-double-right"></i> 404 Error</a></li>
-                    <li><a href="pages/examples/500.html"><i class="fa fa-angle-double-right"></i> 500 Error</a></li>
-                    <li><a href="pages/examples/blank.html"><i class="fa fa-angle-double-right"></i> Blank Page</a></li>
+
+                    <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>nomina"><i class="fa fa-angle-double-right"></i>Listar Pagos</a></li>
+
+                    <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>nomina/verprestamo"><i class="fa fa-angle-double-right"></i>Ver Préstamos</a></li>
+
                 </ul>
+
+            </li>
+
+            <li class="active">
+                <a href="<?= base_url()?>nomina/conteo">
+                    <i class="fa fa-usd"></i> <span>Conteo de dinero</span>
+                </a>
             </li>
         </ul>
     </section>

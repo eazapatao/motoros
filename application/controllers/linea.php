@@ -9,30 +9,48 @@ class Linea extends CI_Controller{
     }
 
     public function index(){
+        $arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in'))
+        {
+            $content = array(
+                "menu" => "Directorio",
+                "label" => "lin",
+                "label2" => "list",
+                "titulo" => "Lista",
+                "main_content" => "user/lista_lineas_view",
+                "lineas" => $this->linea_model->get_lista_lineas()//Pendiente
+            );
 
-        $content = array(
-            "menu" => "Directorio",
-            "label" => "lin",
-            "label2" => "list",
-            "titulo" => "Lista",
-            "main_content" => "user/lista_lineas_view",
-            "lineas" => $this->linea_model->get_lista_lineas()//Pendiente
-        );
+            $this->load->view("templates/user_template", $content);
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
 
-        $this->load->view("templates/user_template", $content);
     }
     public function verhistorial(){
+        $arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in'))
+        {
+            $content = array(
+                "menu" => "Historial",
+                "label" => "his",
+                "label2" => "list",
+                "titulo" => "Lista",
+                "main_content" => "user/lista_historial_view",
+                "historial" => $this->linea_model->get_lista_historial()//Pendiente
+            );
 
-        $content = array(
-            "menu" => "Historial",
-            "label" => "his",
-            "label2" => "list",
-            "titulo" => "Lista",
-            "main_content" => "user/lista_historial_view",
-            "historial" => $this->linea_model->get_lista_historial()//Pendiente
-        );
+            $this->load->view("templates/user_template", $content);
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
 
-        $this->load->view("templates/user_template", $content);
     }
 
     public function nueva_linea(){
