@@ -29,6 +29,7 @@
                                 <label>Cliente</label>
                                 <input type="text" class="form-control" id="cliente" name="cliente" placeholder="Cliente" value="<?= $key['alq_cli_id'] ?>">
                             </div>
+
                             <div class="form-group">
                                 <label>Observaciones</label>
                                 <textarea type="text" class="form-control" id="observaciones" name="observaciones" ><?php echo $key['alq_observaciones']?></textarea>

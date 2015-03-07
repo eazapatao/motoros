@@ -54,7 +54,7 @@
                                 <tbody>
                                 <?php foreach ($lineas as $key) {?>
                                     <tr>
-                                        <td><?= $key['lin_pla_id']?></td>
+                                        <td><?= $key['pla_nombre']?></td>
                                         <td><?= $key['lin_numero']?></td>
                                         <td><?= $key['lin_corte']?></td>
                                         <td><?= $key['lin_estado']?></td>

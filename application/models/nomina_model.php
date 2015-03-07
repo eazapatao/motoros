@@ -4,15 +4,18 @@ class Nomina_model extends CI_Model{
 
 
     function get_lista_nomina(){
-        $query = $this->db->get("nomina");
-
+        $this->db->select('*');
+        $this->db->from('nomina');
+        $this->db->join('usuario', 'usuario.usu_id = nomina.nomquin_usu_id');
+        $query = $this->db->get();
         return $query->result_array();
-
     }
 
     function get_lista_prestamo(){
-        $query = $this->db->get("prestamo_empleado");
-
+        $this->db->select('*');
+        $this->db->from('prestamo_empleado');
+        $this->db->join('usuario', 'usuario.usu_id = prestamo_empleado.emppre_usu_id');
+        $query = $this->db->get();
         return $query->result_array();
 
     }

@@ -50,7 +50,7 @@
                                 <tbody>
                                 <?php foreach ($nomina as $key) {?>
                                     <tr>
-                                        <td><?= $key['emppre_usu_id']?></td>
+                                        <td><?= $key['usu_nombre'].' '.$key['usu_apellido']?></td>
                                         <td><?= $key['emppre_fecha']?></td>
                                         <td><?= $key['emppre_valor']?></td>
                                         <td><?= $key['emppre_cuotas']?></td>

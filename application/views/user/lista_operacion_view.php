@@ -56,8 +56,8 @@
                                 <tbody>
                                 <?php foreach ($operacion as $key) {?>
                                     <tr>
-                                        <td><?= $key['ope_cli_id']?></td>
-                                        <td><?= $key['ope_usu_id']?></td>
+                                        <td><?=  $key['cli_nombre'].' '.$key['cli_apellido']?></td>
+                                        <td><?= $key['usu_nombre'].' '.$key['usu_apellido']?></td>
                                         <td><?= $key['ope_tipo']?></td>
                                         <td><?= $key['ope_valor']?></td>
                                         <td><?= $key['ope_fecha']?></td>

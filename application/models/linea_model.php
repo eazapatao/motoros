@@ -4,16 +4,20 @@ class linea_model extends CI_Model{
 
 
     function get_lista_lineas(){
-        $query = $this->db->get("linea");
-
+        $this->db->select('*');
+        $this->db->from('linea');
+        $this->db->join('plan', 'plan.pla_id = linea.lin_pla_id');
+        $query = $this->db->get();
         return $query->result_array();
 
     }
+
     function get_lista_historial(){
-        $query = $this->db->get("historialinea");
-
+        $this->db->select('*');
+        $this->db->from('historialinea');
+        $this->db->join('linea', 'linea.lin_id = historialinea.his_lin_id');
+        $query = $this->db->get();
         return $query->result_array();
-
     }
 
     function guardar_linea(){

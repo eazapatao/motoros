@@ -48,7 +48,7 @@
                                 <tbody>
                                 <?php foreach ($historial as $key) {?>
                                     <tr>
-                                        <td><?= $key['his_lin_id']?></td>
+                                        <td><?= $key['lin_numero']?></td>
                                         <td><?= $key['his_alq_id']?></td>
                                         <td><?= $key['his_valor_minvend']?></td>
 
