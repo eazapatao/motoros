@@ -62,6 +62,7 @@ $("#guardar_linea").click(function(){
     })
 });
 
+<<<<<<< HEAD
 $('[data-toggle=confirmation]').confirmation({
     title: '¿Esta seguro de eliminar este registro?',
     btnOkLabel: 'Si',
@@ -74,5 +75,16 @@ $('[data-toggle=confirmation]').confirmation({
         $('[data-toggle=confirmation]').confirmation('hide')
     }
 });
+=======
+$("#guardar_control").click(function(){
+    $.ajax({
+        type: "POST",
+        url: base_url+"index.php/control/guardar_control/",
+        data: $("#form_control").serialize()
+    })
+});
+
+
+>>>>>>> d704fb3c89cbae18557e575142a409e7d45edc5a
 
 
