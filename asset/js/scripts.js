@@ -54,13 +54,7 @@ $("#guardar_nomina").click(function(){
     })
 });
 
-$("#guardar_linea").click(function(){
-    $.ajax({
-        type: "POST",
-        url: base_url+"index.php/linea/guardar_linea/",
-        data: $("#form_linea").serialize()
-    })
-});
+
 
 $('[data-toggle=confirmation]').confirmation({
     title: '¿Esta seguro de eliminar este registro?',
