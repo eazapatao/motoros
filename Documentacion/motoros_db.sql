@@ -3,12 +3,18 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-03-2015 a las 22:18:02
+-- Tiempo de generación: 08-03-2015 a las 22:52:35
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de datos: `motoros_db`
@@ -215,25 +221,33 @@ CREATE TABLE IF NOT EXISTS `linea` (
   `lin_corte` int(11) NOT NULL,
   `lin_estado` varchar(30) NOT NULL,
   `lin_operador` varchar(50) NOT NULL,
-  `lin_vlorminvend` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+  `lin_vlorminvend` int(11) NOT NULL,
+  `lin_minutosconsumidos` int(11) NOT NULL,
+  `lin_pasaminutos` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `linea`
 --
 
-INSERT INTO `linea` (`lin_id`, `lin_pla_id`, `lin_numero`, `lin_corte`, `lin_estado`, `lin_operador`, `lin_vlorminvend`) VALUES
-(2, 4, 2147483647, 4, 'Disponible', 'Claro', 34),
-(5, 4, 2147483647, 4, 'Disponible', 'Claro', 87),
-(8, 4, 2147483647, 4, 'Disponible', 'Claro', 58),
-(9, 4, 2147483647, 4, 'Disponible', 'Claro', 180),
-(10, 4, 2147483647, 4, 'Disponible', 'Claro', 244),
-(11, 5, 2147483647, 4, 'Alquilada', 'Claro', 90),
-(12, 4, 1, 4, 'Disponible', 'Claro', 65),
-(13, 4, 2147483647, 4, 'Alquilada', 'Movistar', 98),
-(16, 3, 2313, 6, 'Disponible', 'Claro', 34),
-(17, 4, 0, 2, 'Suspendida falta de pago', 'Claro', 0),
-(20, 1, 0, 4, 'Disponible', 'Claro', 0);
+INSERT INTO `linea` (`lin_id`, `lin_pla_id`, `lin_numero`, `lin_corte`, `lin_estado`, `lin_operador`, `lin_vlorminvend`, `lin_minutosconsumidos`, `lin_pasaminutos`) VALUES
+(2, 4, 2147483647, 4, 'Disponible', 'Claro', 34, 0, 0),
+(5, 4, 2147483647, 4, 'Disponible', 'Claro', 87, 0, 0),
+(8, 4, 2147483647, 4, 'Disponible', 'Claro', 58, 0, 0),
+(9, 4, 2147483647, 4, 'Disponible', 'Claro', 180, 0, 0),
+(10, 4, 2147483647, 4, 'Disponible', 'Claro', 244, 0, 0),
+(11, 5, 2147483647, 4, 'Alquilada', 'Claro', 90, 0, 0),
+(12, 4, 1, 4, 'Disponible', 'Claro', 65, 0, 0),
+(13, 4, 2147483647, 4, 'Alquilada', 'Movistar', 98, 0, 0),
+(16, 3, 2313, 6, 'Disponible', 'Claro', 34, 0, 0),
+(17, 4, 0, 2, 'Suspendida falta de pago', 'Claro', 0, 0, 0),
+(20, 1, 0, 4, 'Disponible', 'Claro', 0, 0, 0),
+(22, 6, 999999999, 2, 'Disponible', 'Claro', 23, 0, 0),
+(23, 6, 2147483647, 2, 'Disponible', 'Claro', 0, 300, 200),
+(24, 6, 2147483647, 2, 'Devuelta al operador', 'Claro', 12, 300, 200),
+(25, 6, 2147483647, 6, 'Alquilada', 'Virgin mobile', 23, 300, 20),
+(26, 6, 2147483647, 2, 'Disponible', 'Claro', 12, 300, 20),
+(27, 6, 2147483647, 2, 'Disponible', 'Tigo', 23, 300, 20);
 
 -- --------------------------------------------------------
 
@@ -491,7 +505,7 @@ MODIFY `his_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 -- AUTO_INCREMENT de la tabla `linea`
 --
 ALTER TABLE `linea`
-MODIFY `lin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+MODIFY `lin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT de la tabla `nomina`
 --
@@ -571,3 +585,7 @@ ADD CONSTRAINT `operacion_ibfk_2` FOREIGN KEY (`ope_usu_id`) REFERENCES `usuario
 --
 ALTER TABLE `prestamo_empleado`
 ADD CONSTRAINT `prestamo_empleado_ibfk_1` FOREIGN KEY (`emppre_usu_id`) REFERENCES `usuario` (`usu_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
