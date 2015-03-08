@@ -51,10 +51,10 @@ class alquiler_model extends CI_Model{
         $this->db->update('alquiler', $data);
     }
 
-    function del_alquiler()
+    function del_alquiler($id)
     {
 
-        $this->db->where("alq_id", $this->input->post("alq_id"));
+        $this->db->where("alq_id", $id);
         $this->db->delete('alquiler');
 
     }

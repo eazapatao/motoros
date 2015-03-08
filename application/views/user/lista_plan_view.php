@@ -59,9 +59,10 @@
                                             <a href="<?php echo base_url()?>plan/editar/<?php echo $key['pla_id']?>" type="button" class="btn btn-xs btn-warning">
                                                 <i class="glyphicon glyphicon-edit"></i>
                                             </a>
-                                            <a href="<?php echo base_url()?>plan/del/<?php echo $key['pla_id']?>" type="button" class="btn btn-xs btn-danger">
-                                                <i class="glyphicon glyphicon-trash"></i>
-                                            </a>
+
+                                        <a data-ref="<?php echo base_url()?>plan/del/<?php echo $key['pla_id']?>"  type="button" class="btn btn-xs btn-danger delete" data-toggle="confirmation" data-placement="left">
+                                            <i class="glyphicon glyphicon-trash"></i>
+                                        </a>
                                         </td>
                                     </tr>
                                 <?php }?>

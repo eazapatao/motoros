@@ -53,10 +53,10 @@ class plan_model extends CI_Model{
         $this->db->update('plan', $data);
     }
 
-    function del_plan()
+    function del_plan($id)
     {
 
-        $this->db->where("pla_id", $this->input->post("pla_id"));
+        $this->db->where("pla_id", $id);
         $this->db->delete('plan');
 
     }

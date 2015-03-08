@@ -55,16 +55,8 @@ class Plan extends CI_Controller{
 
     function del($id)
     {
-        $content = array(
-            "menu" => "Plan",
-            "label" => "pla",
-            "label2" => "del",
-            "titulo" => "Eliminar_Plan",
-            "plan" => $this->plan_model->get_linea($id),
-            "main_content" => "user/eliminar_plan_view"
-        );
-
-        $this->load->view("templates/user_template", $content);
+        $this->plan_model->del_plan($id);
+        redirect("plan", "refresh");
     }
 
     function upd_plan()
