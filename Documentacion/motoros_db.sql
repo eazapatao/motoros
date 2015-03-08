@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-03-2015 a las 22:57:43
+-- Tiempo de generación: 08-03-2015 a las 23:14:40
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -129,15 +129,6 @@ CREATE TABLE IF NOT EXISTS `control_adicional` (
   `con_descuentos` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `control_adicional`
---
-
-INSERT INTO `control_adicional` (`con_id`, `con_lin_id`, `con_fecha`, `con_facturacion`, `con_descuentos`) VALUES
-(1, 16, '0000-00-00', 1234556, 12),
-(5, 20, '0000-00-00', 200000, 0),
-(6, 20, '0000-00-00', 100000, 1500);
-
 -- --------------------------------------------------------
 
 --
@@ -183,25 +174,6 @@ CREATE TABLE IF NOT EXISTS `historialinea` (
   `his_valor_minvend` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `historialinea`
---
-
-INSERT INTO `historialinea` (`his_id`, `his_lin_id`, `his_alq_id`, `his_valor_minvend`) VALUES
-(2, 2, 23, 40),
-(6, 2, 24, 56),
-(7, 5, 25, 87),
-(8, 5, 26, 80),
-(10, 2, 27, 34),
-(11, 2, 1, 23),
-(16, 9, 36, 12),
-(17, 2, 37, 60),
-(18, 2, 38, 12),
-(19, 12, 39, 1),
-(20, 5, 41, 12),
-(21, 2, 41, 23),
-(22, 16, 41, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -211,37 +183,21 @@ INSERT INTO `historialinea` (`his_id`, `his_lin_id`, `his_alq_id`, `his_valor_mi
 CREATE TABLE IF NOT EXISTS `linea` (
 `lin_id` int(11) NOT NULL,
   `lin_pla_id` int(11) NOT NULL,
-  `lin_numero` int(11) NOT NULL,
+  `lin_numero` varchar(11) NOT NULL,
   `lin_corte` int(11) NOT NULL,
   `lin_estado` varchar(30) NOT NULL,
   `lin_operador` varchar(50) NOT NULL,
   `lin_vlorminvend` int(11) NOT NULL,
   `lin_minutosconsumidos` int(11) NOT NULL,
   `lin_pasaminutos` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `linea`
 --
 
 INSERT INTO `linea` (`lin_id`, `lin_pla_id`, `lin_numero`, `lin_corte`, `lin_estado`, `lin_operador`, `lin_vlorminvend`, `lin_minutosconsumidos`, `lin_pasaminutos`) VALUES
-(2, 4, 2147483647, 4, 'Disponible', 'Claro', 34, 0, 0),
-(5, 4, 2147483647, 4, 'Disponible', 'Claro', 87, 0, 0),
-(8, 4, 2147483647, 4, 'Disponible', 'Claro', 58, 0, 0),
-(9, 4, 2147483647, 4, 'Disponible', 'Claro', 180, 0, 0),
-(10, 4, 2147483647, 4, 'Disponible', 'Claro', 244, 0, 0),
-(11, 5, 2147483647, 4, 'Alquilada', 'Claro', 90, 0, 0),
-(12, 4, 1, 4, 'Disponible', 'Claro', 65, 0, 0),
-(13, 4, 2147483647, 4, 'Alquilada', 'Movistar', 98, 0, 0),
-(16, 3, 2313, 6, 'Disponible', 'Claro', 34, 0, 0),
-(17, 4, 0, 2, 'Suspendida falta de pago', 'Claro', 0, 0, 0),
-(20, 1, 0, 4, 'Disponible', 'Claro', 0, 0, 0),
-(22, 6, 999999999, 2, 'Disponible', 'Claro', 23, 0, 0),
-(23, 6, 2147483647, 2, 'Disponible', 'Claro', 0, 300, 200),
-(24, 6, 2147483647, 2, 'Devuelta al operador', 'Claro', 12, 300, 200),
-(25, 6, 2147483647, 6, 'Alquilada', 'Virgin mobile', 23, 300, 20),
-(26, 6, 2147483647, 2, 'Disponible', 'Claro', 12, 300, 20),
-(27, 6, 2147483647, 2, 'Disponible', 'Tigo', 23, 300, 20);
+(36, 6, '3137514761', 6, 'Perdida', 'Tigo', 12, 300, 20);
 
 -- --------------------------------------------------------
 
@@ -499,7 +455,7 @@ MODIFY `his_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 -- AUTO_INCREMENT de la tabla `linea`
 --
 ALTER TABLE `linea`
-MODIFY `lin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
+MODIFY `lin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT de la tabla `nomina`
 --
