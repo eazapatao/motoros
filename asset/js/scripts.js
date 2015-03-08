@@ -18,12 +18,6 @@ $("#guardar_alquiler").click(function(){
     });
 });
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 8a2a0e4e4314add3f05ca0df784dc471f2e0848b
 $('[data-toggle=confirmation]').confirmation({
     title: '¿Esta seguro de eliminar este registro?',
     btnOkLabel: 'Si',
