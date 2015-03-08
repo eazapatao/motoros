@@ -59,10 +59,10 @@ class Detallebanco_model extends CI_Model{
 
     }
 
-    function del_detallebanco()
+    function del_detallebanco($id)
     {
 
-        $this->db->where("detban_id", $this->input->post("detban_id"));
+        $this->db->where("detban_id", $id);
         $this->db->delete('detalle_banco');
 
     }
