@@ -65,7 +65,8 @@
                                             <a href="<?php echo base_url()?>control/editar/<?php echo $control['con_id']?>" type="button" class="btn btn-xs btn-warning">
                                                 <i class="glyphicon glyphicon-edit"></i>
                                             </a>
-                                            <a href="<?php echo base_url()?>control/del/<?php echo $control['con_id']?>" type="button" class="btn btn-xs btn-danger">
+
+                                            <a data-ref="<?php echo base_url()?>control/del/<?php echo $control['con_id']?>"  type="button" class="btn btn-xs btn-danger delete" data-toggle="confirmation" data-placement="left">
                                                 <i class="glyphicon glyphicon-trash"></i>
                                             </a>
                                         </td>

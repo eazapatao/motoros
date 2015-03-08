@@ -22,7 +22,7 @@ class linea_model extends CI_Model{
     }
 
     function guardar_linea(){
-print_r($_POST);
+
         $data = array(
             "lin_pla_id" => $this->input->post("plan"),
             "lin_numero" => $this->input->post("numero"),

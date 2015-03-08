@@ -101,16 +101,9 @@ class Detallebanco extends CI_Controller{
         $arr = $this->session->userdata('logged_in');
         if($this->session->userdata('logged_in'))
         {
-            $content = array(
-                "menu" => "Directorio",
-                "label" => "lin",
-                "label2" => "del",
-                "titulo" => "Eliminar_Detalle_Banco",
-                "detallebanco" => $this->detallebanco_model->get_detallebanco($id),
-                "main_content" => "user/eliminar_detallebanco_view"
-            );
+            $this->detallebanco_model->del_detallebanco($id);
 
-            $this->load->view("templates/user_template", $content);
+            redirect('detallebanco', 'refresh');
         }
         else
         {

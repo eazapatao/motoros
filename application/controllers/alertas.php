@@ -8,4 +8,7 @@ class Alertas extends CI_Controller{
     }
 
 
+
+
+
 }

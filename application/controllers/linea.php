@@ -83,7 +83,7 @@ class Linea extends CI_Controller{
 
     function guardar_linea(){
         $this->linea_model->guardar_linea();
-        //redirect('linea', 'refresh');
+        redirect('linea', 'refresh');
 
     }
     function guardar_historial(){

@@ -126,10 +126,10 @@ function calcularnomina()
 
     }
 
-    function del_nomina()
+    function del_nomina($id)
     {
 
-        $this->db->where("nomquin_id", $this->input->post("nomquin_id"));
+        $this->db->where("nomquin_id", $id);
         $this->db->delete('nomina');
 
     }
@@ -148,10 +148,10 @@ function calcularnomina()
 
     }
 
-    function del_prestamo()
+    function del_prestamo($id)
     {
 
-        $this->db->where("emppre_id", $this->input->post("emppre_id"));
+        $this->db->where("emppre_id", $id);
         $this->db->delete('prestamo_empleado');
 
     }

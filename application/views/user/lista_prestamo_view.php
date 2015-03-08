@@ -59,7 +59,7 @@
                                                 <i class="glyphicon glyphicon-edit"></i>
                                             </a>
 
-                                        <a data-ref="<?php echo base_url()?>linea/del/<?php echo $key['emppre_id']?>"  type="button" class="btn btn-xs btn-danger delete" data-toggle="confirmation" data-placement="left">
+                                        <a data-ref="<?php echo base_url()?>nomina/del_prestamo/<?php echo $key['emppre_id']?>"  type="button" class="btn btn-xs btn-danger delete" data-toggle="confirmation" data-placement="left">
                                             <i class="glyphicon glyphicon-trash"></i>
                                         </a>
                                         </td>

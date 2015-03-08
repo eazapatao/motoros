@@ -112,7 +112,9 @@ class Nomina extends CI_Controller{
 
     function del($id)
     {
+        $this->nomina_model->del_nomina($id);
 
+        redirect("nomina", "refresh");
     }
 
     function upd_nomina()
@@ -130,10 +132,10 @@ class Nomina extends CI_Controller{
         $this->nomina_model->del_nomina();
         redirect("nomina", "refresh");
     }
-    function del_prestamo()
+    function del_prestamo($id)
     {
-        $this->nomina_model->del_prestamo();
-        redirect("nomina", "refresh");
+        $this->nomina_model->del_prestamo($id);
+        redirect("nomina/verprestamo", "refresh");
     }
 }
 
