@@ -3,18 +3,12 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-03-2015 a las 17:59:52
+-- Tiempo de generación: 08-03-2015 a las 22:18:02
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de datos: `motoros_db`
@@ -54,10 +48,8 @@ INSERT INTO `alquiler` (`alq_id`, `alq_cli_id`, `alq_observaciones`, `alq_tipo`,
 (28, 1, 'sad', 'Contado', '0000-00-00', '0000-00-00'),
 (29, 1, 'prueba 1', 'Contado', '0000-00-00', '0000-00-00'),
 (30, 1, 'prueba 1', 'Contado', '0000-00-00', '0000-00-00'),
-(31, 4, 'kajskjdhl ñoi H ÑOH ñoiHF', 'Crédito', '0000-00-00', '0000-00-00'),
 (32, 7, 'me mame', 'Crédito', '0000-00-00', '0000-00-00'),
 (34, 1, '', 'Crédito', '0000-00-00', '0000-00-00'),
-(35, 4, 'sdfsdf', 'Crédito', '0000-00-00', '0000-00-00'),
 (36, 1, '', 'Contado', '0000-00-00', '0000-00-00'),
 (37, 2, 'nuevo cliente', 'Crédito', '0000-00-00', '0000-00-00'),
 (38, 2, 'poiuytrew', 'Contado', '0000-00-00', '0000-00-00'),
@@ -113,8 +105,6 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 INSERT INTO `cliente` (`cli_id`, `cli_cedula`, `cli_nombre`, `cli_apellido`, `cli_direccion`, `cli_barrio`, `cli_telefono`, `cli_celular`, `cli_ciudad`, `cli_observaciones`, `cli_tipo`) VALUES
 (1, 1053818270, 'Edwin Andrés', 'Zapata Ocampo', 'Calle 15 No 18 - 26', 'Chipre', 8916182, '3137514761', 'Manizales', 'Ok ', 'Regular'),
 (2, 30315673, 'Esperanza', 'Ocampo', 'chipre', 'chipre', 8912345, '312345678', 'Manizales', 'ok', 'Paga Diario'),
-(3, 1, 'andres', 'garcia', 'asdsad', 'asdsad', 324243, '3234354', 'Manizales', 'oksaifu hakfuh aihflasdhflkjahflkjha sldkfhah', 'Regular'),
-(4, 2, 'maria', 'mendez', 'asdsad', 'asdsad', 2424324, '54546', 'Manizales', 'ok', 'credito'),
 (5, 3, 'juan', 'perez', 'sadsada', 'sadsada', 3242, '67546435', 'Manizales', 'ok', 'contado'),
 (6, 4, 'ana', 'bedoya', 'dada', 'dada', 42, '25342342', 'Manizales', 'ok', 'contado'),
 (7, 5, 'roberto', 'aristizabal', 'dadada', 'dadada', 42, '144543', 'Manizales', 'ok', 'contado'),
@@ -124,6 +114,29 @@ INSERT INTO `cliente` (`cli_id`, `cli_cedula`, `cli_nombre`, `cli_apellido`, `cl
 (11, 9, 'felipe', 'grisales', 'ergaedfgtrrsh', 'ergaedfgtrrsh', 5674564, '56735673', 'Manizales', 'ok', 'credito'),
 (12, 10, 'beatriz', 'vallejo', 'strhjstrjusrt', 'strhjstrjusrt', 2147483647, '54634634', 'Manizales', 'ok', 'credito'),
 (13, 30239208, 'Maria', 'Hernandez', 'cra 23 133', 'olaya', 6654564, '3116497308', 'Manizales', 'mala pagadora', 'Regular');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `control_adicional`
+--
+
+CREATE TABLE IF NOT EXISTS `control_adicional` (
+`con_id` int(11) NOT NULL,
+  `con_lin_id` int(11) NOT NULL,
+  `con_fecha` date NOT NULL,
+  `con_facturacion` int(11) NOT NULL,
+  `con_descuentos` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `control_adicional`
+--
+
+INSERT INTO `control_adicional` (`con_id`, `con_lin_id`, `con_fecha`, `con_facturacion`, `con_descuentos`) VALUES
+(1, 16, '0000-00-00', 1234556, 12),
+(5, 20, '0000-00-00', 200000, 0),
+(6, 20, '0000-00-00', 100000, 1500);
 
 -- --------------------------------------------------------
 
@@ -203,7 +216,7 @@ CREATE TABLE IF NOT EXISTS `linea` (
   `lin_estado` varchar(30) NOT NULL,
   `lin_operador` varchar(50) NOT NULL,
   `lin_vlorminvend` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `linea`
@@ -266,7 +279,7 @@ CREATE TABLE IF NOT EXISTS `operacion` (
   `ope_fecha` date NOT NULL,
   `ope_nfactura` int(11) NOT NULL,
   `ope_observaciones` varchar(300) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `operacion`
@@ -274,7 +287,10 @@ CREATE TABLE IF NOT EXISTS `operacion` (
 
 INSERT INTO `operacion` (`ope_id`, `ope_cli_id`, `ope_usu_id`, `ope_tipo`, `ope_valor`, `ope_fecha`, `ope_nfactura`, `ope_observaciones`) VALUES
 (1, 1, 1, 'Clientes', 0, '0000-00-00', 0, ''),
-(2, 6, 1, 'Pago Préstamos', 1200, '0000-00-00', 0, '');
+(2, 6, 1, 'Pago Préstamos', 1200, '0000-00-00', 0, ''),
+(4, 12, 1, 'Caja Fuerte', 12000, '0000-00-00', 90, 'ok'),
+(5, 11, 1, 'Pago Préstamos', 12, '0000-00-00', 1234, 'asdasd'),
+(6, 13, 1, 'Pago Préstamos', 1234, '2015-02-21', 123, 'qwee');
 
 -- --------------------------------------------------------
 
@@ -288,7 +304,7 @@ CREATE TABLE IF NOT EXISTS `plan` (
   `pla_totalmin` int(11) NOT NULL,
   `pla_vlrmin` int(11) NOT NULL,
   `pla_cargobasico` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `plan`
@@ -300,7 +316,8 @@ INSERT INTO `plan` (`pla_id`, `pla_nombre`, `pla_totalmin`, `pla_vlrmin`, `pla_c
 (3, 'minutos por montones', 87, 180, 78987),
 (4, 'plan sin limites', 2000, 7, 2000),
 (5, 'plan sin limites 5', 850, 60, 125900),
-(6, 'Plan para hablar y hablar', 1500, 23, 78000);
+(6, 'Plan para hablar y hablar', 1500, 23, 78000),
+(7, 'andres', 123, 23, 100000);
 
 -- --------------------------------------------------------
 
@@ -383,6 +400,12 @@ ALTER TABLE `cliente`
  ADD PRIMARY KEY (`cli_id`);
 
 --
+-- Indices de la tabla `control_adicional`
+--
+ALTER TABLE `control_adicional`
+ ADD PRIMARY KEY (`con_id`,`con_lin_id`), ADD KEY `con_lin_id` (`con_lin_id`);
+
+--
 -- Indices de la tabla `detalle_banco`
 --
 ALTER TABLE `detalle_banco`
@@ -450,6 +473,11 @@ MODIFY `ban_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 ALTER TABLE `cliente`
 MODIFY `cli_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
+-- AUTO_INCREMENT de la tabla `control_adicional`
+--
+ALTER TABLE `control_adicional`
+MODIFY `con_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
 -- AUTO_INCREMENT de la tabla `detalle_banco`
 --
 ALTER TABLE `detalle_banco`
@@ -463,7 +491,7 @@ MODIFY `his_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 -- AUTO_INCREMENT de la tabla `linea`
 --
 ALTER TABLE `linea`
-MODIFY `lin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+MODIFY `lin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT de la tabla `nomina`
 --
@@ -473,12 +501,12 @@ MODIFY `nomquin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT de la tabla `operacion`
 --
 ALTER TABLE `operacion`
-MODIFY `ope_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `ope_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `plan`
 --
 ALTER TABLE `plan`
-MODIFY `pla_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `pla_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `prestamo_empleado`
 --
@@ -498,6 +526,12 @@ MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 ALTER TABLE `alquiler`
 ADD CONSTRAINT `alquiler_ibfk_1` FOREIGN KEY (`alq_cli_id`) REFERENCES `cliente` (`cli_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `control_adicional`
+--
+ALTER TABLE `control_adicional`
+ADD CONSTRAINT `control_adicional_ibfk_1` FOREIGN KEY (`con_lin_id`) REFERENCES `linea` (`lin_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `detalle_banco`
@@ -537,7 +571,3 @@ ADD CONSTRAINT `operacion_ibfk_2` FOREIGN KEY (`ope_usu_id`) REFERENCES `usuario
 --
 ALTER TABLE `prestamo_empleado`
 ADD CONSTRAINT `prestamo_empleado_ibfk_1` FOREIGN KEY (`emppre_usu_id`) REFERENCES `usuario` (`usu_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
