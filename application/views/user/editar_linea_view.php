@@ -67,6 +67,14 @@
 
                             </div>
                             <div class="form-group">
+                                <label>Minutos disponibles</label>
+                                <input type="text" class="form-control" id="minutos" name="minutos" placeholder="Minutos disponibles" value="<?= $key['lin_minutosdisponibles'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label>Pasaminutos</label>
+                                <input type="text" class="form-control" id="pasaminutos" name="pasaminutos" placeholder="Pasaminutos" value="<?= $key['lin_pasaminutos'] ?>">
+                            </div>
+                            <div class="form-group">
                                 <label>Operador</label>
                                 <select class="form-control" id="operador" name="operador" placeholder="Operador" value="<?= $key['lin_operador'] ?>">
                                     <option value="Claro">Claro</option>

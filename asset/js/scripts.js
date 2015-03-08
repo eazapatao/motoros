@@ -21,46 +21,6 @@ $("#guardar_alquiler").click(function(){
     });
 });
 
-$("#guardar_detallebanco").click(function(){
-    $.ajax({
-        type: "POST",
-        url: base_url+"index.php/detallebanco/guardar_detallebanco/",
-        data: $("#form_detallebanco").serialize()
-    })
-});
-
-$("#guardar_historial").click(function(){
-    $.ajax({
-        type: "POST",
-        url: base_url+"index.php/linea/guardar_historial/",
-        data: $("#form_historial").serialize()
-    })
-});
-
-
-$("#guardar_prestamoempleado").click(function(){
-    $.ajax({
-        type: "POST",
-        url: base_url+"index.php/nomina/guardar_prestamo/",
-        data: $("#form_prestamoempleado").serialize()
-    })
-});
-
-$("#guardar_nomina").click(function(){
-    $.ajax({
-        type: "POST",
-        url: base_url+"index.php/nomina/guardar_nomina/",
-        data: $("#form_nomina").serialize()
-    })
-});
-
-$("#guardar_linea").click(function(){
-    $.ajax({
-        type: "POST",
-        url: base_url+"index.php/linea/guardar_linea/",
-        data: $("#form_linea").serialize()
-    })
-});
 
 $('[data-toggle=confirmation]').confirmation({
     title: '¿Esta seguro de eliminar este registro?',

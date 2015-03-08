@@ -31,22 +31,29 @@
                                 <thead>
                                 <tr>
                                     <th>Plan</th>
-                                    <th>Número celular</th>
-                                    <th>Fecha de corte</th>
-                                    <th>Estado de la línea</th>
+                                    <th>Número</th>
+                                    <th>Corte</th>
+                                    <th>Estado</th>
                                     <th>Operador</th>
-                                    <th>Valor del minuto vendido</th>
+                                    <th>Vlr min vendido</th>
+                                    <th>Min consumidos</th>
+                                    <th>Pasaminutos</th>
+                                    <th>Min disponibles</th>
                                     <th>Opciones</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
                                     <th>Plan</th>
-                                    <th>Número celular</th>
-                                    <th>Fecha de corte</th>
-                                    <th>Estado de la línea</th>
+                                    <th>Número</th>
+                                    <th>Corte</th>
+                                    <th>Estado</th>
                                     <th>Operador</th>
-                                    <th>Valor del minuto vendido</th>
+                                    <th>Vlr min vendido</th>
+                                    <th>Min consumidos</th>
+                                    <th>Pasaminutos</th>
+                                    <th>Min disponibles</th>
+
                                     <th>Opciones</th>
                                 </tr>
                                 </tfoot>
@@ -60,6 +67,10 @@
                                         <td><?= $key['lin_estado']?></td>
                                         <td><?= $key['lin_operador']?></td>
                                         <td><?= $key['lin_vlorminvend']?></td>
+                                        <td><?= $key['lin_minutosconsumidos']?></td>
+                                        <td><?= $key['lin_pasaminutos']?></td>
+                                        <td><?= ($key['pla_totalmin']-$key['lin_minutosconsumidos'])+$key['lin_pasaminutos']?></td>
+
                                     <td>
                                             <a href="<?php echo base_url()?>linea/editar/<?php echo $key['lin_id']?>" type="button" class="btn btn-xs btn-warning">
                                                 <i class="glyphicon glyphicon-edit"></i>

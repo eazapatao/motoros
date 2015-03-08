@@ -22,7 +22,7 @@
                         <h3 class="box-title">Nueva línea</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form action="<?= base_url()?>index.php/linea/guardar_linea/" method="POST" enctype="multipart/form-data" id="form_linea">
+                    <form action="<?= base_url()?>index.php/linea/guardar_linea/" method="POST" enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="form-group">
                                 <label>Plan</label><br>
@@ -63,12 +63,12 @@
                                     <option value="Suspendida por pago">Suspendida a petición del cliente</option>
                                 </select>
                                 <div class="form-group">
-                                    <label>Número celular</label>
-                                    <input type="text" class="form-control" id="numero" name="numero" placeholder="Número celular">
+                                    <label>Minutos disponibles</label>
+                                    <input type="text" class="form-control" id="minutos" name="minutos" placeholder="Minutos disponibles">
                                 </div>
                                 <div class="form-group">
-                                    <label>Número celular</label>
-                                    <input type="text" class="form-control" id="numero" name="numero" placeholder="Número celular">
+                                    <label>Pasaminutos</label>
+                                    <input type="text" class="form-control" id="pasaminutos" name="pasaminutos" placeholder="Pasaminutos">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -91,7 +91,7 @@
                         </div><!-- /.box-body -->
 
                         <div class="box-footer">
-                            <button id="guardar_linea" type="submit" class="btn btn-primary">Guardar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form>
                 </div>
