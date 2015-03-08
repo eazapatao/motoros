@@ -67,5 +67,32 @@ class Detallebanco_model extends CI_Model{
 
     }
 
+    function get_totales()
+    {
+        $query = "SELECT sum(detban_valor) as total_deben FROM detalle_banco WHERE detban_transaccion = 'Debe'";
+        $result = $this->db->query($query);
+
+        $deben =  $result->result_array();
+
+        $deben = $deben[0]['total_deben'];
+
+
+        $query = "SELECT sum(detban_valor) as total_haber FROM detalle_banco WHERE detban_transaccion = 'Haber'";
+        $result = $this->db->query($query);
+
+        $haber =  $result->result_array();
+
+        $haber = $haber[0]['total_haber'];
+
+        $total = array (
+          "debe" => $deben,
+            "haber" => $haber,
+            "deferencia" => $deben - $haber
+        );
+
+        return $total;
+
+
+    }
 
 }

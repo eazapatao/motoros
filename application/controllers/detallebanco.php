@@ -18,7 +18,8 @@ class Detallebanco extends CI_Controller{
                 "label2" => "list",
                 "titulo" => "Lista",
                 "main_content" => "user/lista_detallebanco_view",
-                "detallebanco" => $this->detallebanco_model->get_lista_detallebanco()//Pendiente
+                "detallebanco" => $this->detallebanco_model->get_lista_detallebanco(),
+                "totales" => $this->detallebanco_model->get_totales(),
             );
 
             $this->load->view("templates/user_template", $content);
@@ -143,6 +144,11 @@ class Detallebanco extends CI_Controller{
             redirect('login', 'refresh');
         }
 
+    }
+
+    public function test(){
+        $totales = $this->detallebanco_model->get_totales();
+        print_r($totales);
     }
 }
 

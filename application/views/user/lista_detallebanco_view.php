@@ -15,11 +15,31 @@
     <section class="content">
 
         <div class="row">
+<div class="col-lg-6">
+    <div class="box box-success">
+        <div class="box-header">
+            <h3 class="box-title">Totales</h3>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            <table class="table table-bordered">
+                <tbody><tr>
+                    <th style="">Total Debe</th>
+                    <th>Total Haber</th>
+                    <th style="">Debe-Haber</th>
+                </tr>
+                <tr>
+                    <td>$<?= number_format ($totales['debe'], 0, ',', '.')?></td>
+                    <td>$<?= number_format ($totales['haber'], 0, ',', '.')?></td>
+                    <td>$<?= number_format ($totales['deferencia'], 0, ',', '.')?></td>
+                </tr>
 
+                </tbody></table>
+        </div><!-- /.box-body -->
+    </div>
+</div>
             <div class="col-lg-12">
                 <div class="box box-primary">
-                    <div class="box-header">
-                        <br>
+                    <div class="box-header"><br>
                         <a class="btn btn-app"  href="<?= base_url()?>detallebanco/nuevo_detallebanco">
                             <i class="fa fa-edit"></i> Nueva transaccion bancaria
                         </a>
