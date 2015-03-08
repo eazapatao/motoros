@@ -93,6 +93,14 @@ $("#guardar_linea").click(function(){
     })
 });
 
+$("#guardar_control").click(function(){
+    $.ajax({
+        type: "POST",
+        url: base_url+"index.php/control/guardar_control/",
+        data: $("#form_control").serialize()
+    })
+});
+
 
 
 

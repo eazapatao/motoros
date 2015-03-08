@@ -12,6 +12,7 @@ class linea_model extends CI_Model{
 
     }
 
+
     function get_lista_historial(){
         $this->db->select('*');
         $this->db->from('historialinea');
