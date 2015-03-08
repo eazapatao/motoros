@@ -61,11 +61,15 @@
                                     <option value="Acabada">Acabada</option>
                                     <option value="Suspendida a petición">Suspendida a petición del cliente</option>
                                     <option value="Suspendida por pago">Suspendida a petición del cliente</option>
-
-
-
                                 </select>
-
+                                <div class="form-group">
+                                    <label>Número celular</label>
+                                    <input type="text" class="form-control" id="numero" name="numero" placeholder="Número celular">
+                                </div>
+                                <div class="form-group">
+                                    <label>Número celular</label>
+                                    <input type="text" class="form-control" id="numero" name="numero" placeholder="Número celular">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Operador</label>

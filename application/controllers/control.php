@@ -19,7 +19,7 @@ class Control extends CI_Controller{
                 "titulo" => "Lista",
                 "main_content" => "user/lista_control_view",
                 "controles" => $this->control_model->get_lista_controles(),//Pendiente
-
+                "lineas" => $this->linea_model->get_lista_lineas()//Pendiente
             );
 
             $this->load->view("templates/user_template", $content);

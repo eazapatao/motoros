@@ -29,9 +29,7 @@
                                 <label>Línea</label><br>
                                 <select class="selectpicker" name="linea" id="linea_cont" data-live-search="true">
                                     <option>Seleccione línea</option>
-
                                     <?php
-
                                     foreach($lineas as $linea){?>
                                         <option value="<?= $linea['lin_id']?>"><?= $linea['lin_numero']?></option>
                                     <?php }?>
