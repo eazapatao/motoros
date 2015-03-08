@@ -22,7 +22,7 @@
                         <h3 class="box-title">Nuevo historial | Ticket de alquiler: <?= $id_ticket?></h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form action="<?= base_url()?>index.php/linea/guardar_historial/" method="POST" enctype="multipart/form-data" id="form_alquiler">
+                    <form id="form_historial">
                         <input type="hidden" name="alquiler" id="alquiler" value="<?= $id_ticket?>">
                         <div class="box-body">
                             <div class="form-group">
@@ -41,10 +41,13 @@
 
                         </div><!-- /.box-body -->
 
-                        <div class="box-footer">
-                            <button id="guardar_historial" type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
+
                     </form>
+                    <div class="box-footer">
+                        <button id="guardar_historial"  class="btn btn-primary">Guardar</button>
+                        <a class="btn btn-primary" href="<?= base_url()?>linea/verhistorial">Finalizar</a>
+                    </div>
+
                 </div>
             </div>
 

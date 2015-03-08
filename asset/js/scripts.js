@@ -18,6 +18,18 @@ $("#guardar_alquiler").click(function(){
     });
 });
 
+$("#guardar_historial").click(function(){
+    $.ajax({
+        type: "POST",
+        url: base_url+"index.php/linea/guardar_historial/",
+        data: $("#form_historial").serialize()
+    }) .done(function( msg ) {
+
+        location.reload(true);
+
+    });
+});
+
 $('[data-toggle=confirmation]').confirmation({
     title: '¿Esta seguro de eliminar este registro?',
     btnOkLabel: 'Si',

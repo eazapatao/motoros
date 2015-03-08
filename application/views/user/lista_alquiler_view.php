@@ -36,8 +36,9 @@
                                     <th>Cliente</th>
                                     <th>Obervaciones</th>
                                     <th>Tipo</th>
-                                    <th>Fecha</th>
+                                    <th>Fecha inicio</th>
                                     <th>Fecha finalizacion</th>
+                                    <th>Fecha pago</th>
                                     <th>Opciones</th>
                                 </tr>
                                 </thead>
@@ -46,8 +47,9 @@
                                     <th>Cliente</th>
                                     <th>Obervaciones</th>
                                     <th>Tipo</th>
-                                    <th>Fecha</th>
+                                    <th>Fecha inicio</th>
                                     <th>Fecha finalizacion</th>
+                                    <th>Fecha pago</th>
                                     <th>Opciones</th>
                                 </tr>
                                 </tfoot>
@@ -60,6 +62,7 @@
                                         <td><?= $key['alq_tipo']?></td>
                                         <td><?= $key['alq_fecha']?></td>
                                         <td><?= $key['alq_fechafin']?></td>
+                                        <td><?= $key['alq_fechapago']?></td>
                                     <td>
                                             <a href="<?php echo base_url()?>alquiler/editar/<?php echo $key['alq_id']?>" type="button" class="btn btn-xs btn-warning">
                                                 <i class="glyphicon glyphicon-edit"></i>

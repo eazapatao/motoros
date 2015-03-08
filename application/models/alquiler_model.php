@@ -21,7 +21,8 @@ class alquiler_model extends CI_Model{
             "alq_observaciones" => $this->input->post("observaciones"),
             "alq_tipo" => $this->input->post("tipo"),
             "alq_fecha" => $this->input->post("fecha"),
-            "alq_fechafin" => $this->input->post("fechafin")
+            "alq_fechafin" => $this->input->post("fechafin"),
+            "alq_fechapago" => $this->input->post("fechapago"),
         );
 
         $this->db->insert("alquiler", $data);
@@ -44,7 +45,8 @@ class alquiler_model extends CI_Model{
             "alq_observaciones" => $this->input->post("observaciones"),
             "alq_tipo" => $this->input->post("tipo"),
             "alq_fecha" => $this->input->post("fecha"),
-            "alq_fechafin" => $this->input->post("fechafin")
+            "alq_fechafin" => $this->input->post("fechafin"),
+            "alq_fechapago" => $this->input->post("fechapago"),
         );
 
         $this->db->where("alq_id", $this->input->post("alq_id"));
