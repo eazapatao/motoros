@@ -104,16 +104,8 @@ class Alquiler extends CI_Controller{
         $arr = $this->session->userdata('logged_in');
         if($this->session->userdata('logged_in'))
         {
-            $content = array(
-                "menu" => "Alquiler",
-                "label" => "alq",
-                "label2" => "del",
-                "titulo" => "Eliminar_Alquiler",
-                "linea" => $this->alquiler_model->get_alquiler($id),
-                "main_content" => "user/eliminar_alquiler_view"
-            );
-
-            $this->load->view("templates/user_template", $content);
+            $this->alquiler_model->del_alquiler($id);
+            redirect('alquiler', 'refresh');
         }
         else
         {
