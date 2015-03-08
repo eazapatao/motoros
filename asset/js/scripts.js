@@ -3,32 +3,8 @@
  */
 var base_url = $("#base_url").val();
 
-$('#client_list, #line_list').DataTable({
-
-});
-
-$('').DataTable({
-
-});
-
-$('#banco_list').DataTable({
-
-});
-
-$('#usuario_list').DataTable({
-
-});
-
-$('#nomina_list').DataTable({
-
-});
-
-$('#prestamo_list').DataTable({
-
-});
-
-
-$('#operacion_list').DataTable({
+$('#client_list, #line_list, #banco_list' +
+'#usuario_list, nomina_list, #prestamo_list, #operacion_list').DataTable({
 
 });
 
@@ -61,13 +37,6 @@ $("#guardar_historial").click(function(){
     })
 });
 
-$("#guardar_operacion").click(function(){
-    $.ajax({
-        type: "POST",
-        url: base_url+"index.php/operacion/guardar_operacion/",
-        data: $("#form_guardar_operacion").serialize()
-    })
-});
 
 $("#guardar_prestamoempleado").click(function(){
     $.ajax({
@@ -93,6 +62,17 @@ $("#guardar_linea").click(function(){
     })
 });
 
-
+$('[data-toggle=confirmation]').confirmation({
+    title: '¿Esta seguro de eliminar este registro?',
+    btnOkLabel: 'Si',
+    btnCancelLabel: 'No',
+    href: function(){
+        var ref = $(this).attr('data-ref');
+        return ref;
+    },
+    onCancel: function(){
+        $('[data-toggle=confirmation]').confirmation('hide')
+    }
+});
 
 

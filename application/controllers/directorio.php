@@ -92,21 +92,14 @@ class Directorio extends CI_Controller{
 
     }
 
-    function del($id)
+    public function del($id)
     {
         $arr = $this->session->userdata('logged_in');
         if($this->session->userdata('logged_in'))
         {
-            $content = array(
-                "menu" => "Directorio",
-                "label" => "lin",
-                "label2" => "del",
-                "titulo" => "Eliminar_Cliente",
-                "clientes" => $this->directorio_model->get_cliente($id),
-                "main_content" => "user/eliminar_cliente_view"
-            );
-
-            $this->load->view("templates/user_template", $content);
+            echo $id;
+            $this->directorio_model->del_cliente($id);
+            redirect('directorio', 'refresh');
         }
         else
         {

@@ -122,16 +122,9 @@ class Linea extends CI_Controller{
 
     function del($id)
     {
-        $content = array(
-            "menu" => "Linea",
-            "label" => "lin",
-            "label2" => "del",
-            "titulo" => "Eliminar_Linea",
-            "linea" => $this->linea_model->get_linea($id),
-            "main_content" => "user/eliminar_linea_view"
-        );
+       $this->linea_model->del_linea($id);
+       redirect("linea", "refresh");
 
-        $this->load->view("templates/user_template", $content);
     }
     function delh($id)
     {

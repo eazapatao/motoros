@@ -81,7 +81,7 @@
                                 <a href="<?php echo base_url()?>directorio/editar/<?php echo $key['cli_id']?>" type="button" class="btn btn-xs btn-warning">
                                     <i class="glyphicon glyphicon-edit"></i>
                                 </a>
-                                <a href="<?php echo base_url()?>directorio/del/<?php echo $key['cli_id']?>" type="button" class="btn btn-xs btn-danger">
+                                <a data-ref="<?php echo base_url()?>directorio/del/<?php echo $key['cli_id']?>"  type="button" class="btn btn-xs btn-danger delete" data-toggle="confirmation" data-placement="left">
                                     <i class="glyphicon glyphicon-trash"></i>
                                 </a>
                             </td>
@@ -95,5 +95,5 @@
 
         </div>
 
-    </section><!-- /.content -->
+    </section><!-- /.content  -->
 </aside><!-- /.right-side -->

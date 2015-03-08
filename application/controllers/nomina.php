@@ -112,16 +112,7 @@ class Nomina extends CI_Controller{
 
     function del($id)
     {
-        $content = array(
-            "menu" => "Directorio",
-            "label" => "lin",
-            "label2" => "del",
-            "titulo" => "Eliminar_Cliente",
-            "nomina" => $this->nomina_model->get_nomina($id),
-            "main_content" => "user/eliminar_nomina_view"
-        );
 
-        $this->load->view("templates/user_template", $content);
     }
 
     function upd_nomina()

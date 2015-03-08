@@ -14,7 +14,6 @@ class operacion_model extends CI_Model{
     }
 
     function guardar_operacion(){
-
         $data = array(
             "ope_cli_id" => $this->input->post("cliente"),
             "ope_usu_id" => $this->input->post("usuario"),
@@ -51,10 +50,10 @@ class operacion_model extends CI_Model{
         $this->db->update('operacion', $data);
     }
 
-    function del_operacion()
+    function del_operacion($id)
     {
 
-        $this->db->where("ope_id", $this->input->post("ope_id"));
+        $this->db->where("ope_id", $id);
         $this->db->delete('operacion');
 
     }

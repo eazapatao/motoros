@@ -37,10 +37,10 @@ class Operacion extends CI_Controller{
         $this->load->view("templates/user_template", $content);
     }
 
-    function guardar_operacion(){
+    function guardar_operacion()
+    {
         $this->operacion_model->guardar_operacion();
         redirect('operacion', 'refresh');
-
     }
 
     function editar($id)
@@ -59,16 +59,8 @@ class Operacion extends CI_Controller{
 
     function del($id)
     {
-        $content = array(
-            "menu" => "Operacion",
-            "label" => "ope",
-            "label2" => "del",
-            "titulo" => "Eliminar_operacion",
-            "operacion" => $this->operacion_model->get_operacion($id),
-            "main_content" => "user/eliminar_operacion_view"
-        );
-
-        $this->load->view("templates/user_template", $content);
+        $this->operacion_model->del_operacion($id);
+        redirect("operacion", "refresh");
     }
 
     function upd_operacion()

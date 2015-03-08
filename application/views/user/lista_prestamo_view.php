@@ -58,9 +58,10 @@
                                             <a href="<?php echo base_url()?>linea/editar/<?php echo $key['emppre_id']?>" type="button" class="btn btn-xs btn-warning">
                                                 <i class="glyphicon glyphicon-edit"></i>
                                             </a>
-                                            <a href="<?php echo base_url()?>linea/del/<?php echo $key['emppre_id']?>" type="button" class="btn btn-xs btn-danger">
-                                                <i class="glyphicon glyphicon-trash"></i>
-                                            </a>
+
+                                        <a data-ref="<?php echo base_url()?>linea/del/<?php echo $key['emppre_id']?>"  type="button" class="btn btn-xs btn-danger delete" data-toggle="confirmation" data-placement="left">
+                                            <i class="glyphicon glyphicon-trash"></i>
+                                        </a>
                                         </td>
                                     </tr>
                                 <?php }?>

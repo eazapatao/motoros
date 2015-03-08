@@ -63,11 +63,11 @@
                                         <td><?= $key['ope_fecha']?></td>
                                         <td><?= $key['ope_nfactura']?></td>
                                         <td><?= $key['ope_observaciones']?></td>
-                                    <td>
+                                        <td>
                                             <a href="<?php echo base_url()?>operacion/editar/<?php echo $key['ope_id']?>" type="button" class="btn btn-xs btn-warning">
                                                 <i class="glyphicon glyphicon-edit"></i>
                                             </a>
-                                            <a href="<?php echo base_url()?>operacion/del/<?php echo $key['ope_id']?>" type="button" class="btn btn-xs btn-danger">
+                                            <a data-ref="<?php echo base_url()?>operacion/del/<?php echo $key['ope_id']?>"  type="button" class="btn btn-xs btn-danger delete" data-toggle="confirmation" data-placement="left">
                                                 <i class="glyphicon glyphicon-trash"></i>
                                             </a>
                                         </td>

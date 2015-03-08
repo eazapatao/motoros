@@ -87,10 +87,10 @@ class linea_model extends CI_Model{
     }
 
 
-    function del_linea()
+    function del_linea($id)
     {
 
-        $this->db->where("lin_id", $this->input->post("lin_id"));
+        $this->db->where("lin_id", $id);
         $this->db->delete('linea');
 
     }

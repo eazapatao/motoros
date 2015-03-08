@@ -56,10 +56,10 @@ class Directorio_model extends CI_Model{
 
     }
 
-    function del_cliente()
+    function del_cliente($id)
     {
 
-        $this->db->where("cli_id", $this->input->post("cli_id"));
+        $this->db->where("cli_id", $id);
         $this->db->delete('cliente');
 
     }
