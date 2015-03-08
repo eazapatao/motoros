@@ -27,10 +27,10 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label>Línea</label><br>
-                                <select class="selectpicker" name="linea" id="linea_alq" data-live-search="true">
+                                <select class="selectpicker" name="linea" id="linea" data-live-search="true">
                                     <option>Seleccione línea</option>
                                     <?php foreach($lineas as $linea){?>
-                                        <option value="<?= $linea['lin_id']?>"><?= $linea['lin_numero']?></option>
+                                        <option value="<?= $linea['lin_id']?>"><?= 'Línea '.$linea['lin_numero'].' Pasaminutos '.$linea['lin_pasaminutos'].' Disponibles '.$linea['lin_minutosconsumidos']?></option>
                                     <?php }?>
                                 </select>
                             </div>

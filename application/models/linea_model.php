@@ -7,6 +7,16 @@ class linea_model extends CI_Model{
         $this->db->select('*');
         $this->db->from('linea');
         $this->db->join('plan', 'plan.pla_id = linea.lin_pla_id');
+
+        $query = $this->db->get();
+        return $query->result_array();
+
+    }
+    function get_lista_lineas_disponibles(){
+        $this->db->select('*');
+        $this->db->from('linea');
+        $this->db->join('plan', 'plan.pla_id = linea.lin_pla_id');
+        $this->db->where('lin_estado',"Disponible");
         $query = $this->db->get();
         return $query->result_array();
 
@@ -49,6 +59,11 @@ class linea_model extends CI_Model{
         );
 
         $this->db->insert("historialinea", $data);
+        $dato= array(
+            "lin_estado" => "Alquilada"
+        );
+        $this->db->where("lin_id", $this->input->post("linea"));
+        $this->db->update('linea', $dato);
     }
 
     function get_linea($id){
