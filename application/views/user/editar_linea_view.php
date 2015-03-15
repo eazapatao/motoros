@@ -26,23 +26,24 @@
                     <form action="<?= base_url()?>index.php/linea/upd_linea/" method="POST" enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="form-group">
-                                <label>Plan</label>
+                                <label>Plan</label><br>
+                                <select class="selectpicker" name="plan" id="plan_detban" data-live-search="true">
+                                    <option value="<?= $key['lin_pla_id'] ?>"><?= $key['pla_nombre'] ?></option>
+                                    <?php foreach($planes as $plan){?>
+                                        <option value="<?= $plan['pla_id'] ?>"><?= $plan['pla_nombre'] ?></option>
 
-                                <select class="form-control" id="plan" name="plan" placeholder="Plan" value="<?= $key['lin_pla_id'] ?>">
-                                    <option value="4">4</option>
-                                    <option value="6">6</option>
-                                    <option value="10">10</option>
-                                    <option value="15">15</option>
+                                    <?php }?>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Número celular</label>
-                                <input type="text" class="form-control" id="numero" name="numero" placeholder="Número celular" value="<?= $key['lin_numero'] ?>">
+                                <input type="text" class="form-control" id="numero" name="numero" placeholder="Número celular"  value="<?= $key['lin_numero'] ?>">
                             </div>
                             <div class="form-group">
                                 <label>Corte</label>
 
-                                <select class="form-control" id="corte" name="corte" placeholder="Fecha de corte" value="<?= $key['lin_corte'] ?>">
+                                <select class="form-control" id="corte" name="corte" placeholder="Fecha de corte">
+                                    <option value="<?= $key['lin_corte'] ?>"><?= $key['lin_corte'] ?></option>
                                     <option value="2">2</option>
                                     <option value="4">4</option>
                                     <option value="6">6</option>
@@ -55,7 +56,8 @@
                             </div>
                             <div class="form-group">
                                 <label>Estado de la línea</label>
-                                <select class="form-control" id="estado" name="estado" placeholder="Estado de la línea" value="<?= $key['lin_estado'] ?>">
+                                <select class="form-control" id="estado" name="estado" placeholder="Estado de la línea">
+                                    <option value="<?= $key['lin_estado'] ?>"><?= $key['lin_estado'] ?></option>
                                     <option value="Disponible">Disponible</option>
                                     <option value="Alquilada">Alquilada</option>
                                     <option value="Devuelta al operador">Devuelta al operador</option>
@@ -76,7 +78,8 @@
                             </div>
                             <div class="form-group">
                                 <label>Operador</label>
-                                <select class="form-control" id="operador" name="operador" placeholder="Operador" value="<?= $key['lin_operador'] ?>">
+                                <select class="form-control" id="operador" name="operador" placeholder="Operador">
+                                    <option value="<?= $key['lin_operador'] ?>"><?= $key['lin_operador'] ?></option>
                                     <option value="Claro">Claro</option>
                                     <option value="Movistar">Movistar</option>
                                     <option value="Tigo">Tigo</option>

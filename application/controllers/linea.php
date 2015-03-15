@@ -99,7 +99,8 @@ class Linea extends CI_Controller{
             "label" => "lin",
             "label2" => "list",
             "titulo" => "Editar_linea",
-            "linea" => $this->linea_model->get_linea($id),
+            "linea" => $this->linea_model->get_lista_lineas(),
+            "planes" => $this->plan_model->get_lista_planes(),
             "main_content" => "user/editar_linea_view"
         );
 
@@ -142,7 +143,7 @@ class Linea extends CI_Controller{
     function upd_linea()
     {
        $this->linea_model->upd_linea();
-        redirect("linea", "refresh");
+       redirect("linea", "refresh");
     }
     function upd_historial()
     {

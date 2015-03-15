@@ -12,6 +12,7 @@ class linea_model extends CI_Model{
         return $query->result_array();
 
     }
+
     function get_lista_lineas_disponibles(){
         $this->db->select('*');
         $this->db->from('linea');
@@ -48,6 +49,7 @@ class linea_model extends CI_Model{
         $this->db->insert("linea", $data);
 
     }
+
     function guardar_historial(){
 
         $data = array(
@@ -86,6 +88,8 @@ class linea_model extends CI_Model{
             "lin_corte" => $this->input->post("corte"),
             "lin_estado" => $this->input->post("estado"),
             "lin_operador" => $this->input->post("operador"),
+            "lin_minutosconsumidos" => $this->input->post("minutos"),
+            "lin_pasaminutos" => $this->input->post("pasaminutos"),
         );
 
         $this->db->where("lin_id", $this->input->post("lin_id"));
