@@ -51,10 +51,7 @@
                                 <label>Fecha Finalización</label>
                                 <input type="date" class="form-control" id="fechafin" name="fechafin" placeholder="Fecha de finalización" value="<?= $key['alq_fechafin'] ?>">
                             </div>
-                            <div class="form-group">
-                                <label>Fecha de pago</label>
-                                <input type="date" class="form-control" id="fechapago" name="fechapago" placeholder="Fecha de pago" value="<?= $key['alq_fechapago'] ?>">
-                            </div>
+
 
 
                         </div><!-- /.box-body -->

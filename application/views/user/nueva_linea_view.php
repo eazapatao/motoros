@@ -63,8 +63,8 @@
                                     <option value="Suspendida por pago">Suspendida a petición del cliente</option>
                                 </select>
                                 <div class="form-group">
-                                    <label>Minutos disponibles</label>
-                                    <input type="text" class="form-control" id="minutos" name="minutos" placeholder="Minutos disponibles">
+                                    <label>Minutos consumidos</label>
+                                    <input type="text" class="form-control" id="minutos" name="minutos" placeholder="Minutos consumidos">
                                 </div>
                                 <div class="form-group">
                                     <label>Pasaminutos</label>
@@ -83,10 +83,6 @@
 
                             </div>
 
-                            <div class="form-group">
-                                <label>Valor del minuto vendido</label>
-                                <input type="text" class="form-control" id="vlorminvend" name="vlorminvend" placeholder="Valor del minuto vendido">
-                            </div>
 
                         </div><!-- /.box-body -->
 

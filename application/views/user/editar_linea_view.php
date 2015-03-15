@@ -67,8 +67,8 @@
 
                             </div>
                             <div class="form-group">
-                                <label>Minutos disponibles</label>
-                                <input type="text" class="form-control" id="minutos" name="minutos" placeholder="Minutos disponibles" value="<?= $key['lin_minutosdisponibles'] ?>">
+                                <label>Minutos consumidos</label>
+                                <input type="text" class="form-control" id="minutos" name="minutos" placeholder="Minutos disponibles" value="<?= $key['lin_minutosconsumidos'] ?>">
                             </div>
                             <div class="form-group">
                                 <label>Pasaminutos</label>
@@ -85,13 +85,7 @@
                                 </select>
 
                             </div>
-                            <div class="form-group">
-                                <label>Valor del minuto vendido</label>
-                                <input type="text" class="form-control" id="vlorminvend" name="vlorminvend" placeholder="Valor del minuto vendido"value="<?= $key['lin_vlorminvend'] ?>">
-                            </div>
-
-
-                        </div><!-- /.box-body -->
+                          </div><!-- /.box-body -->
                         <input type="hidden" value="<?= $key["lin_id"] ?>" name="lin_id">
 
                         <div class="box-footer">

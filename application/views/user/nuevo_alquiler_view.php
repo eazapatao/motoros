@@ -54,10 +54,6 @@
                                 <label>Fecha Finalización</label>
                                 <input type="date" class="form-control" id="fechafin" name="fechafin" placeholder="Fecha de finalización">
                             </div>
-                            <div class="form-group">
-                                <label>Fecha de pago</label>
-                                <input type="date" class="form-control" id="fechapago" name="fechapago" placeholder="Fecha de pago">
-                            </div>
 
 
                         </div><!-- /.box-body -->

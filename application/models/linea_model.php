@@ -39,7 +39,6 @@ class linea_model extends CI_Model{
             "lin_corte" => $this->input->post("corte"),
             "lin_estado" => $this->input->post("estado"),
             "lin_operador" => $this->input->post("operador"),
-            "lin_vlorminvend" => $this->input->post("vlorminvend"),
             "lin_minutosconsumidos" => $this->input->post("minutos"),
             "lin_pasaminutos" => $this->input->post("pasaminutos"),
 
@@ -87,7 +86,6 @@ class linea_model extends CI_Model{
             "lin_corte" => $this->input->post("corte"),
             "lin_estado" => $this->input->post("estado"),
             "lin_operador" => $this->input->post("operador"),
-            "lin_vlorminvend" => $this->input->post("vlorminvend")
         );
 
         $this->db->where("lin_id", $this->input->post("lin_id"));
