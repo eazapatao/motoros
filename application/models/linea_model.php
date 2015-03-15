@@ -13,11 +13,11 @@ class linea_model extends CI_Model{
 
     }
 
-    function get_lista_lineas_planes($id){
+    function get_info_linea($id){
         $this->db->select('*');
         $this->db->from('linea');
+        $this->db->where('lin_id', $id);
         $this->db->join('plan', 'plan.pla_id = linea.lin_pla_id');
-        $this->db->where('linea.lin_id',$id);
         $query = $this->db->get();
         return $query->result_array();
 
@@ -33,11 +33,11 @@ class linea_model extends CI_Model{
     }
 
 
-    function get_info_linea($id){
+    function get_lista_lineas_disponibles(){
         $this->db->select('*');
         $this->db->from('linea');
-        $this->db->where('lin_id', $id);
         $this->db->join('plan', 'plan.pla_id = linea.lin_pla_id');
+        $this->db->where('lin_estado',"Disponible");
         $query = $this->db->get();
         return $query->result_array();
 
