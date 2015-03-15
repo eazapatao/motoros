@@ -13,6 +13,7 @@ class linea_model extends CI_Model{
 
     }
 
+
     function get_lista_lineas_disponibles(){
         $this->db->select('*');
         $this->db->from('linea');
