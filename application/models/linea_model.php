@@ -25,10 +25,10 @@ class linea_model extends CI_Model{
 
 
     function get_lista_historial(){
-        $this->db->select('*');
-        $this->db->from('historialinea','cliente');
-        $this->db->join('linea', 'linea.lin_id = historialinea.his_lin_id');
-        $query = $this->db->get();
+        $sql = "select *
+from alquiler join (cliente, historialinea, linea) on
+(cliente.cli_id=alq_cli_id AND historialinea.his_alq_id=alq_id AND historialinea.his_lin_id = linea.lin_id)";
+        $query = $this->db->query($sql);
         return $query->result_array();
     }
 
