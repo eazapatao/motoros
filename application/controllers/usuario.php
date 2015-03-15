@@ -15,7 +15,8 @@ class Usuario extends CI_Controller{
             "label2" => "list",
             "titulo" => "Lista",
             "main_content" => "user/lista_usuario_view",
-            "usuario" => $this->usuario_model->get_lista_usuario()//Pendiente
+            "usuario" => $this->usuario_model->get_lista_usuario(),//Pendiente
+
         );
 
         $this->load->view("templates/user_template", $content);
@@ -27,7 +28,8 @@ class Usuario extends CI_Controller{
             "label" => "dir",
             "label2" => "new",
             "titulo" => "Nuevo Usuario",
-            "main_content" => "user/nuevo_usuario_view"
+            "main_content" => "user/nuevo_usuario_view",
+            "cargos" => $this->usuario_model->get_lista_cargo()
         );
 
         $this->load->view("templates/user_template", $content);
@@ -47,7 +49,8 @@ class Usuario extends CI_Controller{
             "label2" => "list",
             "titulo" => "Editar_Cliente",
             "usuario" => $this->usuario_model->get_usuario($id),
-            "main_content" => "user/editar_usuario_view"
+            "main_content" => "user/editar_usuario_view",
+            "cargos" => $this->usuario_model->get_lista_cargo()
         );
 
         $this->load->view("templates/user_template", $content);
@@ -55,16 +58,18 @@ class Usuario extends CI_Controller{
 
     function del($id)
     {
-        $content = array(
-            "menu" => "Directorio",
-            "label" => "lin",
-            "label2" => "del",
-            "titulo" => "Eliminar_Cliente",
-            "usuario" => $this->usuario_model->get_usuario($id),
-            "main_content" => "user/eliminar_usuario_view"
-        );
-
-        $this->load->view("templates/user_template", $content);
+        $arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in'))
+        {
+            echo $id;
+            $this->usuario_model->del_usuario($id);
+            redirect('usuario', 'refresh');
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
     }
 
     function upd_usuario()

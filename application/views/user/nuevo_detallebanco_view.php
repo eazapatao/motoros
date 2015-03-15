@@ -20,6 +20,7 @@
                 <div class="box box-success">
                     <div class="box-header">
                         <h3 class="box-title">Transacción Bancaria</h3>
+
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <form action="<?= base_url()?>index.php/detallebanco/guardar_detallebanco/" method="POST" enctype="multipart/form-data" id="form_detallebanco">

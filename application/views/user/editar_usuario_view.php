@@ -37,11 +37,7 @@
                                 <label>Cédula</label>
                                 <input type="text" class="form-control" id="cedula" name="cedula" placeholder="Cédula" value="<?= $key['usu_cedula'] ?>">
                             </div>
-                            <div class="form-group">
-                                <label>Fotografía</label>
-                                <input type="files" mutliple="true" name="imagenes[]" class="form-control" id="fotografia" name="fotografia" placeholder="fotografia"/ value="<?= $key['usu_fotografia'] ?>">
-                                <!-- <input type="text" class="form-control" id="fotografia" name="fotografia" placeholder="fotografia" > -->
-                            </div>
+
                             <div class="form-group">
                                 <label>Dirección</label>
                                 <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección" value="<?= $key['usu_direccion'] ?>">
@@ -49,6 +45,15 @@
                             <div class="form-group">
                                 <label>Telefono</label>
                                 <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Telefono" value="<?= $key['usu_telefono'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label>Cargo</label><br>
+                                <select class="selectpicker" name="tipo" id="cargo_usuario" data-live-search="true">
+                                    <option>Seleccione el cargo</option>
+                                    <?php foreach($cargos as $cargo){?>
+                                        <option value="<?= $cargo['car_id']?>"><?= $cargo['car_nombre']?></option>
+                                    <?php }?>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Nick</label>
@@ -69,14 +74,7 @@
                             </div>
                         </div><!-- /.box-body -->
                         <input type="hidden" value="<?= $key["usu_id"] ?>" name="usu_id">
-                        <div class="form-group">
-                            <label>Tipo de empleado</label>
-                        <select class="form-control" id="tipo" name="tipo" placeholder="Tipo de empleado">
-                            <option value="Tiempo completo">Tiempo completo</option>
-                            <option value="Medio tiempo">Medio tiempo</option>
 
-                        </select>
-                        </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>

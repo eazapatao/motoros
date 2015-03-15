@@ -20,6 +20,7 @@
                 <div class="box box-success">
                     <div class="box-header">
                         <h3 class="box-title">Nuevo Usuario</h3>
+
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <form action="<?= base_url()?>index.php/usuario/guardar_usuario/" method="POST" enctype="multipart/form-data">
@@ -36,11 +37,7 @@
                                     <label>Cédula</label>
                                     <input type="text" class="form-control" id="cedula" name="cedula" placeholder="Cédula">
                                 </div>
-                                <div class="form-group">
-                                    <label>Fotografía</label>
-                                    <input type="files" mutliple="true" name="imagenes[]" class="form-control" id="fotografia" name="fotografia" placeholder="fotografia"/>
-                                   <!-- <input type="text" class="form-control" id="fotografia" name="fotografia" placeholder="fotografia" > -->
-                                </div>
+
                                 <div class="form-group">
                                     <label>Dirección</label>
                                     <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección">
@@ -49,6 +46,15 @@
                                     <label>Telefono</label>
                                     <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Telefono">
                                 </div>
+                            <div class="form-group">
+                                <label>Cargo</label><br>
+                                <select class="selectpicker" name="cargo" id="cargo_usuario" data-live-search="true">
+                                    <option>Seleccione el cargo</option>
+                                    <?php foreach($cargos as $cargo){?>
+                                        <option value="<?= $cargo['car_id']?>"><?= $cargo['car_nombre']?></option>
+                                    <?php }?>
+                                </select>
+                            </div>
                                 <div class="form-group">
                                     <label>Nick</label>
                                     <input type="text" class="form-control" id="nick" name="nick" placeholder="Nick">
@@ -65,14 +71,7 @@
                                 <label>Fecha de egreso</label>
                                 <input type="text" class="form-control" id="fechae" name="fechae" placeholder="Fecha de egreso">
                             </div>
-                            <div class="form-group">
-                                <label>Tipo de empleado</label>
-                            <select class="form-control" id="tipo" name="tipo" placeholder="Tipo de empleado">
-                                <option value="Tiempo completo">Tiempo completo</option>
-                                <option value="Medio tiempo">Medio tiempo</option>
 
-                            </select>
-                            </div>
                         </div><!-- /.box-body -->
 
                         <div class="box-footer">

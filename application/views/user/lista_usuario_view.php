@@ -33,12 +33,11 @@
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Cédula</th>
-                        <th>Fotografía</th>
                         <th>Dirección</th>
                         <th>Teléfono</th>
+                        <th>Cargo</th>
                         <th>Fecha Ingreso</th>
                         <th>Fecha Salida</th>
-                        <th>Tipo de empleado</th>
                         <th>Opciones</th>
                     </tr>
                     </thead>
@@ -48,12 +47,11 @@
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Cédula</th>
-                        <th>Fotografía</th>
                         <th>Dirección</th>
                         <th>Teléfono</th>
+                        <th>Cargo</th>
                         <th>Fecha Ingreso</th>
                         <th>Fecha Salida</th>
-                        <th>Tipo de empleado</th>
                         <th>Opciones</th>
                     </tr>
                     </tfoot>
@@ -64,17 +62,16 @@
                             <td><?= $key['usu_nombre']?></td>
                             <td><?= $key['usu_apellido']?></td>
                             <td><?= $key['usu_cedula']?></td>
-                            <td><?= $key['usu_fotografia']?></td>
                             <td><?= $key['usu_direccion']?></td>
                             <td><?= $key['usu_telefono']?></td>
+                            <td><?= $key['car_nombre']?></td>
                             <td><?= $key['usu_fechaingreso']?></td>
                             <td><?= $key['usu_fechaegreso']?></td>
-                            <td><?= $key['usu_tipo']?></td>
                             <td>
                                 <a href="<?php echo base_url()?>usuario/editar/<?php echo $key['usu_id']?>" type="button" class="btn btn-xs btn-warning">
                                     <i class="glyphicon glyphicon-edit"></i>
                                 </a>
-                                <a href="<?php echo base_url()?>usuario/del/<?php echo $key['usu_id']?>" type="button" class="btn btn-xs btn-danger">
+                                <a data-ref="<?php echo base_url()?>usuario/del/<?php echo $key['usu_id']?>"  type="button" class="btn btn-xs btn-danger delete" data-toggle="confirmation" data-placement="left">
                                     <i class="glyphicon glyphicon-trash"></i>
                                 </a>
                             </td>
