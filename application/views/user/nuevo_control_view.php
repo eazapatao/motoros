@@ -22,10 +22,15 @@
                         <h3 class="box-title">Control de adicionales</h3>
 
                     </div><!-- /.box-header -->
+                    <?=form_open_multipart(base_url().'upload/upload_file')?>
+                    <?=form_upload('file')?>
+                    <?=form_submit('submit', 'Upload')?>
+                    <?=form_close()?>
                     <!-- form start -->
                     <form action="<?= base_url()?>index.php/control/guardar_control/" method="POST" enctype="multipart/form-data" id="form_control">
                         <div class="box-body">
                             <div class="form-group">
+
                                 <label>Línea</label><br>
                                 <select class="selectpicker" name="linea" id="linea_cont" data-live-search="true">
                                     <option>Seleccione línea</option>

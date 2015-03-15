@@ -83,7 +83,9 @@ class Control extends CI_Controller{
                 "label" => "con",
                 "label2" => "list",
                 "titulo" => "Editar_control",
+                "infcontrol" => $this->control_model->get_info_control($id),
                 "controles" => $this->control_model->get_control($id),
+                "lineas" => $this->linea_model->get_lista_lineas(),
                 "main_content" => "user/editar_control_view"
             );
 

@@ -83,7 +83,10 @@ class Detallebanco extends CI_Controller{
                 "label" => "lin",
                 "label2" => "list",
                 "titulo" => "Editar_Detalle banco",
-                "detallebanco" => $this->detallebanco_model->get_detallebanco($id),
+                "detallebanco" => $this->detallebanco_model->get_info_banco($id),
+                "bancos" => $this->detallebanco_model->get_lista_banco(),
+                "banco" => $this->detallebanco_model->get_lista_banco(),
+
                 "main_content" => "user/editar_detallebanco_view"
             );
 

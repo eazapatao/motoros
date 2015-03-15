@@ -22,18 +22,16 @@
                         <h3 class="box-title">Editar Control de adicionales</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <?php foreach($controles as $control)?>
+                    <?php foreach($infcontrol as $control)?>
                     <form action="<?= base_url()?>index.php/control/upd_control/" method="POST" enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="form-group">
-                                <label>Línea</label><br>
-                                <select class="selectpicker" name="linea" id="linea_cont" data-live-search="true">
-                                    <option>Seleccione línea</option>
+                                <label>Linea</label><br>
+                                <select class="selectpicker" name="linea" id="linea" data-live-search="true">
+                                    <option value="<?= $key['con_lin_id'] ?>"><?= $key['lin_numero'] ?></option>
+                                    <?php foreach($lineas as $linea){?>
+                                        <option value="<?= $linea['lin_id'] ?>"><?= $linea['lin_numero'] ?></option>
 
-                                    <?php
-
-                                    foreach($lineas as $linea){?>
-                                        <option value="<?= $linea['lin_id']?>"><?= $linea['lin_numero']?></option>
                                     <?php }?>
                                 </select>
                             </div>

@@ -37,7 +37,7 @@
                                     <th>Cárgo básico</th>
                                     <th>Adicionales</th>
                                     <th>Descuentos</th>
-                                    <th>Opciones</th>
+
                                 </tr>
                                 </thead>
                                 <tfoot>
@@ -48,7 +48,7 @@
                                     <th>Cárgo básico</th>
                                     <th>Adicionales</th>
                                     <th>Descuentos</th>
-                                    <th>Opciones</th>
+
                                 </tr>
                                 </tfoot>
 
@@ -61,15 +61,7 @@
                                         <td><?= $control['pla_cargobasico']?></td>
                                         <td><?= $control['con_facturacion'] - $control['pla_cargobasico']?></td>
                                         <td><?= $control['con_descuentos']?></td>
-                                        <td>
-                                            <a href="<?php echo base_url()?>control/editar/<?php echo $control['con_id']?>" type="button" class="btn btn-xs btn-warning">
-                                                <i class="glyphicon glyphicon-edit"></i>
-                                            </a>
 
-                                            <a data-ref="<?php echo base_url()?>control/del/<?php echo $control['con_id']?>"  type="button" class="btn btn-xs btn-danger delete" data-toggle="confirmation" data-placement="left">
-                                                <i class="glyphicon glyphicon-trash"></i>
-                                            </a>
-                                        </td>
                                     </tr>
                                 <?php }?>
 

@@ -27,7 +27,7 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label>Plan</label><br>
-                                <select class="selectpicker" name="plan" id="plan_detban" data-live-search="true">
+                                <select class="selectpicker" name="plan" id="plan" data-live-search="true">
                                     <option value="<?= $key['lin_pla_id'] ?>"><?= $key['pla_nombre'] ?></option>
                                     <?php foreach($plan as $plan){?>
                                         <option value="<?= $plan['pla_id'] ?>"><?= $plan['pla_nombre'] ?></option>

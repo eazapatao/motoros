@@ -35,7 +35,15 @@ class Control_model extends CI_Model{
         return $query->result_array();
 
     }
+    function get_info_control($id){
+        $this->db->select('*');
+        $this->db->from('control');
+        $this->db->where('con_id', $id);
+        $this->db->join('linea', 'linea.lin_id = control.con_lin_id');
+        $query = $this->db->get();
+        return $query->result_array();
 
+    }
     function upd_detallebanco()
     {
         $data = array(

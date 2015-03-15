@@ -26,12 +26,15 @@
                     <form action="<?= base_url()?>index.php/detallebanco/upd_detallebanco/" method="POST" enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="form-group">
-                                <label>Banco</label>
-                                <select class="form-control" id="banco" name="banco" placeholder="Banco" value="<?= $key['detban_ban_id'] ?>">
-                                    <option value="1">Bancolombia</option>
-                                    <option value="2">Davivienda</option>
+                                <label>Banco</label><br>
+                                <select class="selectpicker" name="banco" id="banco" data-live-search="true">
+                                    <option value="<?= $key['detban_ban_id'] ?>"><?= $key['ban_nombre'] ?></option>
+                                    <?php foreach($bancos as $ban){?>
+                                        <option value="<?= $ban['ban_id'] ?>"><?= $ban['ban_nombre'] ?></option>
+
+                                    <?php }?>
                                 </select>
-                               </div>
+                            </div>
                             <div class="form-group">
                                 <label>Cliente</label>
                                 <input type="text" class="form-control" id="cliente" name="cliente" placeholder="Cliente" value="<?= $key['detban_cli_id'] ?>">

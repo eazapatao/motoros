@@ -19,6 +19,16 @@ class Detallebanco_model extends CI_Model{
 
     }
 
+    function get_info_banco($id){
+        $this->db->select('*');
+        $this->db->from('detalle_banco');
+        $this->db->where('detban_id', $id);
+        $this->db->join('banco', 'banco.ban_id = detalle_banco.detban_ban_id');
+        $query = $this->db->get();
+        return $query->result_array();
+
+    }
+
     function guardar_detallebanco(){
 
         $data = array(
