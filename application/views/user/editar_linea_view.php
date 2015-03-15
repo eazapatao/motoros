@@ -29,7 +29,7 @@
                                 <label>Plan</label><br>
                                 <select class="selectpicker" name="plan" id="plan_detban" data-live-search="true">
                                     <option value="<?= $key['lin_pla_id'] ?>"><?= $key['pla_nombre'] ?></option>
-                                    <?php foreach($planes as $plan){?>
+                                    <?php foreach($plan as $plan){?>
                                         <option value="<?= $plan['pla_id'] ?>"><?= $plan['pla_nombre'] ?></option>
 
                                     <?php }?>

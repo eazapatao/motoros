@@ -99,8 +99,8 @@ class Linea extends CI_Controller{
             "label" => "lin",
             "label2" => "list",
             "titulo" => "Editar_linea",
-            "linea" => $this->linea_model->get_lista_lineas(),
-            "planes" => $this->plan_model->get_lista_plan(),
+            "linea" => $this->linea_model->get_info_linea($id),
+            "plan" => $this->plan_model->get_lista_plan(),
             "main_content" => "user/editar_linea_view"
         );
 

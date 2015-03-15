@@ -84,7 +84,7 @@
                                             <a href="<?php echo base_url()?>detallebanco/editar/<?php echo $key['detban_id']?>" type="button" class="btn btn-xs btn-warning">
                                                 <i class="glyphicon glyphicon-edit"></i>
                                             </a>
-                                            <a data-ref="<?php echo base_url()?>detallebanco/del/<?php echo $key['detban_id']?>""  type="button" class="btn btn-xs btn-danger delete" data-toggle="confirmation" data-placement="left">
+                                            <a data-ref="<?php echo base_url()?>detallebanco/del/<?php echo $key['detban_id']?>" type="button" class="btn btn-xs btn-danger delete" data-toggle="confirmation" data-placement="left">
                                             <i class="glyphicon glyphicon-trash"></i>
                                             </a>
                                         </td>

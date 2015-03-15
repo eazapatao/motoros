@@ -13,12 +13,31 @@ class linea_model extends CI_Model{
 
     }
 
-
-    function get_lista_lineas_disponibles(){
+    function get_lista_lineas_planes($id){
         $this->db->select('*');
         $this->db->from('linea');
         $this->db->join('plan', 'plan.pla_id = linea.lin_pla_id');
-        $this->db->where('lin_estado',"Disponible");
+        $this->db->where('linea.lin_id',$id);
+        $query = $this->db->get();
+        return $query->result_array();
+
+    }
+
+    function get_linea_plan($id)
+    {
+        $this->db->select('*');
+        $this->db->from('linea');
+        $this->db->from('linea');
+        $this->db->where('linea',$id);
+
+    }
+
+
+    function get_info_linea($id){
+        $this->db->select('*');
+        $this->db->from('linea');
+        $this->db->where('lin_id', $id);
+        $this->db->join('plan', 'plan.pla_id = linea.lin_pla_id');
         $query = $this->db->get();
         return $query->result_array();
 
@@ -27,8 +46,8 @@ class linea_model extends CI_Model{
 
     function get_lista_historial(){
         $sql = "select *
-from alquiler join (cliente, historialinea, linea) on
-(cliente.cli_id=alq_cli_id AND historialinea.his_alq_id=alq_id AND historialinea.his_lin_id = linea.lin_id)";
+        from alquiler join (cliente, historialinea, linea) on
+        (cliente.cli_id=alq_cli_id AND historialinea.his_alq_id=alq_id AND historialinea.his_lin_id = linea.lin_id)";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
