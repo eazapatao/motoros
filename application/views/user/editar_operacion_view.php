@@ -26,18 +26,50 @@
                     <form action="<?= base_url()?>index.php/operacion/upd_operacion/" method="POST" enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="form-group">
-                                <label>Cliente</label>
-                                <input type="text" class="form-control" id="cliente" name="cliente" placeholder="Cliente" value="<?= $key['ope_cli_id'] ?>">
+                                <label>Cliente</label><br>
+                                <select class="selectpicker" name="cliente" id="cliente" data-live-search="true">
+                                    <option value="<?= $key['ope_cli_id'] ?>"><?= $key['cli_nombre'].' '.$key['cli_apellido'] ?></option>
+                                    <?php foreach($clientes as $cliente){?>
+                                        <option value="<?= $cliente['cli_id'] ?>"><?= $cliente['cli_nombre'].' '.$cliente['cli_apellido'] ?></option>
+
+                                    <?php }?>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label>Usuario</label>
-                                <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario" value="<?= $key['ope_usu_id'] ?>">
+                                <label>Usuario</label><br>
+                                <select class="selectpicker" name="usuario" id="usuario" data-live-search="true">
+                                    <option value="<?= $key['ope_usu_id'] ?>"><?= $key['usu_nombre'].' '.$key['usu_apellido'] ?></option>
+                                    <?php foreach($usuarios as $usuario){?>
+                                        <option value="<?= $usuario['usu_id'] ?>"><?= $usuario['usu_nombre'].' '.$usuario['usu_apellido'] ?></option>
+
+                                    <?php }?>
+                                </select>
                             </div>
+
                             <div class="form-group">
                                 <label>Tipo</label>
-                                <select class="form-control" id="tipo" name="tipo" placeholder="Tipo" value="<?= $key['ope_tipo'] ?>">
-                                    <option value="Ricardo">Ricardo</option>
-                                    <option value="Wilson">Wilson</option>
+                                <select class="form-control" id="tipo" name="tipo" placeholder="Tipo">
+                                    <option value="<?= $key['ope_tipo'] ?>"><?= $key['ope_tipo'] ?></option>
+                                    <option value="Ingresos" disabled="true" >Ingresos</option>
+                                    <option value="Ingreso Cliente">Ingreso Cliente</option>
+                                    <option value="Ingreso Prestamo">Ingreso Préstamo</option>
+                                    <option value="Ingreso Tarjeta de credito">Ingreso Tarjeta de credito</option>
+                                    <option value="Ingreso Caja fuerte">Ingreso Caja fuerte</option>
+                                    <option value="Ingreso Cargo">Ingreso Cargo</option>
+                                    <option value="Ingreso otros">Ingreso otros</option>
+                                    <option value="Egresos" disabled="true" >Egresos</option>
+                                    <option value="Egreso Cliente">Egreso Cliente</option>
+                                    <option value="Egreso Préstamo">Egreso Préstamo</option>
+                                    <option value="Egreso Tarjeta de credito">Egreso Tarjeta de credito</option>
+                                    <option value="Egreso Caja fuerte">Egreso Caja fuerte</option>
+                                    <option value="Egreso Nómina">Egreso Nómina</option>
+                                    <option value="Egreso Servicios">Egreso Servicios</option>
+                                    <option value="Egreso Alejandro">Egreso Alejandro</option>
+                                    <option value="Egreso Bienes raices">Egreso Bienes raices</option>
+                                    <option value="Egreso Papelería">Egreso Papelería</option>
+                                    <option value="Egreso Gasolina">Egreso Gasolina</option>
+                                    <option value="Egreso Publicidad">Egreso Publicidad</option>
+                                    <option value="Egreso otros">Egreso otros</option>
                                 </select>
 
                             </div>

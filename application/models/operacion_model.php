@@ -12,7 +12,16 @@ class operacion_model extends CI_Model{
         return $query->result_array();
 
     }
+    function get_info_operacion($id){
+        $this->db->select('*');
+        $this->db->from('operacion');
+        $this->db->where('ope_id', $id);
+        $this->db->join('cliente', 'cliente.cli_id = operacion.ope_cli_id');
+        $this->db->join('usuario', 'usuario.usu_id = operacion.ope_usu_id');
+        $query = $this->db->get();
+        return $query->result_array();
 
+    }
     function guardar_operacion(){
         $data = array(
             "ope_cli_id" => $this->input->post("cliente"),
@@ -32,6 +41,52 @@ class operacion_model extends CI_Model{
 
         return $query->result_array();
 
+    }
+
+    function get_totales_operacion()
+    {
+        $query = "SELECT sum(ope_valor) as total_deben FROM operacion
+ WHERE ope_tipo = 'Ingreso Cliente'
+OR ope_tipo = 'Ingreso Prestamo'
+OR ope_tipo = 'Ingreso Tarjeta de credito'
+OR ope_tipo = 'Ingreso Caja fuerte'
+ OR ope_tipo = 'Ingreso Cargo'
+  OR ope_tipo = 'Ingreso otros'";
+        $result = $this->db->query($query);
+
+        $deben =  $result->result_array();
+
+        $deben = $deben[0]['total_deben'];
+
+
+        $query = "SELECT sum(ope_valor) as total_haber FROM operacion
+WHERE ope_tipo = 'Egreso Cliente'
+OR ope_tipo = 'Egreso Préstamo'
+OR ope_tipo = 'Egreso Tarjeta de credito'
+OR ope_tipo = 'Egreso Caja fuerte'
+ OR ope_tipo = 'Egreso Nómina'
+OR ope_tipo = 'Egreso Servicios'
+   OR ope_tipo = 'Egreso Alejandro'
+   OR ope_tipo = 'Egreso Bienes raices'
+   OR ope_tipo = 'Egreso Papelería'
+   OR ope_tipo = 'Egreso Gasolina'
+   OR ope_tipo = 'Egreso Publicidad'
+   OR ope_tipo = 'Egreso otros'
+
+  ";
+        $result = $this->db->query($query);
+
+        $haber =  $result->result_array();
+
+        $haber = $haber[0]['total_haber'];
+
+        $total = array (
+            "debe" => $deben,
+            "haber" => $haber,
+            "deferencia" => $deben - $haber
+        );
+
+        return $total;
     }
 
     function upd_operacion()

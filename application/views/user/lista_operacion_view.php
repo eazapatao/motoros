@@ -13,7 +13,28 @@
 
     <!-- Main content -->
     <section class="content">
+        <div class="col-lg-6">
+            <div class="box box-success">
+                <div class="box-header">
+                    <h3 class="box-title">Resumen</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <table class="table table-bordered">
+                        <tbody><tr>
+                            <th style="">Total Ingreso</th>
+                            <th>Total egreso</th>
+                            <th style="">Saldo</th>
+                        </tr>
+                        <tr>
+                            <td>$<?= number_format ($totales['debe'], 0, ',', '.')?></td>
+                            <td>$<?= number_format ($totales['haber'], 0, ',', '.')?></td>
+                            <td>$<?= number_format ($totales['deferencia'], 0, ',', '.')?></td>
+                        </tr>
 
+                        </tbody></table>
+                </div><!-- /.box-body -->
+            </div>
+        </div>
         <div class="row">
 
             <div class="col-lg-12">

@@ -48,10 +48,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Cargo</label><br>
-                                <select class="selectpicker" name="tipo" id="cargo_usuario" data-live-search="true">
-                                    <option>Seleccione el cargo</option>
+                                <select class="selectpicker" name="cargo" id="cargo" data-live-search="true">
+                                    <option value="<?= $key['usu_car_id'] ?>"><?= $key['car_nombre'] ?></option>
                                     <?php foreach($cargos as $cargo){?>
-                                        <option value="<?= $cargo['car_id']?>"><?= $cargo['car_nombre']?></option>
+                                        <option value="<?= $cargo['car_id'] ?>"><?= $cargo['car_nombre'] ?></option>
+
                                     <?php }?>
                                 </select>
                             </div>

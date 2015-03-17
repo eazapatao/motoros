@@ -45,12 +45,26 @@
                             <div class="form-group">
                                 <label>Tipo</label>
                                 <select class="form-control" id="tipo" name="tipo" placeholder="Tipo">
-                                    <option value="Ricardo">Ricardo</option>
-                                    <option value="Wilson">Wilson</option>
-                                    <option value="Clientes">Clientes</option>
-                                    <option value="Pago Préstamos">Pago préstamos</option>
-                                    <option value="Tarjetas">Tarjetas</option>
-                                    <option value="Caja Fuerte">Caja Fuerte</option>
+                                    <option value="Ingresos" disabled="true" >Ingresos</option>
+                                    <option value="Ingreso Cliente">Ingreso Cliente</option>
+                                    <option value="Ingreso Préstamo">Ingreso Préstamo</option>
+                                    <option value="Ingreso Tarjeta de credito">Ingreso Tarjeta de credito</option>
+                                    <option value="Ingreso Caja fuerte">Ingreso Caja fuerte</option>
+                                    <option value="Ingreso Cargo">Ingreso Cargo</option>
+                                    <option value="Ingreso otros">Ingreso otros</option>
+                                    <option value="Egresos" disabled="true" >Egresos</option>
+                                    <option value="Egreso Cliente">Egreso Cliente</option>
+                                    <option value="Egreso Préstamo">Egreso Préstamo</option>
+                                    <option value="Egreso Tarjeta de credito">Egreso Tarjeta de credito</option>
+                                    <option value="Egreso Caja fuerte">Egreso Caja fuerte</option>
+                                    <option value="Egreso Nómina">Egreso Nómina</option>
+                                    <option value="Egreso Servicios">Egreso Servicios</option>
+                                    <option value="Egreso Alejandro">Egreso Alejandro</option>
+                                    <option value="Egreso Bienes raices">Egreso Bienes raices</option>
+                                    <option value="Egreso Papelería">Egreso Papelería</option>
+                                    <option value="Egreso Gasolina">Egreso Gasolina</option>
+                                    <option value="Egreso Publicidad">Egreso Publicidad</option>
+                                    <option value="Egreso otros">Egreso otros</option>
                                 </select>
 
                             </div>

@@ -3,7 +3,7 @@
 class Usuario_model extends CI_Model{
 
 
-    function get_lista_usuario(){
+    function get_lista_usuarios(){
         $this->db->select('*');
         $this->db->from('usuario');
         $this->db->join('cargo', 'cargo.car_id = usuario.usu_car_id');
@@ -17,7 +17,15 @@ class Usuario_model extends CI_Model{
         return $query->result_array();
 
     }
+    function get_info_usuario($id){
+        $this->db->select('*');
+        $this->db->from('usuario');
+        $this->db->where('usu_id', $id);
+        $this->db->join('cargo', 'cargo.car_id = usuario.usu_car_id');
+        $query = $this->db->get();
+        return $query->result_array();
 
+    }
 
     function login($username, $password)
     {
@@ -49,7 +57,7 @@ class Usuario_model extends CI_Model{
             "usu_telefono" => $this->input->post("telefono"),
             "usu_car_id" => $this->input->post("cargo"),
             "usu_nick" => $this->input->post("nick"),
-            "usu_contrasena" => $this->input->post("contrasena"),
+            "usu_contrasena" => md5($this->input->post("contrasena")),
             "usu_fechaingreso" => $this->input->post("fechai"),
             "usu_fechaegreso" => $this->input->post("fechae"),
 
@@ -71,12 +79,11 @@ class Usuario_model extends CI_Model{
             "usu_nombre" => $this->input->post("nombre"),
             "usu_apellido" => $this->input->post("apellido"),
             "usu_cedula" => $this->input->post("cedula"),
-            "usu_fotografia" => $this->input->post("fotografia"),
             "usu_direccion" => $this->input->post("direccion"),
             "usu_telefono" => $this->input->post("telefono"),
             "usu_car_id" => $this->input->post("cargo"),
             "usu_nick" => $this->input->post("nick"),
-            "usu_contrasena" => $this->input->post("contrasena"),
+            "usu_contrasena" => md5($this->input->post("contrasena")),
             "usu_fechaingreso" => $this->input->post("fechai"),
             "usu_fechaegreso" => $this->input->post("fechae"),
 

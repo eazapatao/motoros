@@ -17,7 +17,9 @@ class Operacion extends CI_Controller{
             "label2" => "list",
             "titulo" => "Lista",
             "main_content" => "user/lista_operacion_view",
-            "operacion" => $this->operacion_model->get_lista_operacion()//Pendiente
+            "operacion" => $this->operacion_model->get_lista_operacion(),//Pendiente
+            "totales" => $this->operacion_model->get_totales_operacion()
+
         );
 
         $this->load->view("templates/user_template", $content);
@@ -29,7 +31,7 @@ class Operacion extends CI_Controller{
             "label" => "ope",
             "label2" => "new",
             "titulo" => "Nueva operación",
-            "usuarios" => $this->usuario_model->get_lista_usuario(),
+            "usuarios" => $this->usuario_model->get_lista_usuarios(),
             "clientes" => $this->directorio_model->get_lista_clientes(),
             "main_content" => "user/nuevo_operacion_view"
         );
@@ -50,7 +52,9 @@ class Operacion extends CI_Controller{
             "label" => "ope",
             "label2" => "list",
             "titulo" => "Editar_operacion",
-            "operacion" => $this->operacion_model->get_operacion($id),
+            "operacion" => $this->operacion_model->get_info_operacion($id),
+            "clientes" => $this->directorio_model->get_lista_clientes(),
+            "usuarios" => $this->usuario_model->get_lista_usuarios(),
             "main_content" => "user/editar_operacion_view"
         );
 
@@ -65,7 +69,7 @@ class Operacion extends CI_Controller{
 
     function upd_operacion()
     {
-       $this->operacion_model->upd_operacion();
+        $this->operacion_model->upd_operacion();
         redirect("operacion", "refresh");
     }
 

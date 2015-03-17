@@ -15,7 +15,7 @@ class Usuario extends CI_Controller{
             "label2" => "list",
             "titulo" => "Lista",
             "main_content" => "user/lista_usuario_view",
-            "usuario" => $this->usuario_model->get_lista_usuario(),//Pendiente
+            "usuario" => $this->usuario_model->get_lista_usuarios(),//Pendiente
 
         );
 
@@ -48,9 +48,10 @@ class Usuario extends CI_Controller{
             "label" => "lin",
             "label2" => "list",
             "titulo" => "Editar_Cliente",
-            "usuario" => $this->usuario_model->get_usuario($id),
+            "usuario" => $this->usuario_model->get_info_usuario($id),
+            "cargos" => $this->usuario_model->get_lista_cargo(),
             "main_content" => "user/editar_usuario_view",
-            "cargos" => $this->usuario_model->get_lista_cargo()
+
         );
 
         $this->load->view("templates/user_template", $content);

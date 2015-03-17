@@ -23,8 +23,8 @@
         <div class="box-body">
             <table class="table table-bordered">
                 <tbody><tr>
-                    <th style="">Debe</th>
-                    <th>Haber</th>
+                    <th style="">Total ingreso</th>
+                    <th>Total egreso</th>
                     <th style="">Saldo</th>
                 </tr>
                 <tr>
@@ -45,8 +45,8 @@
                     <div class="box-body">
                         <table class="table table-bordered">
                             <tbody><tr>
-                                <th style="">Debe</th>
-                                <th>Haber</th>
+                                <th style="">Total ingreso</th>
+                                <th>Total egreso</th>
                                 <th style="">Saldo</th>
                             </tr>
                             <tr>
