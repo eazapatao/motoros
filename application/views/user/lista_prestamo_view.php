@@ -55,7 +55,7 @@
                                         <td><?= $key['emppre_valor']?></td>
                                         <td><?= $key['emppre_cuotas']?></td>
                                     <td>
-                                            <a href="<?php echo base_url()?>linea/editar/<?php echo $key['emppre_id']?>" type="button" class="btn btn-xs btn-warning">
+                                            <a href="<?php echo base_url()?>nomina/editarp/<?php echo $key['emppre_id']?>" type="button" class="btn btn-xs btn-warning">
                                                 <i class="glyphicon glyphicon-edit"></i>
                                             </a>
 

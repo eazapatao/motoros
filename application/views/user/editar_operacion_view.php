@@ -28,7 +28,7 @@
                             <div class="form-group">
                                 <label>Cliente</label><br>
                                 <select class="selectpicker" name="cliente" id="cliente" data-live-search="true">
-                                    <option value="<?= $key['ope_cli_id'] ?>"><?= $key['cli_nombre'].' '.$key['cli_apellido'] ?></option>
+                                    <option value="<?= $key['ope_cli_id'] ?>" ><?= $key['cli_nombre'].' '.$key['cli_apellido'] ?></option>
                                     <?php foreach($clientes as $cliente){?>
                                         <option value="<?= $cliente['cli_id'] ?>"><?= $cliente['cli_nombre'].' '.$cliente['cli_apellido'] ?></option>
 
@@ -38,7 +38,7 @@
                             <div class="form-group">
                                 <label>Usuario</label><br>
                                 <select class="selectpicker" name="usuario" id="usuario" data-live-search="true">
-                                    <option value="<?= $key['ope_usu_id'] ?>"><?= $key['usu_nombre'].' '.$key['usu_apellido'] ?></option>
+                                    <option value="<?= $key['ope_usu_id'] ?>" ><?= $key['usu_nombre'].' '.$key['usu_apellido'] ?></option>
                                     <?php foreach($usuarios as $usuario){?>
                                         <option value="<?= $usuario['usu_id'] ?>"><?= $usuario['usu_nombre'].' '.$usuario['usu_apellido'] ?></option>
 
@@ -49,7 +49,7 @@
                             <div class="form-group">
                                 <label>Tipo</label>
                                 <select class="form-control" id="tipo" name="tipo" placeholder="Tipo">
-                                    <option value="<?= $key['ope_tipo'] ?>"><?= $key['ope_tipo'] ?></option>
+                                    <option value="<?= $key['ope_tipo'] ?>" disabled="true"><?= $key['ope_tipo'] ?></option>
                                     <option value="Ingresos" disabled="true" >Ingresos</option>
                                     <option value="Ingreso Cliente">Ingreso Cliente</option>
                                     <option value="Ingreso Prestamo">Ingreso Préstamo</option>

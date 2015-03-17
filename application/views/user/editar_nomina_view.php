@@ -26,8 +26,14 @@
                     <form action="<?= base_url()?>index.php/nomina/upd_nomina/" method="POST" enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="form-group">
-                                <label>Usuario</label>
-                                <input type="text" class="form-control"  id="usuario" name="usuario" placeholder="Usuario" value="<?= $key['nomquin_usu_id'] ?>">
+                                <label>Usuario</label><br>
+                                <select class="selectpicker" name="usuario" id="usuario" data-live-search="true">
+                                    <option value="<?= $key['nomquin_usu_id'] ?>"><?= $key['usu_nombre'].' '.$key['usu_apellido'] ?></option>
+                                    <?php foreach($usuarios as $usuario){?>
+                                        <option value="<?= $usuario['usu_id'] ?>"><?= $usuario['usu_nombre'].' '.$usuario['usu_apellido'] ?></option>
+
+                                    <?php }?>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Nómina</label>

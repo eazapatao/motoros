@@ -55,7 +55,7 @@ class Nomina extends CI_Controller{
             "label" => "dir",
             "label2" => "new",
             "titulo" => "Nuevo registro de nómina",
-            "usuarios" => $this->usuario_model->get_lista_usuario(),
+            "usuarios" => $this->usuario_model->get_lista_usuarios(),
             "main_content" => "user/nueva_nomina_view"
         );
 
@@ -68,7 +68,7 @@ class Nomina extends CI_Controller{
             "label" => "dir",
             "label2" => "new",
             "titulo" => "Nuevo registro de prestamo",
-            "usuarios" => $this->usuario_model->get_lista_usuario(),
+            "usuarios" => $this->usuario_model->get_lista_usuarios(),
             "main_content" => "user/nuevo_prestamo_view"
         );
 
@@ -101,8 +101,23 @@ class Nomina extends CI_Controller{
             "label" => "lin",
             "label2" => "list",
             "titulo" => "Editar_Nomina",
-            "nomina" => $this->nomina_model->get_nomina($id),
+            "nomina" => $this->nomina_model->get_info_nomina($id),
+            "usuarios" => $this->usuario_model->get_lista_usuarios(),
             "main_content" => "user/editar_nomina_view"
+        );
+
+        $this->load->view("templates/user_template", $content);
+    }
+    function editarp($id)
+    {
+        $content = array(
+            "menu" => "Prestamo",
+            "label" => "pres",
+            "label2" => "list",
+            "titulo" => "Editar_Prestamo",
+            "prestamos" => $this->nomina_model->get_info_prestamo($id),
+            "usuarios" => $this->usuario_model->get_lista_usuarios(),
+            "main_content" => "user/editar_prestamo_view"
         );
 
         $this->load->view("templates/user_template", $content);

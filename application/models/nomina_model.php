@@ -19,7 +19,24 @@ class Nomina_model extends CI_Model{
         return $query->result_array();
 
     }
+    function get_info_nomina($id){
+        $this->db->select('*');
+        $this->db->from('nomina');
+        $this->db->where('nomquin_id', $id);
+        $this->db->join('usuario', 'usuario.usu_id = nomina.nomquin_usu_id');
+        $query = $this->db->get();
+        return $query->result_array();
 
+    }
+    function get_info_prestamo($id){
+        $this->db->select('*');
+        $this->db->from('prestamo_empleado');
+        $this->db->where('emppre_id', $id);
+        $this->db->join('usuario', 'usuario.usu_id = prestamo_empleado.emppre_usu_id');
+        $query = $this->db->get();
+        return $query->result_array();
+
+    }
 function calcularnomina()
 {
 
@@ -136,11 +153,10 @@ function calcularnomina()
     function upd_prestamo()
     {
         $data = array(
-            "emmpre_usu_id" => $this->input->post("usuario"),
+            "emppre_usu_id" => $this->input->post("usuario"),
             "emppre_fecha" => $this->input->post("fecha"),
             "emppre_valor" => $this->input->post("valor"),
-            "emppre_coutas" => $this->input->post("cuotas")
-
+            "emppre_cuotas" => $this->input->post("cuotas")
         );
 
         $this->db->where("emppre_id", $this->input->post("emppre_id"));
