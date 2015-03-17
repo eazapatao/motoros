@@ -18,25 +18,47 @@
 <div class="col-lg-6">
     <div class="box box-success">
         <div class="box-header">
-            <h3 class="box-title">Totales</h3>
+            <h3 class="box-title">Bancolombia</h3>
         </div><!-- /.box-header -->
         <div class="box-body">
             <table class="table table-bordered">
                 <tbody><tr>
-                    <th style="">Total Debe</th>
-                    <th>Total Haber</th>
-                    <th style="">Debe-Haber</th>
+                    <th style="">Debe</th>
+                    <th>Haber</th>
+                    <th style="">Saldo</th>
                 </tr>
                 <tr>
-                    <td>$<?= number_format ($totales['debe'], 0, ',', '.')?></td>
-                    <td>$<?= number_format ($totales['haber'], 0, ',', '.')?></td>
-                    <td>$<?= number_format ($totales['deferencia'], 0, ',', '.')?></td>
+                    <td>$<?= number_format ($totalesB['debeb'], 0, ',', '.')?></td>
+                    <td>$<?= number_format ($totalesB['haberb'], 0, ',', '.')?></td>
+                    <td>$<?= number_format ($totalesB['deferenciab'], 0, ',', '.')?></td>
                 </tr>
 
                 </tbody></table>
         </div><!-- /.box-body -->
     </div>
 </div>
+            <div class="col-lg-6">
+                <div class="box box-success">
+                    <div class="box-header">
+                        <h3 class="box-title">Davivienda</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="table table-bordered">
+                            <tbody><tr>
+                                <th style="">Debe</th>
+                                <th>Haber</th>
+                                <th style="">Saldo</th>
+                            </tr>
+                            <tr>
+                                <td>$<?= number_format ($totalesD['debed'], 0, ',', '.')?></td>
+                                <td>$<?= number_format ($totalesD['haberd'], 0, ',', '.')?></td>
+                                <td>$<?= number_format ($totalesD['deferenciad'], 0, ',', '.')?></td>
+                            </tr>
+
+                            </tbody></table>
+                    </div><!-- /.box-body -->
+                </div>
+            </div>
             <div class="col-lg-12">
                 <div class="box box-primary">
                     <div class="box-header"><br>

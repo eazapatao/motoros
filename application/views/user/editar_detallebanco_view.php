@@ -46,6 +46,7 @@
                             <div class="form-group">
                                 <label>Transacción</label>
                                 <select class="form-control" id="transaccion" name="transaccion" value="<?= $key['detban_transaccion'] ?>">
+                                    <option value="<?= $key['detban_transaccion'] ?>"><?= $key['detban_transaccion'] ?></option>
                                     <option value="Debe">Debe</option>
                                     <option value="Haber">Haber</option>
                                 </select>

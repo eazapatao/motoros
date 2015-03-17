@@ -19,7 +19,9 @@ class Detallebanco extends CI_Controller{
                 "titulo" => "Lista",
                 "main_content" => "user/lista_detallebanco_view",
                 "detallebanco" => $this->detallebanco_model->get_lista_detallebanco(),
-                "totales" => $this->detallebanco_model->get_totales(),
+                "totalesB" => $this->detallebanco_model->get_totales_bancolombia(),
+                "totalesD" => $this->detallebanco_model->get_totales_davivienda(),
+
             );
 
             $this->load->view("templates/user_template", $content);
