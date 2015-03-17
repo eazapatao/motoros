@@ -20,9 +20,7 @@
                 <div class="box box-primary">
                     <div class="box-header">
                         <br>
-                        <a class="btn btn-app"  href="<?= base_url()?>linea/nuevo_historial">
-                            <i class="fa fa-edit"></i> Lista historial
-                        </a>
+
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <form role="form">

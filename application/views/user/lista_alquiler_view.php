@@ -60,7 +60,7 @@
                                         <td><?= $key['alq_tipo']?></td>
                                         <td><?= $key['alq_fecha']?></td>
                                         <td><?= $key['alq_fechafin']?></td>
-                                    <td>
+                                  <td>
                                             <a href="<?php echo base_url()?>alquiler/editar/<?php echo $key['alq_id']?>" type="button" class="btn btn-xs btn-warning">
                                                 <i class="glyphicon glyphicon-edit"></i>
                                             </a>

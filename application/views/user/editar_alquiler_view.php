@@ -26,10 +26,15 @@
                     <form action="<?= base_url()?>index.php/alquiler/upd_alquiler/" method="POST" enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="form-group">
-                                <label>Cliente</label>
-                                <input type="text" class="form-control" id="cliente" name="cliente" placeholder="Cliente" value="<?= $key['alq_cli_id'] ?>">
-                            </div>
+                                <label>Cliente</label><br>
+                                <select class="selectpicker" name="cliente" id="cliente" data-live-search="true">
+                                    <option value="<?= $key['alq_cli_id'] ?>"><?= $key['cli_nombre'].' '.$key['cli_apellido'] ?></option>
+                                    <?php foreach($clientes as $cliente){?>
+                                        <option value="<?= $cliente['cli_id'] ?>"><?= $cliente['cli_nombre'].' '.$cliente['cli_apellido'] ?></option>
 
+                                    <?php }?>
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label>Observaciones</label>
                                 <textarea type="text" class="form-control" id="observaciones" name="observaciones" ><?php echo $key['alq_observaciones']?></textarea>

@@ -13,6 +13,15 @@ class alquiler_model extends CI_Model{
 
 
     }
+    function get_info_alquiler($id){
+        $this->db->select('*');
+        $this->db->from('alquiler');
+        $this->db->where('alq_id', $id);
+        $this->db->join('cliente', 'cliente.cli_id = alquiler.alq_cli_id');
+        $query = $this->db->get();
+        return $query->result_array();
+
+    }
 
     function guardar_alquiler(){
 

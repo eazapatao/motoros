@@ -33,12 +33,6 @@ class plan_model extends CI_Model{
     }
 
 
-    function get_lista_planes(){
-        $query = $this->db->get('plan');
-
-        return $query->result_array();
-    }
-
 
     function upd_plan()
     {

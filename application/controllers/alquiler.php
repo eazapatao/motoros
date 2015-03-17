@@ -85,7 +85,8 @@ class Alquiler extends CI_Controller{
                 "label" => "alq",
                 "label2" => "list",
                 "titulo" => "Editar_Alquiler",
-                "alquiler" => $this->alquiler_model->get_alquiler($id),
+                "alquiler" => $this->alquiler_model->get_info_alquiler($id),
+                "clientes" => $this->directorio_model->get_lista_clientes(),
                 "main_content" => "user/editar_alquiler_view"
             );
 
