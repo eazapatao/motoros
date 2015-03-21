@@ -1,0 +1,13 @@
+# Idea Files #
+###################
+.idea/.name
+.idea/motoros.iml
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/scopes/scope_settings.xml
+.idea/vcs.xml
+.idea/workspace.xml
+
+application/config/config.php
+application/config/database.php

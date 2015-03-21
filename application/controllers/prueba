@@ -1,0 +1,6 @@
+<?php
+function holamundo()
+{
+    echo "Hola mundo";
+}
+?>
