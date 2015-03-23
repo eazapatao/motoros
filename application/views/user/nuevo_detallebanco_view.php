@@ -51,8 +51,8 @@
                             <div class="form-group">
                                 <label>Transacción</label>
                                 <select class="form-control" id="transaccion" name="transaccion">
-                                    <option value="Debe">Debe</option>
-                                    <option value="Haber">Haber</option>
+                                    <option value="Ingreso">Ingreso</option>
+                                    <option value="Egreso">Egreso</option>
                                 </select>
 
 

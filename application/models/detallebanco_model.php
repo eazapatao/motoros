@@ -79,7 +79,7 @@ class Detallebanco_model extends CI_Model{
 
     function get_totales_bancolombia()
     {
-        $query = "SELECT sum(detban_valor) as total_deben FROM detalle_banco WHERE detban_transaccion = 'Debe' AND detban_ban_id='1'";
+        $query = "SELECT sum(detban_valor) as total_deben FROM detalle_banco WHERE detban_transaccion = 'Ingreso' AND detban_ban_id='1'";
         $result = $this->db->query($query);
 
         $deben =  $result->result_array();
@@ -87,7 +87,7 @@ class Detallebanco_model extends CI_Model{
         $deben = $deben[0]['total_deben'];
 
 
-        $query = "SELECT sum(detban_valor) as total_haber FROM detalle_banco WHERE detban_transaccion = 'Haber' AND detban_ban_id='1'";
+        $query = "SELECT sum(detban_valor) as total_haber FROM detalle_banco WHERE detban_transaccion = 'Egreso' AND detban_ban_id='1'";
         $result = $this->db->query($query);
 
         $haber =  $result->result_array();
@@ -104,7 +104,7 @@ class Detallebanco_model extends CI_Model{
     }
     function get_totales_davivienda()
     {
-        $query = "SELECT sum(detban_valor) as total_deben FROM detalle_banco WHERE detban_transaccion = 'Debe' AND detban_ban_id='2'";
+        $query = "SELECT sum(detban_valor) as total_deben FROM detalle_banco WHERE detban_transaccion = 'Ingreso' AND detban_ban_id='2'";
         $result = $this->db->query($query);
 
         $deben =  $result->result_array();
@@ -112,7 +112,7 @@ class Detallebanco_model extends CI_Model{
         $deben = $deben[0]['total_deben'];
 
 
-        $query = "SELECT sum(detban_valor) as total_haber FROM detalle_banco WHERE detban_transaccion = 'Haber' AND detban_ban_id='2'";
+        $query = "SELECT sum(detban_valor) as total_haber FROM detalle_banco WHERE detban_transaccion = 'Egreso' AND detban_ban_id='2'";
         $result = $this->db->query($query);
 
         $haber =  $result->result_array();
