@@ -86,8 +86,6 @@
                                 <textarea type="text" class="form-control" id="observaciones" name="observaciones" ></textarea>
 
                             </div>
-
-
                         </div><!-- /.box-body -->
 
                         <div class="box-footer">

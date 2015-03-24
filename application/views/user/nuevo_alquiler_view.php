@@ -63,8 +63,6 @@
                             <a id="asociar_alquiler" style="display: none;" class="btn btn-primary" href="">Asociar lineas</a>
                         </div>
 
-
-
                 </div>
             </div>
 
