@@ -10,7 +10,7 @@
             <li class="active"><?= $titulo?></li>
         </ol>
     </section>
-dsfsdf
+
     <!-- Main content -->
     <section class="content">
 
