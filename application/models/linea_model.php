@@ -85,6 +85,58 @@ class linea_model extends CI_Model{
         );
         $this->db->where("lin_id", $this->input->post("linea"));
         $this->db->update('linea', $dato);
+        $this->guardar_estado_cuenta($this->input->post("linea"));
+    }
+
+
+
+    function guardar_estado_cuenta($numero){
+        $this->db->select('lin_pla_id, pla_totalmin');
+        $this->db->from('linea');
+        $this->db->join('plan', 'plan.pla_id = linea.lin_pla_id');
+        $this->db->where('lin_id', $numero);
+        $query = $this->db->get();
+
+        $result = $query->result_array();
+
+
+        $verificacion = $this->verificar_estado_cuenta($this->input->post("alquiler"));
+
+        if ($verificacion == 0){
+            $debe = $this->input->post("vlorminvend") * $result[0]['pla_totalmin'];
+            $data = array(
+                "estcue_alq_id" => $this->input->post("alquiler"),
+                "estcue_debe" => $debe,
+                "estcue_abono" => 0,
+                "estcue_saldo" => 0
+            );
+
+            $this->db->insert("estadocuenta", $data);
+        }else{
+            $debe = $this->get_debe_estado_cuenta($this->input->post("alquiler"))+($this->input->post("vlorminvend") * $result[0]['pla_totalmin']);
+            $data = array(
+                "estcue_debe" => $debe
+            );
+
+            $this->db->where('estcue_alq_id', $this->input->post("alquiler"));
+            $this->db->update('estadocuenta', $data);
+        }
+
+    }
+
+    function get_debe_estado_cuenta($id_alquiler){
+        $this->db->select('estcue_debe');
+        $this->db->from('estadocuenta');
+        $this->db->where('estcue_alq_id', $id_alquiler);
+        $query = $this->db->get();
+        $resutl = $query->result_array();
+
+        return $resutl[0]['estcue_debe'];
+    }
+
+    function verificar_estado_cuenta($id_alquiler){
+        $this->db->where("estcue_alq_id", $id_alquiler);
+        return $this->db->count_all('estadocuenta');
     }
 
     function get_linea($id){
