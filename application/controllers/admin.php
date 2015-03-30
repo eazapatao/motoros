@@ -11,15 +11,16 @@ class Admin extends CI_Controller{
         $arr = $this->session->userdata('logged_in');
         if($this->session->userdata('logged_in') && $arr['role'] == 1)
         {
+
             $content = array(
                 "menu" => "Dashboard",
                 "label" => "dash",
                 "label2" => "",
                 "titulo" => "Resumen",
-                "main_content" => "admin/dashboard_view"
+                "main_content" => "admin/dashboard_view",
             );
 
-            $this->load->view("templates/admin_template", $content);
+            $this->load->view("templates/user_template", $content);
         }
         else
         {

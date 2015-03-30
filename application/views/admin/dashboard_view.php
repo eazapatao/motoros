@@ -13,6 +13,5 @@
 
     <!-- Main content -->
     <section class="content">
-
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
