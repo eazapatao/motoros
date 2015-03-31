@@ -83,7 +83,7 @@ class Linea extends CI_Controller{
 
     function guardar_linea(){
         $this->linea_model->guardar_linea();
-
+        redirect("linea", "refresh");
     }
     function guardar_historial(){
 
@@ -99,7 +99,7 @@ class Linea extends CI_Controller{
             "label2" => "list",
             "titulo" => "Editar_linea",
             "linea" => $this->linea_model->get_info_linea($id),
-            "plan" => $this->plan_model->get_lista_plan(),
+            "plan" => $this->plan_model->get_lista_planes(),
             "main_content" => "user/editar_linea_view"
         );
 

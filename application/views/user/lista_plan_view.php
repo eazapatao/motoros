@@ -31,6 +31,7 @@
                                 <thead>
                                 <tr>
                                     <th>Nombre</th>
+                                    <th>Operador</th>
                                     <th>Minutos</th>
                                     <th>Valor del minuto</th>
                                     <th>Cargo básico</th>
@@ -40,6 +41,7 @@
                                 <tfoot>
                                 <tr>
                                     <th>Nombre</th>
+                                    <th>Operador</th>
                                     <th>Minutos</th>
                                     <th>Valor del minuto</th>
                                     <th>Cargo básico</th>
@@ -51,6 +53,7 @@
                                 <?php foreach ($plan as $key) {?>
                                     <tr>
                                         <td><?= $key['pla_nombre']?></td>
+                                        <td><?= $key['pla_operador']?></td>
                                         <td><?= $key['pla_totalmin']?></td>
                                         <td><?= $key['pla_vlrmin']?></td>
                                         <td><?= $key['pla_cargobasico']?></td>

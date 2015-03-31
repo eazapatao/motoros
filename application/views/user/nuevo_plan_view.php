@@ -29,6 +29,17 @@
                                 <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre">
                             </div>
                             <div class="form-group">
+                                <label>Operador</label>
+                                <select class="form-control" id="operador" name="operador" placeholder="Operador" >
+                                    <option value="Claro">Claro</option>
+                                    <option value="Movistar">Movistar</option>
+                                    <option value="Tigo">Tigo</option>
+                                    <option value="Uff">Uff</option>
+                                    <option value="Virgin mobile">Virgin mobile</option>
+                                </select>
+
+                            </div>
+                            <div class="form-group">
                                 <label>Total de minutos</label>
                                 <input type="text" class="form-control" id="minutos" name="minutos" placeholder="minutos">
                             </div>

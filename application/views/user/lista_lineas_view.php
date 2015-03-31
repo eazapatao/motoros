@@ -34,7 +34,6 @@
                                     <th>Número</th>
                                     <th>Corte</th>
                                     <th>Estado</th>
-                                    <th>Operador</th>
                                     <th>Min consumidos</th>
                                     <th>Pasaminutos</th>
                                     <th>Min disponibles</th>
@@ -47,7 +46,6 @@
                                     <th>Número</th>
                                     <th>Corte</th>
                                     <th>Estado</th>
-                                    <th>Operador</th>
                                     <th>Min consumidos</th>
                                     <th>Pasaminutos</th>
                                     <th>Min disponibles</th>
@@ -63,7 +61,6 @@
                                         <td><?= $key['lin_numero']?></td>
                                         <td><?= $key['lin_corte']?></td>
                                         <td><?= $key['lin_estado']?></td>
-                                        <td><?= $key['lin_operador']?></td>
                                         <td><?= $key['lin_minutosconsumidos']?></td>
                                         <td><?= $key['lin_pasaminutos']?></td>
                                         <td><?= ($key['pla_totalmin']-$key['lin_minutosconsumidos'])+$key['lin_pasaminutos']?></td>

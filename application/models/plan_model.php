@@ -15,6 +15,7 @@ class plan_model extends CI_Model{
 
         $data = array(
             "pla_nombre" => $this->input->post("nombre"),
+            "pla_operador" => $this->input->post("operador"),
             "pla_totalmin" => $this->input->post("minutos"),
             "pla_vlrmin" => $this->input->post("vlrmin"),
             "pla_cargobasico" => $this->input->post("cargobasico")
@@ -38,6 +39,7 @@ class plan_model extends CI_Model{
     {
         $data = array(
             "pla_nombre" => $this->input->post("nombre"),
+            "pla_operador" => $this->input->post("operador"),
             "pla_totalmin" => $this->input->post("minutos"),
             "pla_vlrmin" => $this->input->post("vlrmin"),
             "pla_cargobasico" => $this->input->post("cargobasico")

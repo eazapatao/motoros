@@ -15,7 +15,7 @@ class Plan extends CI_Controller{
             "label2" => "list",
             "titulo" => "Lista",
             "main_content" => "user/lista_plan_view",
-            "plan" => $this->plan_model->get_lista_plan()//Pendiente
+            "plan" => $this->plan_model->get_lista_planes()//Pendiente
         );
 
         $this->load->view("templates/user_template", $content);
