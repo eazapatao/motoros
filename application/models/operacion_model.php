@@ -32,10 +32,57 @@ class operacion_model extends CI_Model{
             "ope_nfactura" => $this->input->post("nfactura"),
             "ope_observaciones" => $this->input->post("observaciones")
         );
-
         $this->db->insert("operacion", $data);
+
+
+        $alquiler = $this->obtener_alquiler($this->input->post("cliente"));
+        $debe = $this->obtener_debe( $alquiler[0]['alq_id']);
+        $abono = $this->obtener_abono( $alquiler[0]['alq_id']);
+        print_r($alquiler);
+
+
+       if($this->input->post("tipo")== "Ingreso Cliente")
+        {
+
+            $data1 = array(
+                "estcue_abono" =>  $this->input->post("valor") + $abono[0]['estcue_abono'],
+                "estcue_saldo" =>  $debe[0]['estcue_debe'] - ($this->input->post("valor")+$abono[0]['estcue_abono']),
+
+            );
+
+            $this->db->where("estcue_alq_id", $alquiler[0]['alq_id']);
+            $this->db->update('estadocuenta', $data1);
+        }
+
     }
 
+    function obtener_alquiler($cliente)
+    {
+        $this->db->select('alq_id');
+        $this->db->from('alquiler');
+        $this->db->where('alq_cli_id', $cliente);
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    function obtener_debe($alquiler)
+    {
+        $this->db->select('estcue_debe');
+        $this->db->from('estadocuenta');
+        $this->db->where('estcue_alq_id', $alquiler);
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    function obtener_abono($alquiler)
+    {
+        $this->db->select('estcue_abono');
+        $this->db->from('estadocuenta');
+        $this->db->where('estcue_alq_id', $alquiler);
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
     function get_operacion($id){
         $query = $this->db->get_where('operacion', array('ope_id' => $id));
 
