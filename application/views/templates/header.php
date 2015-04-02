@@ -16,6 +16,8 @@
 <div class="navbar-right">
 <ul class="nav navbar-nav">
 
+
+
 <!-- Messages: style can be found in dropdown.less-->
 <li class="dropdown notifications-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -53,7 +55,7 @@
 <li class="dropdown user user-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <i class="glyphicon glyphicon-user"></i>
-        <span>Jane Doe <i class="caret"></i></span>
+        <span>NOMBRE DEL USUARIO<i class="caret"></i></span>
     </a>
     <ul class="dropdown-menu">
         <!-- User image -->
