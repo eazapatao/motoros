@@ -43,11 +43,16 @@ class linea_model extends CI_Model{
 
     }
 
+    function get_lista_datos(){
+        $query = $this->db->get("datos");
 
+        return $query->result_array();
+
+    }
     function get_lista_historial(){
         $sql = "select *
-        from alquiler join (cliente, historialinea, linea) on
-        (cliente.cli_id=alq_cli_id AND historialinea.his_alq_id=alq_id AND historialinea.his_lin_id = linea.lin_id)";
+        from alquiler join (cliente, historialinea, linea,plan,datos) on
+        (cliente.cli_id=alq_cli_id AND historialinea.his_alq_id=alq_id AND historialinea.his_lin_id = linea.lin_id AND plan.pla_id=linea.lin_pla_id AND historialinea.his_dat_id=datos.dat_id)";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
@@ -74,6 +79,7 @@ class linea_model extends CI_Model{
         $data = array(
             "his_lin_id" => $this->input->post("linea"),
             "his_alq_id" => $this->input->post("alquiler"),
+            "his_dat_id" => $this->input->post("datos"),
             "his_valor_minvend" => $this->input->post("vlorminvend"),
 
         );
@@ -171,6 +177,7 @@ class linea_model extends CI_Model{
         $data = array(
             "his_lin_id" => $this->input->post("linea"),
             "his_alq_id" => $this->input->post("alquiler"),
+            "his_dat_id" => $this->input->post("datos"),
             "his_valor_minvend" => $this->input->post("vlorminvend"),
         );
 

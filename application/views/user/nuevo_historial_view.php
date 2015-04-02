@@ -38,6 +38,15 @@
                                 <label>Valor del minuto vendido</label>
                                 <input type="text" class="form-control" id="vlorminvend" name="vlorminvend" placeholder="Valor del minuto vendido">
                             </div>
+                            <div class="form-group">
+                                <label>Datos</label><br>
+                                <select class="selectpicker" name="datos" id="datos" data-live-search="true">
+                                    <option>Seleccione el paquete de datos</option>
+                                    <?php foreach($datos as $dato){?>
+                                        <option value="<?= $dato['dat_id']?>"><?= $dato['dat_nombre']?></option>
+                                    <?php }?>
+                                </select>
+                            </div>
 
                         </div><!-- /.box-body -->
 
