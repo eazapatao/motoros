@@ -38,10 +38,11 @@ class operacion_model extends CI_Model{
         $alquiler = $this->obtener_alquiler($this->input->post("cliente"));
         $debe = $this->obtener_debe( $alquiler[0]['alq_id']);
         $abono = $this->obtener_abono( $alquiler[0]['alq_id']);
-        print_r($alquiler);
+        $saldo = $this->obtener_saldo( $alquiler[0]['alq_id']);
 
 
-       if($this->input->post("tipo")== "Ingreso Cliente")
+
+       if($this->input->post("tipo")== 'Ingreso Cliente')
         {
 
             $data1 = array(
@@ -52,6 +53,19 @@ class operacion_model extends CI_Model{
 
             $this->db->where("estcue_alq_id", $alquiler[0]['alq_id']);
             $this->db->update('estadocuenta', $data1);
+        }
+        else
+        if($this->input->post("tipo")== 'Egreso Cliente')
+        {
+
+            $data2 = array(
+                "estcue_debe" =>  $this->input->post("valor") + $debe[0]['estcue_debe'],
+                "estcue_saldo" => $saldo[0]['estcue_saldo'] + $this->input->post("valor"),
+
+            );
+
+            $this->db->where("estcue_alq_id", $alquiler[0]['alq_id']);
+            $this->db->update('estadocuenta', $data2);
         }
 
     }
@@ -77,6 +91,15 @@ class operacion_model extends CI_Model{
     function obtener_abono($alquiler)
     {
         $this->db->select('estcue_abono');
+        $this->db->from('estadocuenta');
+        $this->db->where('estcue_alq_id', $alquiler);
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    function obtener_saldo($alquiler)
+    {
+        $this->db->select('estcue_saldo');
         $this->db->from('estadocuenta');
         $this->db->where('estcue_alq_id', $alquiler);
 
