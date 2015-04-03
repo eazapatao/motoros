@@ -3,12 +3,18 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-03-2015 a las 16:03:33
+-- Tiempo de generación: 03-04-2015 a las 02:06:43
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de datos: `motoros_db`
@@ -27,14 +33,14 @@ CREATE TABLE IF NOT EXISTS `alquiler` (
   `alq_tipo` varchar(20) NOT NULL,
   `alq_fecha` date NOT NULL,
   `alq_fechafin` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=118 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `alquiler`
 --
 
 INSERT INTO `alquiler` (`alq_id`, `alq_cli_id`, `alq_observaciones`, `alq_tipo`, `alq_fecha`, `alq_fechafin`) VALUES
-(78, 18, '', 'Contado', '0000-00-00', '0000-00-00');
+(117, 21, '', 'Contado', '0000-00-00', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -118,9 +124,32 @@ CREATE TABLE IF NOT EXISTS `control_adicional` (
 `con_id` int(11) NOT NULL,
   `con_lin_id` int(11) NOT NULL,
   `con_fecha` date NOT NULL,
+  `con_fechapago` date NOT NULL,
   `con_facturacion` int(11) NOT NULL,
+  `con_suspencion` date NOT NULL,
   `con_descuentos` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `datos`
+--
+
+CREATE TABLE IF NOT EXISTS `datos` (
+`dat_id` int(11) NOT NULL,
+  `dat_nombre` varchar(20) NOT NULL,
+  `dat_precio` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `datos`
+--
+
+INSERT INTO `datos` (`dat_id`, `dat_nombre`, `dat_precio`) VALUES
+(1, '1GB', 20000),
+(2, '2GB', 35000),
+(3, 'Sin datos', 0);
 
 -- --------------------------------------------------------
 
@@ -160,19 +189,6 @@ CREATE TABLE IF NOT EXISTS `detalle_banco` (
   `detban_detalle` varchar(300) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `detalle_banco`
---
-
-INSERT INTO `detalle_banco` (`detban_id`, `detban_ban_id`, `detban_cli_id`, `detban_fecha`, `detban_transaccion`, `detban_valor`, `detban_detalle`) VALUES
-(15, 2, 17, '0000-00-00', 'Haber', 123123, 'dasd\r\n'),
-(17, 2, 21, '0000-00-00', 'Haber', 20000000, ''),
-(18, 1, 18, '0000-00-00', 'Debe', 200000, ''),
-(19, 1, 20, '0000-00-00', 'Debe', 600000, ''),
-(21, 1, 18, '0000-00-00', 'Haber', 1000000, ''),
-(22, 2, 17, '0000-00-00', 'Debe', 23000, ''),
-(23, 1, 17, '0000-00-00', 'Debe', 34567, '');
-
 -- --------------------------------------------------------
 
 --
@@ -182,12 +198,18 @@ INSERT INTO `detalle_banco` (`detban_id`, `detban_ban_id`, `detban_cli_id`, `det
 CREATE TABLE IF NOT EXISTS `estadocuenta` (
 `estcue_id` int(11) NOT NULL,
   `estcue_alq_id` int(11) NOT NULL,
-  `estcue_desde` date NOT NULL,
-  `estcue_hasta` date NOT NULL,
   `estcue_debe` int(11) NOT NULL,
   `estcue_abono` int(11) NOT NULL,
-  `estcue_saldo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `estcue_saldo` int(11) NOT NULL,
+  `estcue_estado` varchar(20) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `estadocuenta`
+--
+
+INSERT INTO `estadocuenta` (`estcue_id`, `estcue_alq_id`, `estcue_debe`, `estcue_abono`, `estcue_saldo`, `estcue_estado`) VALUES
+(21, 117, 289200, 206000, 83200, 'Activo');
 
 -- --------------------------------------------------------
 
@@ -199,8 +221,18 @@ CREATE TABLE IF NOT EXISTS `historialinea` (
 `his_id` int(11) NOT NULL,
   `his_lin_id` int(11) NOT NULL,
   `his_alq_id` int(11) NOT NULL,
-  `his_valor_minvend` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `his_dat_id` int(11) NOT NULL,
+  `his_valor_minvend` int(11) NOT NULL,
+  `his_cargobasico` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `historialinea`
+--
+
+INSERT INTO `historialinea` (`his_id`, `his_lin_id`, `his_alq_id`, `his_dat_id`, `his_valor_minvend`, `his_cargobasico`) VALUES
+(53, 54, 117, 3, 67, 0),
+(54, 55, 117, 3, 124, 0);
 
 -- --------------------------------------------------------
 
@@ -214,24 +246,26 @@ CREATE TABLE IF NOT EXISTS `linea` (
   `lin_numero` varchar(11) NOT NULL,
   `lin_corte` int(11) NOT NULL,
   `lin_estado` varchar(30) NOT NULL,
-  `lin_operador` varchar(50) NOT NULL,
   `lin_minutosconsumidos` int(11) NOT NULL,
   `lin_pasaminutos` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `linea`
 --
 
-INSERT INTO `linea` (`lin_id`, `lin_pla_id`, `lin_numero`, `lin_corte`, `lin_estado`, `lin_operador`, `lin_minutosconsumidos`, `lin_pasaminutos`) VALUES
-(48, 9, '3137777777', 14, 'Alquilada', 'Movistar', 0, 0),
-(49, 10, '3129999999', 9, 'Disponible', 'Claro', 0, 0),
-(50, 9, '3116666666', 9, 'Alquilada', 'Tigo', 0, 0),
-(51, 10, '3129876543', 14, 'Disponible', 'Claro', 0, 0),
-(52, 9, '3219800098', 2, 'Disponible', 'Claro', 0, 0),
-(53, 9, '3215467898', 2, 'Alquilada', 'Claro', 0, 0),
-(54, 9, '3135678909', 2, 'Alquilada', 'Claro', 0, 0),
-(55, 10, '3215678909', 2, 'Disponible', 'Claro', 0, 0);
+INSERT INTO `linea` (`lin_id`, `lin_pla_id`, `lin_numero`, `lin_corte`, `lin_estado`, `lin_minutosconsumidos`, `lin_pasaminutos`) VALUES
+(48, 9, '3137777777', 14, 'Alquilada', 67, 0),
+(49, 9, '3129999999', 10, 'Alquilada', 0, 0),
+(50, 9, '3116666666', 9, 'Alquilada', 0, 0),
+(51, 9, '3129876543', 14, 'Alquilada', 0, 0),
+(52, 9, '3219800098', 2, 'Alquilada', 0, 0),
+(53, 9, '3215467898', 2, 'Alquilada', 0, 0),
+(54, 9, '3135678909', 2, 'Alquilada', 0, 0),
+(55, 9, '3215678909', 25, 'Alquilada', 0, 0),
+(56, 9, '87', 2, 'Disponible', 0, 0),
+(57, 9, '87', 2, 'Disponible', 0, 0),
+(58, 9, '1234567890', 9, 'Disponible', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -268,7 +302,18 @@ CREATE TABLE IF NOT EXISTS `operacion` (
   `ope_fecha` date NOT NULL,
   `ope_nfactura` int(11) NOT NULL,
   `ope_observaciones` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `operacion`
+--
+
+INSERT INTO `operacion` (`ope_id`, `ope_cli_id`, `ope_usu_id`, `ope_tipo`, `ope_valor`, `ope_fecha`, `ope_nfactura`, `ope_observaciones`) VALUES
+(91, 21, 2, 'Ingreso Cliente', 128000, '0000-00-00', 0, ''),
+(92, 21, 2, 'Ingreso Cliente', 68000, '0000-00-00', 0, ''),
+(93, 21, 2, 'Ingreso Cliente', 78000, '0000-00-00', 0, ''),
+(94, 21, 2, 'Egreso Cliente', 50000, '0000-00-00', 0, ''),
+(95, 21, 2, 'Egreso Cliente', 10000, '0000-00-00', 0, '');
 
 -- --------------------------------------------------------
 
@@ -279,20 +324,23 @@ CREATE TABLE IF NOT EXISTS `operacion` (
 CREATE TABLE IF NOT EXISTS `plan` (
 `pla_id` int(11) NOT NULL,
   `pla_nombre` varchar(50) NOT NULL,
+  `pla_operador` varchar(11) NOT NULL,
   `pla_totalmin` int(11) NOT NULL,
   `pla_vlrmin` int(11) NOT NULL,
   `pla_cargobasico` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `plan`
 --
 
-INSERT INTO `plan` (`pla_id`, `pla_nombre`, `pla_totalmin`, `pla_vlrmin`, `pla_cargobasico`) VALUES
-(9, '1200', 2345, 23, 68000),
-(10, '1150', 1150, 68, 87907),
-(11, '1500', 1500, 65, 128000),
-(12, '1800', 1800, 50, 90000);
+INSERT INTO `plan` (`pla_id`, `pla_nombre`, `pla_operador`, `pla_totalmin`, `pla_vlrmin`, `pla_cargobasico`) VALUES
+(9, '1200', 'Tigo', 1200, 50, 60000),
+(10, '1150', 'Movistar', 1150, 68, 87907),
+(11, '1500', 'Claro', 1500, 65, 128000),
+(12, '1800', 'Tigo', 1800, 50, 90000),
+(13, '2300', 'Tigo', 2300, 27, 234567),
+(14, '1234', 'Movistar', 1234, 12, 69000);
 
 -- --------------------------------------------------------
 
@@ -371,6 +419,12 @@ ALTER TABLE `control_adicional`
  ADD PRIMARY KEY (`con_id`,`con_lin_id`), ADD KEY `con_lin_id` (`con_lin_id`);
 
 --
+-- Indices de la tabla `datos`
+--
+ALTER TABLE `datos`
+ ADD PRIMARY KEY (`dat_id`);
+
+--
 -- Indices de la tabla `denominacion`
 --
 ALTER TABLE `denominacion`
@@ -392,7 +446,7 @@ ALTER TABLE `estadocuenta`
 -- Indices de la tabla `historialinea`
 --
 ALTER TABLE `historialinea`
- ADD PRIMARY KEY (`his_id`,`his_lin_id`,`his_alq_id`), ADD KEY `his_alq_id` (`his_alq_id`), ADD KEY `his_lin_id` (`his_lin_id`);
+ ADD PRIMARY KEY (`his_id`,`his_lin_id`,`his_alq_id`,`his_dat_id`), ADD KEY `his_alq_id` (`his_alq_id`), ADD KEY `his_lin_id` (`his_lin_id`), ADD KEY `his_dat_id` (`his_dat_id`);
 
 --
 -- Indices de la tabla `linea`
@@ -438,7 +492,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `alquiler`
 --
 ALTER TABLE `alquiler`
-MODIFY `alq_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=79;
+MODIFY `alq_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=118;
 --
 -- AUTO_INCREMENT de la tabla `banco`
 --
@@ -460,6 +514,11 @@ MODIFY `cli_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 ALTER TABLE `control_adicional`
 MODIFY `con_id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT de la tabla `datos`
+--
+ALTER TABLE `datos`
+MODIFY `dat_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT de la tabla `denominacion`
 --
 ALTER TABLE `denominacion`
@@ -473,17 +532,17 @@ MODIFY `detban_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 -- AUTO_INCREMENT de la tabla `estadocuenta`
 --
 ALTER TABLE `estadocuenta`
-MODIFY `estcue_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `estcue_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT de la tabla `historialinea`
 --
 ALTER TABLE `historialinea`
-MODIFY `his_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `his_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=55;
 --
 -- AUTO_INCREMENT de la tabla `linea`
 --
 ALTER TABLE `linea`
-MODIFY `lin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=56;
+MODIFY `lin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=59;
 --
 -- AUTO_INCREMENT de la tabla `nomina`
 --
@@ -493,12 +552,12 @@ MODIFY `nomquin_id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `operacion`
 --
 ALTER TABLE `operacion`
-MODIFY `ope_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `ope_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=96;
 --
 -- AUTO_INCREMENT de la tabla `plan`
 --
 ALTER TABLE `plan`
-MODIFY `pla_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+MODIFY `pla_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de la tabla `prestamo_empleado`
 --
@@ -526,12 +585,6 @@ ALTER TABLE `control_adicional`
 ADD CONSTRAINT `control_adicional_ibfk_1` FOREIGN KEY (`con_lin_id`) REFERENCES `linea` (`lin_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `denominacion`
---
-ALTER TABLE `denominacion`
-ADD CONSTRAINT `denominacion_ibfk_1` FOREIGN KEY (`den_ope_id`) REFERENCES `operacion` (`ope_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `detalle_banco`
 --
 ALTER TABLE `detalle_banco`
@@ -549,7 +602,8 @@ ADD CONSTRAINT `estadocuenta_ibfk_1` FOREIGN KEY (`estcue_alq_id`) REFERENCES `a
 --
 ALTER TABLE `historialinea`
 ADD CONSTRAINT `historialinea_ibfk_1` FOREIGN KEY (`his_alq_id`) REFERENCES `alquiler` (`alq_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `historialinea_ibfk_2` FOREIGN KEY (`his_lin_id`) REFERENCES `linea` (`lin_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `historialinea_ibfk_2` FOREIGN KEY (`his_lin_id`) REFERENCES `linea` (`lin_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `historialinea_ibfk_3` FOREIGN KEY (`his_dat_id`) REFERENCES `datos` (`dat_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `linea`
@@ -581,3 +635,7 @@ ADD CONSTRAINT `prestamo_empleado_ibfk_1` FOREIGN KEY (`emppre_usu_id`) REFERENC
 --
 ALTER TABLE `usuario`
 ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`usu_car_id`) REFERENCES `cargo` (`car_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
