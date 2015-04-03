@@ -93,6 +93,24 @@
                     <i class="fa fa-usd"></i> <span>Conteo de dinero</span>
                 </a>
             </li>
+
+            <li class="treeview <?php if($label == "nom") echo "active" ?>">
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Reportes</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+
+                <ul class="treeview-menu">
+
+                    <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>reportes/ver_estadocuentas"><i class="fa fa-angle-double-right"></i>Estados de cuentas</a></li>
+
+                    <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>nomina/verprestamo"><i class="fa fa-angle-double-right"></i>Ver Préstamos</a></li>
+
+                </ul>
+
+            </li>
+
         </ul>
     </section>
     <!-- /.sidebar -->
