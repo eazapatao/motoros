@@ -89,7 +89,7 @@ class linea_model extends CI_Model{
             "lin_estado" => "Alquilada"
         );
         $this->db->where("lin_id", $this->input->post("linea"));
-        $this->db->update('linea', $dato); */
+        $this->db->update('linea', $dato);*/
         $this->guardar_estado_cuenta($this->input->post("linea"));
     }
 
@@ -108,24 +108,31 @@ class linea_model extends CI_Model{
         $valordatos = ($this->obtener_preciodatos($numero));
 
 
-        if ($verificacion == 0){
+        if($verificacion != 0)
+        {
+
+            $debe = $this->get_debe_estado_cuenta($this->input->post("alquiler"))+($this->input->post("vlorminvend") * $result[0]['pla_totalmin']) + ($this->obtener_preciodatos($numero));
+            $data = array(
+                "estcue_debe" => $debe,
+                "estcue_estado" => "Inactivo"
+            );
+
+            $this->db->where('estcue_alq_id', $this->input->post("alquiler"));
+            $this->db->update('estadocuenta', $data);
+        }
+        else
+        {
             $debe = $this->input->post("vlorminvend") * $result[0]['pla_totalmin'] + $valordatos[0]['dat_precio'];
             $data = array(
                 "estcue_alq_id" => $this->input->post("alquiler"),
                 "estcue_debe" => $debe,
                 "estcue_abono" => 0,
-                "estcue_saldo" => 0
+                "estcue_saldo" => 0,
+                "estcue_estado" => "Activo"
             );
 
             $this->db->insert("estadocuenta", $data);
-        }else{
-            $debe = $this->get_debe_estado_cuenta($this->input->post("alquiler"))+($this->input->post("vlorminvend") * $result[0]['pla_totalmin']) + ($this->obtener_preciodatos($numero));
-            $data = array(
-                "estcue_debe" => $debe
-            );
 
-            $this->db->where('estcue_alq_id', $this->input->post("alquiler"));
-            $this->db->update('estadocuenta', $data);
         }
 
     }
@@ -154,7 +161,6 @@ class linea_model extends CI_Model{
         return $numero;
 
     }
-
     function get_linea($id){
         $query = $this->db->get_where('linea', array('lin_id' => $id));
 

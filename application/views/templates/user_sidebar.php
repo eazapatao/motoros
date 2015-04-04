@@ -89,7 +89,7 @@
             </li>
 
             <li class="active">
-                <a href="<?= base_url()?>nomina/conteo">
+                <a href="<?= base_url()?>conteo/">
                     <i class="fa fa-usd"></i> <span>Conteo de dinero</span>
                 </a>
             </li>

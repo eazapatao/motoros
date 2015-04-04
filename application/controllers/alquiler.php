@@ -61,10 +61,10 @@ class Alquiler extends CI_Controller{
         if($this->session->userdata('logged_in'))
         {
             $last_id = $this->alquiler_model->guardar_alquiler();
-            //$last_id = $this->alquiler_model->get_last();
-            //redirect('alquiler', 'refresh');
 
-            echo $last_id;
+
+                echo $last_id;
+
         }
         else
         {
