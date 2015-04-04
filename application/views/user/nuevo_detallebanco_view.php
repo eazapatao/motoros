@@ -45,7 +45,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Fecha de facturación</label>
-                                <input type="date" class="form-control" id="fecha" name="fecha">
+                                <input type="date" class="form-control" id="fecha" name="fecha" value="<?php echo date("d/m/y"); ?>" readonly="true" >
 
                             </div>
                             <div class="form-group">

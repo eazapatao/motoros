@@ -85,11 +85,11 @@ class linea_model extends CI_Model{
         );
 
         $this->db->insert("historialinea", $data);
-        $dato= array(
+       /* $dato= array(
             "lin_estado" => "Alquilada"
         );
         $this->db->where("lin_id", $this->input->post("linea"));
-        $this->db->update('linea', $dato);
+        $this->db->update('linea', $dato); */
         $this->guardar_estado_cuenta($this->input->post("linea"));
     }
 
@@ -101,14 +101,15 @@ class linea_model extends CI_Model{
         $this->db->join('plan', 'plan.pla_id = linea.lin_pla_id');
         $this->db->where('lin_id', $numero);
         $query = $this->db->get();
-
         $result = $query->result_array();
 
 
         $verificacion = $this->verificar_estado_cuenta($this->input->post("alquiler"));
+        $valordatos = ($this->obtener_preciodatos($numero));
+
 
         if ($verificacion == 0){
-            $debe = $this->input->post("vlorminvend") * $result[0]['pla_totalmin'];
+            $debe = $this->input->post("vlorminvend") * $result[0]['pla_totalmin'] + $valordatos[0]['dat_precio'];
             $data = array(
                 "estcue_alq_id" => $this->input->post("alquiler"),
                 "estcue_debe" => $debe,
@@ -118,7 +119,7 @@ class linea_model extends CI_Model{
 
             $this->db->insert("estadocuenta", $data);
         }else{
-            $debe = $this->get_debe_estado_cuenta($this->input->post("alquiler"))+($this->input->post("vlorminvend") * $result[0]['pla_totalmin']);
+            $debe = $this->get_debe_estado_cuenta($this->input->post("alquiler"))+($this->input->post("vlorminvend") * $result[0]['pla_totalmin']) + ($this->obtener_preciodatos($numero));
             $data = array(
                 "estcue_debe" => $debe
             );
@@ -127,6 +128,13 @@ class linea_model extends CI_Model{
             $this->db->update('estadocuenta', $data);
         }
 
+    }
+
+    function obtener_preciodatos($numero)
+    {
+        $sql = "select dat_precio from datos join (historialinea) on (historialinea.his_dat_id=dat_id AND historialinea.his_lin_id=$numero)";
+        $query = $this->db->query($sql);
+        return $query->result_array();
     }
 
     function get_debe_estado_cuenta($id_alquiler){
@@ -140,8 +148,11 @@ class linea_model extends CI_Model{
     }
 
     function verificar_estado_cuenta($id_alquiler){
-        $this->db->where("estcue_alq_id", $id_alquiler);
-        return $this->db->count_all('estadocuenta');
+        $sql = "SELECT * FROM estadocuenta WHERE estcue_alq_id=$id_alquiler";
+        $result = mysql_query($sql);
+        $numero = mysql_num_rows($result);
+        return $numero;
+
     }
 
     function get_linea($id){

@@ -20,6 +20,7 @@
                 <div class="box box-success">
                     <div class="box-header">
                         <h3 class="box-title">Nuevo historial | Ticket de alquiler: <?= $id_ticket?></h3>
+
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <form id="form_historial">

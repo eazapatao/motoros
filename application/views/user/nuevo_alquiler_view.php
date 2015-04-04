@@ -48,7 +48,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Fecha</label>
-                                <input type="date" class="form-control" id="fecha" name="fecha" placeholder="Fecha">
+                                <input type="date" class="form-control" id="fecha" name="fecha" placeholder="Fecha" value="<?php echo date("d/m/y"); ?>" readonly="true" >
                             </div>
                             <div class="form-group">
                                 <label>Fecha Finalización</label>

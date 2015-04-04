@@ -24,8 +24,8 @@ $("#guardar_historial").click(function(){
         url: base_url+"index.php/linea/guardar_historial/",
         data: $("#form_historial").serialize()
     }) .done(function( msg ) {
+
         location.reload(true);
-        console.log(msg);
 
     });
 });
