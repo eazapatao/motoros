@@ -105,6 +105,7 @@
 
                     <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>reportes/ver_estadocuentas"><i class="fa fa-angle-double-right"></i>Estados de cuentas</a></li>
 
+                    <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>reportes/ver_informediario"><i class="fa fa-angle-double-right"></i>Informe diario</a></li>
                     <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>nomina/verprestamo"><i class="fa fa-angle-double-right"></i>Ver Préstamos</a></li>
 
                 </ul>

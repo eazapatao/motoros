@@ -59,7 +59,7 @@
                                     <option value="Ingreso otros">Ingreso otros</option>
                                     <option value="Egresos" disabled="true" >Egresos</option>
                                     <option value="Egreso Cliente">Egreso Cliente</option>
-                                    <option value="Egreso Préstamo">Egreso Préstamo</option>
+                                    <option value="Egreso Prestamo">Egreso Préstamo</option>
                                     <option value="Egreso Tarjeta de credito">Egreso Tarjeta de credito</option>
                                     <option value="Egreso Caja fuerte">Egreso Caja fuerte</option>
                                     <option value="Egreso Nómina">Egreso Nómina</option>

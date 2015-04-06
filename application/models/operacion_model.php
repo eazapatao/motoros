@@ -33,7 +33,7 @@ class operacion_model extends CI_Model{
             "ope_observaciones" => $this->input->post("observaciones")
         );
         $this->db->insert("operacion", $data);
-
+        $last = $this->ultimo();
 
         $alquiler = $this->obtener_alquiler($this->input->post("cliente"));
         $debe = $this->obtener_debe( $alquiler[0]['alq_id']);
@@ -42,7 +42,7 @@ class operacion_model extends CI_Model{
 
 
 
-       if($this->input->post("tipo")== 'Ingreso Cliente')
+        if($this->input->post("tipo")== 'Ingreso Cliente')
         {
 
             $data1 = array(
@@ -55,18 +55,47 @@ class operacion_model extends CI_Model{
             $this->db->update('estadocuenta', $data1);
         }
         else
-        if($this->input->post("tipo")== 'Egreso Cliente')
+            if($this->input->post("tipo")== 'Egreso Cliente')
+            {
+
+                $data2 = array(
+                    "estcue_debe" =>  $this->input->post("valor") + $debe[0]['estcue_debe'],
+                    "estcue_saldo" => $saldo[0]['estcue_saldo'] + $this->input->post("valor"),
+
+                );
+
+                $this->db->where("estcue_alq_id", $alquiler[0]['alq_id']);
+                $this->db->update('estadocuenta', $data2);
+            }
+        $this->guardar_informediario($last,$this->input->post("valor"),$this->input->post("tipo"));
+
+    }
+
+    function ultimo()
+    {
+       return $this->db->insert_id();
+    }
+
+    function guardar_informediario($idoperacion,$valor,$tipo)
+    {
+
+        if($tipo=='Ingreso Cliente' or $tipo=='Ingreso Prestamo' or $tipo=='Ingreso Tarjeta de Credito' or $tipo=='Ingreso Caja fuerte' or $tipo=='Ingreso Cargo' or $tipo=='Ingreso Otros')
         {
-
-            $data2 = array(
-                "estcue_debe" =>  $this->input->post("valor") + $debe[0]['estcue_debe'],
-                "estcue_saldo" => $saldo[0]['estcue_saldo'] + $this->input->post("valor"),
-
+            $data = array(
+                "inf_ope_id" => $idoperacion,
+                "inf_entra" => $valor,
+                "inf_saldo" => $valor,
             );
-
-            $this->db->where("estcue_alq_id", $alquiler[0]['alq_id']);
-            $this->db->update('estadocuenta', $data2);
         }
+        else{
+            $data = array(
+                "inf_ope_id" => $idoperacion,
+                "inf_sale" => $valor,
+                "inf_saldo" => $valor,
+            );
+        }
+        $this->db->insert("informediario", $data);
+
 
     }
 

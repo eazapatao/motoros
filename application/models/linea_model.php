@@ -156,8 +156,13 @@ class linea_model extends CI_Model{
     }
 
     function verificar_estado_cuenta($id_alquiler){
-        $this->db->from('estadocuenta')->where('estcue_alq_id', $this->$id_alquiler);
-        return $this->db->count_all_results();
+      //  $this->db->from('estadocuenta')->where('estcue_alq_id', $this->$id_alquiler);
+      //  return $this->db->count_all_results();
+        $sql = "SELECT * FROM estadocuenta WHERE estcue_alq_id=$id_alquiler";
+        $result = mysql_query($sql);
+        $numero = mysql_num_rows($result);
+        return $numero;
+
     }
     function get_linea($id){
         $query = $this->db->get_where('linea', array('lin_id' => $id));

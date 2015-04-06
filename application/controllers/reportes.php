@@ -30,5 +30,26 @@ class Reportes extends CI_Controller{
 
     }
 
+    public function ver_informediario(){
+        $arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in'))
+        {
+            $content = array(
+                "menu" => "Informe diario",
+                "label" => "Inf",
+                "label2" => "list",
+                "titulo" => "",
+                "main_content" => "user/reporte_informediario_view",
+                "informesdiarios" => $this->reporte_model->get_lista_informesdiarios()//Pendiente
+            );
 
+            $this->load->view("templates/user_template", $content);
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
+
+    }
 }

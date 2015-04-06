@@ -13,10 +13,10 @@ class Admin extends CI_Controller{
         {
 
             $content = array(
-                "menu" => "Dashboard",
-                "label" => "dash",
+                "menu" => "Motoros",
+                "label" => "bienvenida",
                 "label2" => "",
-                "titulo" => "Resumen",
+                "titulo" => "Panel de control",
                 "main_content" => "admin/dashboard_view",
             );
 
