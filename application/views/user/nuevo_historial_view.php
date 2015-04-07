@@ -48,6 +48,8 @@
                                     <?php }?>
                                 </select>
                             </div>
+                            <input type="hidden" name="fechainicio" id="fechainicio" value="<?php echo date("d/m/y"); ?>" readonly="true">
+                            <input type="hidden" name="estado" id="estado" value="Activo" readonly="true">
 
                         </div><!-- /.box-body -->
 

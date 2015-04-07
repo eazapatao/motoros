@@ -120,7 +120,19 @@ class Linea extends CI_Controller{
         $this->load->view("templates/user_template", $content);
     }
 
+    function devolucion_linea($id)
+    {
+        $content = array(
+            "menu" => "Historial",
+            "label" => "lin",
+            "label2" => "list",
+            "titulo" => "Editar_historial",
+            "historial" => $this->linea_model->get_historial($id),
+            "main_content" => "user/editar_historial_view"
+        );
 
+        $this->load->view("templates/user_template", $content);
+    }
     function del($id)
     {
        $this->linea_model->del_linea($id);
