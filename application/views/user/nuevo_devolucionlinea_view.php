@@ -22,52 +22,31 @@
                         <h3 class="box-title">Devolución de líneas</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form action="<?= base_url()?>index.php/linea/devolucion_linea/" method="POST" enctype="multipart/form-data">
+                    <form action="<?= base_url()?>index.php/linea/guardar_devolucion_linea/" method="POST" enctype="multipart/form-data">
                         <div class="box-body">
-                                <div class="form-group">
-                                    <label>Cédula</label>
-                                    <input type="text" class="form-control" id="cedula" name="cedula" placeholder="Cédula">
-                                </div>
-                                <div class="form-group">
-                                    <label>Nombre</label>
-                                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
-                                </div>
-                                <div class="form-group">
-                                    <label>Apellido</label>
-                                    <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido">
-                                </div>
-                                <div class="form-group">
-                                    <label>Dirección</label>
-                                    <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección">
-                                </div>
-                                <div class="form-group">
-                                    <label>Barrio</label>
-                                    <input type="text" class="form-control" id="barrio" name="barrio" placeholder="Barrio">
-                                </div>
-                                <div class="form-group">
-                                    <label>Telefono fijo</label>
-                                    <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Telefono fijo">
-                                </div>
-                                <div class="form-group">
-                                    <label>Celular</label>
-                                    <input type="text" class="form-control" id="celular" name="celular" placeholder="Celular">
-                                </div>
                             <div class="form-group">
-                                <label>Ciudad</label>
-                                <input type="text" class="form-control" id="ciudad" name="ciudad" placeholder="Ciudad">
-                            </div>
-                            <div class="form-group">
-                                <label>Tipo de cliente</label>
-
-                                <select class="form-control" id="tipo" name="tipo" placeholder="Tipo de cliente">
-                                    <option value="Paga Diario">Paga Diario</option>
-                                    <option value="Regular">Regular</option>
+                                <label>Línea</label><br>
+                                <select class="selectpicker" name="linea" id="linea" data-live-search="true">
+                                    <option>Seleccione línea</option>
+                                    <?php foreach($lineas as $linea){?>
+                                        <option value="<?= $linea['lin_id']?>"><?= 'Línea '.$linea['lin_numero'].' Pasaminutos '.$linea['lin_pasaminutos'].' Disponibles '.$linea['lin_minutosconsumidos']?></option>
+                                    <?php }?>
                                 </select>
                             </div>
-                                <div class="form-group">
-                                    <label>Observaciones</label>
-                                    <textarea type="text" class="form-control" id="observaciones" name="observaciones"></textarea>
-                                </div>
+                            <div class="form-group">
+                                <label>Minutos consumidos</label>
+                                <input type="text" class="form-control" id="minconsumidos" name="minconsumidos">
+                            </div>
+                            <div class="form-group">
+                                <label>Pasaminutos</label>
+                                <input type="text" class="form-control" id="pasaminutos" name="pasaminutos">
+                            </div>
+                            <div class="form-group">
+                                <label>Valor del minuto al cancelar la línea</label>
+                                <input type="text" class="form-control" id="mincons" name="mincons">
+                            </div>
+                            <input type="hidden" name="fechafin" id="fechafin" value="<?php echo date("d/m/y"); ?>" readonly="true">
+
                         </div><!-- /.box-body -->
 
                         <div class="box-footer">

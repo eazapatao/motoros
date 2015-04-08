@@ -120,18 +120,23 @@ class Linea extends CI_Controller{
         $this->load->view("templates/user_template", $content);
     }
 
-    function devolucion_linea($id)
+    function devolucion_linea()
     {
         $content = array(
             "menu" => "Historial",
             "label" => "lin",
             "label2" => "list",
             "titulo" => "Editar_historial",
-            "historial" => $this->linea_model->get_historial($id),
-            "main_content" => "user/editar_historial_view"
+            "lineas" => $this->linea_model->get_lista_lineas_alquiladas(),
+            "main_content" => "user/nuevo_devolucionlinea_view"
         );
 
         $this->load->view("templates/user_template", $content);
+    }
+
+    function guardar_devolucion_linea(){
+        $this->linea_model->guardar_devolucion_linea();
+        redirect("linea", "refresh");
     }
     function del($id)
     {

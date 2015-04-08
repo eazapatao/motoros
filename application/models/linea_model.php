@@ -42,6 +42,15 @@ class linea_model extends CI_Model{
         return $query->result_array();
 
     }
+    function get_lista_lineas_alquiladas(){
+        $this->db->select('*');
+        $this->db->from('linea');
+        $this->db->join('plan', 'plan.pla_id = linea.lin_pla_id');
+        $this->db->where('lin_estado',"Alquilada");
+        $query = $this->db->get();
+        return $query->result_array();
+
+    }
 
     function get_lista_datos(){
         $query = $this->db->get("datos");
@@ -74,6 +83,30 @@ class linea_model extends CI_Model{
 
     }
 
+    function guardar_devolucion_linea()
+    {
+        $data = array(
+            "his_fechafin" => $this->input->post("fechafin"),
+            "his_estado"=> "Inactivo",
+            );
+        $this->db->select('*');
+        $this->db->from('historialinea');
+        $this->db->join('linea', 'linea.lin_id = historialinea.his_lin_id');
+        $this->db->where('his_lin_id', $this->input->post("linea"));
+        $this->db->update("historialinea", $data);
+
+        $data1 = array(
+            "lin_estado"=>"Disponible",
+            "lin_minutosconsumidos"=>$this->input->post("minconsumidos"),
+            "lin_pasaminutos"=>$this->input->post("pasaminutos"),
+        );
+        $this->db->select('*');
+        $this->db->from('linea');
+        $this->db->where('lin_id', $this->input->post("linea"));
+        $this->db->update("linea", $data1);
+
+    }
+
     function guardar_historial(){
 
         $data = array(
@@ -81,18 +114,18 @@ class linea_model extends CI_Model{
             "his_alq_id" => $this->input->post("alquiler"),
             "his_dat_id" => $this->input->post("datos"),
             "his_valor_minvend" => $this->input->post("vlorminvend"),
-           // "his_cargobasico" => $this->input->post("cargobasico"),
+            //"his_cargobasico" => $this->input->post("cargobasico"),
             "his_fechainicio" => $this->input->post("fechainicio"),
             "his_estado" => $this->input->post("estado"),
 
         );
 
         $this->db->insert("historialinea", $data);
-       /* $dato= array(
+        $dato= array(
             "lin_estado" => "Alquilada"
         );
         $this->db->where("lin_id", $this->input->post("linea"));
-        $this->db->update('linea', $dato);*/
+        $this->db->update('linea', $dato);
         $this->guardar_estado_cuenta($this->input->post("linea"),$this->input->post("alquiler"));
     }
 
@@ -159,8 +192,8 @@ class linea_model extends CI_Model{
     }
 
     function verificar_estado_cuenta($id_alquiler){
-      //  $this->db->from('estadocuenta')->where('estcue_alq_id', $this->$id_alquiler);
-      //  return $this->db->count_all_results();
+        //  $this->db->from('estadocuenta')->where('estcue_alq_id', $this->$id_alquiler);
+        //  return $this->db->count_all_results();
         $sql = "SELECT * FROM estadocuenta WHERE estcue_alq_id=$id_alquiler";
         $result = mysql_query($sql);
         $numero = mysql_num_rows($result);
@@ -198,12 +231,12 @@ class linea_model extends CI_Model{
     {
 
 
-            $data = array(
-                "his_lin_id" => $this->input->post("linea"),
-                "his_alq_id" => $this->input->post("alquiler"),
-                "his_dat_id" => $this->input->post("datos"),
-                "his_valor_minvend" => $this->input->post("vlorminvend"),
-                // "his_cargobasico" => $this->input->post("cargobasico"),
+        $data = array(
+            "his_lin_id" => $this->input->post("linea"),
+            "his_alq_id" => $this->input->post("alquiler"),
+            "his_dat_id" => $this->input->post("datos"),
+            "his_valor_minvend" => $this->input->post("vlorminvend"),
+            // "his_cargobasico" => $this->input->post("cargobasico"),
 
 
 
