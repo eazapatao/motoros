@@ -4,6 +4,7 @@ class Admin extends CI_Controller{
     function __construct(){
         parent::__construct();
         $this->load->model('directorio_model');
+        $this->load->model('linea_model');
 
     }
 
@@ -27,6 +28,15 @@ class Admin extends CI_Controller{
             //If no session, redirect to login page
             redirect('login', 'refresh');
         }
+
+    }
+
+    public function test(){
+        echo $this->linea_model->verificar_estado_cuenta(12).'<br>';
+
+        $this->linea_model->guardar_estado_cuenta(52,12);
+
+
 
     }
 }

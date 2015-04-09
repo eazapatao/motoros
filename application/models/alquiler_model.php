@@ -24,7 +24,7 @@ class alquiler_model extends CI_Model{
     }
 
     function guardar_alquiler(){
-
+//verificar funcion que envia parametro de id de alquiler para relacionar una nueva linea a ese alquiler
         $data = array(
             "alq_cli_id" => $this->input->post("cliente"),
             "alq_observaciones" => $this->input->post("observaciones"),

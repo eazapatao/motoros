@@ -88,7 +88,7 @@ class linea_model extends CI_Model{
         $data = array(
             "his_fechafin" => $this->input->post("fechafin"),
             "his_estado"=> "Inactivo",
-            );
+        );
         $this->db->select('*');
         $this->db->from('historialinea');
         $this->db->join('linea', 'linea.lin_id = historialinea.his_lin_id');
@@ -126,6 +126,7 @@ class linea_model extends CI_Model{
         );
         $this->db->where("lin_id", $this->input->post("linea"));
         $this->db->update('linea', $dato);
+
         $this->guardar_estado_cuenta($this->input->post("linea"),$this->input->post("alquiler"));
     }
 
@@ -161,13 +162,12 @@ class linea_model extends CI_Model{
         }
         else
         {
-
-            $debe = $this->get_debe_estado_cuenta($alquiler)+($this->input->post("vlorminvend") * $result[0]['pla_totalmin']) + ($this->obtener_preciodatos($numero));
+            $datos=$this->obtener_preciodatos($numero);
+            $debe = $this->get_debe_estado_cuenta($alquiler)+($this->input->post("vlorminvend") * $result[0]['pla_totalmin']) + ($datos[0]['dat_precio']);
             $data = array(
                 "estcue_debe" => $debe,
                 "estcue_estado" => "Inactivo"
             );
-
             $this->db->where('estcue_alq_id', $alquiler);
             $this->db->update('estadocuenta', $data);
         }
@@ -194,10 +194,9 @@ class linea_model extends CI_Model{
     function verificar_estado_cuenta($id_alquiler){
         //  $this->db->from('estadocuenta')->where('estcue_alq_id', $this->$id_alquiler);
         //  return $this->db->count_all_results();
-        $sql = "SELECT * FROM estadocuenta WHERE estcue_alq_id=$id_alquiler";
-        $result = mysql_query($sql);
-        $numero = mysql_num_rows($result);
-        return $numero;
+        //$sql = "SELECT * FROM estadocuenta WHERE estcue_alq_id=$id_alquiler";
+        $this->db->where("estcue_alq_id", $id_alquiler);
+        return $this->db->count_all_results('estadocuenta');
 
     }
     function get_linea($id){
