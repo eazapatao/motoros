@@ -105,6 +105,33 @@ class linea_model extends CI_Model{
         $this->db->where('lin_id', $this->input->post("linea"));
         $this->db->update("linea", $data1);
 
+
+        $this->db->select('alq_id');
+        $this->db->from('alquiler');
+        $this->db->where('alq_lin_id', $this->input->post("linea"));
+        $query = $this->db->query();
+        $query->result_array();
+
+        $debeactual=$this->get_debe_estado_cuenta($query[0]['alq_id']);
+
+        $this->db->select('estcue_id');
+        $this->db->from('estadocuenta');
+        $this->db->where('estcue_alq_id', $query[0]['alq_id']);
+        $query1 = $this->db->query();
+        $query1->result_array();
+
+        $this->db->select('his_cargobasico');
+        $this->db->from('historialinea');
+        $this->db->where('his_alq_id', $query[0]['alq_id']);
+        $query2 = $this->db->query();
+        $query2->result_array();
+
+        $data2 = array(
+            "estcue_debe"=>$debeactual -$query2[0]['his_cargobasico'] + ($this->input->post("minconsumidos")*$this->input->post("mincons"))
+        );
+        $this->db->where('estcue_alq_id', $query[0]['alq_id']);
+        $this->db->update("estadocuenta", $data2);
+
     }
 
     function guardar_historial(){
@@ -114,7 +141,6 @@ class linea_model extends CI_Model{
             "his_alq_id" => $this->input->post("alquiler"),
             "his_dat_id" => $this->input->post("datos"),
             "his_valor_minvend" => $this->input->post("vlorminvend"),
-            //"his_cargobasico" => $this->input->post("cargobasico"),
             "his_fechainicio" => $this->input->post("fechainicio"),
             "his_estado" => $this->input->post("estado"),
 
@@ -159,6 +185,7 @@ class linea_model extends CI_Model{
             );
 
             $this->db->insert("estadocuenta", $data);
+
         }
         else
         {
@@ -166,11 +193,18 @@ class linea_model extends CI_Model{
             $debe = $this->get_debe_estado_cuenta($alquiler)+($this->input->post("vlorminvend") * $result[0]['pla_totalmin']) + ($datos[0]['dat_precio']);
             $data = array(
                 "estcue_debe" => $debe,
-                "estcue_estado" => "Inactivo"
+
             );
             $this->db->where('estcue_alq_id', $alquiler);
             $this->db->update('estadocuenta', $data);
+
+
         }
+        $data2=array(
+            "his_cargobasico"=>$debe
+        );
+        $this->db->where('his_lin_id', $numero);
+        $this->db->update('historialinea', $data2);
 
     }
 
