@@ -43,7 +43,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Valor del minuto al cancelar la línea</label>
-                                <input type="text" class="form-control" id="mincons" name="mincons">
+                                <input type="text" class="form-control" id="valormin" name="valormin">
                             </div>
                             <input type="hidden" name="fechafin" id="fechafin" value="<?php echo date("d/m/y"); ?>" readonly="true">
 

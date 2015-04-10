@@ -32,9 +32,8 @@ class Admin extends CI_Controller{
     }
 
     public function test(){
-        echo $this->linea_model->verificar_estado_cuenta(12).'<br>';
+        echo $this->linea_model->obteneridestcue(49).'<br>';
 
-        $this->linea_model->guardar_estado_cuenta(52,12);
 
 
 

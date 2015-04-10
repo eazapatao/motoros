@@ -105,34 +105,53 @@ class linea_model extends CI_Model{
         $this->db->where('lin_id', $this->input->post("linea"));
         $this->db->update("linea", $data1);
 
-
-        $this->db->select('alq_id');
-        $this->db->from('alquiler');
-        $this->db->where('alq_lin_id', $this->input->post("linea"));
-        $query = $this->db->query();
-        $query->result_array();
-
-        $debeactual=$this->get_debe_estado_cuenta($query[0]['alq_id']);
-
-        $this->db->select('estcue_id');
-        $this->db->from('estadocuenta');
-        $this->db->where('estcue_alq_id', $query[0]['alq_id']);
-        $query1 = $this->db->query();
-        $query1->result_array();
-
-        $this->db->select('his_cargobasico');
-        $this->db->from('historialinea');
-        $this->db->where('his_alq_id', $query[0]['alq_id']);
-        $query2 = $this->db->query();
-        $query2->result_array();
+        $idalquiler=$this->obteneridalquiler($this->input->post("linea"));
+        $debeactual=$this->get_debe_estado_cuenta($idalquiler);
+        $idestadocuenta=$this->obteneridestcue($idalquiler);
+        $cargobasico=$this->obtenercargobasico($this->input->post("linea"));
 
         $data2 = array(
-            "estcue_debe"=>$debeactual -$query2[0]['his_cargobasico'] + ($this->input->post("minconsumidos")*$this->input->post("mincons"))
-        );
-        $this->db->where('estcue_alq_id', $query[0]['alq_id']);
+            "estcue_debe"=>$debeactual-$cargobasico+($this->input->post("minconsumidos")*$this->input->post("valormin"))
+
+    );
+
+        $this->db->select('*');
+        $this->db->from('estadocuenta');
+        $this->db->where('estcue_id', $idestadocuenta);
         $this->db->update("estadocuenta", $data2);
 
+
+
     }
+    function obtenercargobasico($linea)
+    {
+        $this->db->select('his_cargobasico');
+        $this->db->from('historialinea');
+        $this->db->where('his_lin_id',$linea);
+        $query3 = $this->db->get();
+        $result = $query3->result_array();
+        return $result[0]['his_cargobasico'];
+    }
+    function obteneridestcue($alquiler)
+    {
+        $this->db->select('estcue_id');
+        $this->db->from('estadocuenta');
+        $this->db->where('estcue_alq_id', $alquiler);
+        $query2 = $this->db->get();
+        $result = $query2->result_array();
+        return $result[0]['estcue_id'];
+
+    }
+    function obteneridalquiler($linea)
+    {
+        $this->db->select('his_alq_id');
+        $this->db->from('historialinea');
+        $this->db->where('his_lin_id', $linea);
+        $query1 = $this->db->get();
+        $result = $query1->result_array();
+        return $result[0]['his_alq_id'];
+    }
+
 
     function guardar_historial(){
 

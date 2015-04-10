@@ -136,7 +136,7 @@ class Linea extends CI_Controller{
 
     function guardar_devolucion_linea(){
         $this->linea_model->guardar_devolucion_linea();
-        redirect("linea", "refresh");
+
     }
     function del($id)
     {
