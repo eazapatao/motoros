@@ -32,7 +32,10 @@ class Admin extends CI_Controller{
     }
 
     public function test(){
-        echo $this->linea_model->obteneridestcue(49).'<br>';
+        echo $this->linea_model->obteneridalquiler(48).'<br>';
+        echo $this->linea_model->get_debe_estado_cuenta($this->linea_model->obteneridalquiler(48)).'<br>';
+        echo $this->linea_model->obteneridestcue($this->linea_model->obteneridalquiler(48)).'<br>';
+        echo $this->linea_model->obtenercargobasico(48).'<br>';
 
 
 

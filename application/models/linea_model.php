@@ -85,6 +85,25 @@ class linea_model extends CI_Model{
 
     function guardar_devolucion_linea()
     {
+        $lin_id = $this->input->post("linea");
+        $sql = "SELECT estcue_id, estcue_debe, estcue_alq_id, his_cargobasico, his_lin_id, his_estado
+FROM (estadocuenta) JOIN historialinea ON historialinea.his_alq_id = estadocuenta.estcue_alq_id
+WHERE his_lin_id = $lin_id AND his_estado = 'Activo'";
+
+        $query = $this->db->query($sql);
+
+        $data = $query->result_array();
+
+
+        $data2 = array(
+            "estcue_debe" => $data[0]['estcue_debe']-$data[0]['his_cargobasico']+($this->input->post("minconsumidos")*$this->input->post("valormin"))
+
+        );
+
+        $this->db->select('*');
+        $this->db->from('estadocuenta');
+        $this->db->where('estcue_id', $data[0]['estcue_id']);
+        $this->db->update("estadocuenta", $data2);
         $data = array(
             "his_fechafin" => $this->input->post("fechafin"),
             "his_estado"=> "Inactivo",
@@ -105,20 +124,8 @@ class linea_model extends CI_Model{
         $this->db->where('lin_id', $this->input->post("linea"));
         $this->db->update("linea", $data1);
 
-        $idalquiler=$this->obteneridalquiler($this->input->post("linea"));
-        $debeactual=$this->get_debe_estado_cuenta($idalquiler);
-        $idestadocuenta=$this->obteneridestcue($idalquiler);
-        $cargobasico=$this->obtenercargobasico($this->input->post("linea"));
 
-        $data2 = array(
-            "estcue_debe"=>$debeactual-$cargobasico+($this->input->post("minconsumidos")*$this->input->post("valormin"))
 
-    );
-
-        $this->db->select('*');
-        $this->db->from('estadocuenta');
-        $this->db->where('estcue_id', $idestadocuenta);
-        $this->db->update("estadocuenta", $data2);
 
 
 
