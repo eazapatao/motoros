@@ -103,6 +103,7 @@ class linea_model extends CI_Model{
         $data2 = array(
             "his_fechafin" => $this->input->post("fechafin"),
             "his_estado"=> "Inactivo",
+
         );
         $this->db->select('*');
         $this->db->from('historialinea');

@@ -85,14 +85,14 @@ class operacion_model extends CI_Model{
             $data = array(
                 "inf_ope_id" => $idoperacion,
                 "inf_entra" => $valor,
-                "inf_saldo" => $valor,
+                //"inf_saldo" => $valor,
             );
         }
         else{
             $data = array(
                 "inf_ope_id" => $idoperacion,
                 "inf_sale" => $valor,
-                "inf_saldo" => $valor,
+               // "inf_saldo" => $valor,
             );
         }
         $this->db->insert("informediario", $data);

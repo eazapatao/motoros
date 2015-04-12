@@ -40,7 +40,9 @@ class Reportes extends CI_Controller{
                 "label2" => "list",
                 "titulo" => "",
                 "main_content" => "user/reporte_informediario_view",
-                "informesdiarios" => $this->reporte_model->get_lista_informesdiarios()//Pendiente
+                "informesdiarios" => $this->reporte_model->get_lista_informesdiarios(),
+                "totalesa" => $this->reporte_model->get_sumasaldo_ayer(),
+                "totalesh" => $this->reporte_model->get_sumasaldo_hoy(),
             );
 
             $this->load->view("templates/user_template", $content);
