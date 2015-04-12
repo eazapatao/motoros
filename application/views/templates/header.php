@@ -23,27 +23,27 @@
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <i class="fa fa-warning"></i>
         <span class="label label-warning"><?php
-            echo (count($cortes[5])+count($cortes[10])+count($cortes[15]));
+            echo ($cortes["hoy"]+$cortes["dos"]+$cortes["otros"]);
             ?></span>
     </a>
     <ul class="dropdown-menu">
-        <li class="header"><?=(count($cortes[5])+count($cortes[10])+count($cortes[15]));?> Lineas tienen corte en:</li>
+        <li class="header"><?=$cortes["hoy"]+$cortes["dos"]+$cortes["otros"];?> Lineas tienen corte en:</li>
         <li>
             <!-- inner menu: contains the actual data -->
             <ul class="menu">
                 <li>
                     <a href="#">
-                        <i class="fa fa-warning danger"></i><?=count($cortes[5])?> Lineas en menos cinco días.
+                        <i class="fa fa-warning danger"></i><?=$cortes["hoy"]?> Lineas hoy.
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-warning warning"></i> <?=count($cortes[10])?> Lineas en menos diez días.
+                        <i class="fa fa-warning warning"></i> <?=$cortes["dos"]?> Lineas en menos dos días.
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-warning success"></i> <?=count($cortes[15])?> Lineas en menos 15 días.
+                        <i class="fa fa-warning success"></i> <?=$cortes["otros"]?> Lineas en menos 15 días.
                     </a>
                 </li>
             </ul>

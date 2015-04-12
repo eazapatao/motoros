@@ -10,7 +10,11 @@ class Notificacion extends CI_Controller {
 
     public function noti_corte(){
 
+        $dias_faltantes = intval(date('d'));
 
-            $this->notificacion_model->get_cortes(30 - intval(date('d')));
+            $this->notificacion_model->get_cortes($dias_faltantes);
     }
+
+
+    //control adicional datos pagos
 }

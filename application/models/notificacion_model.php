@@ -5,23 +5,32 @@ class Notificacion_model extends CI_Model{
     function get_cortes($clave){
 
         $result = array(
-            "5" => array(),
-            "10" => array(),
-            "15" => array()
+            "hoy" => 0,
+            "dos" => 0,
+            "otros" => 0
         );
 
         $query = $this->db->query('SELECT lin_numero, lin_corte FROM linea');
 
         foreach ($query->result_array() as $key){
-            if($key['lin_corte']+$clave <= 5){
-                array_push($result[5], $key);
-            }elseif($key['lin_corte']+$clave > 5 && $key['lin_corte']+$clave <= 10){
-                array_push($result[10], $key);
-            }elseif($key['lin_corte']+$clave > 10 && $key['lin_corte']+$clave <= 15){
-                array_push($result[15], $key);
-            };
-        }
+            if ($key['lin_corte'] < $clave){
+                $clave = 30 - $clave;
+                if($clave+$key['lin_corte'] <= 15  ){
+                    $result["otros"]++;
+                }elseif($clave+$key['lin_corte'] <= 2  ){
+                    $result["dos"]++;
+                }
+            }elseif ($key['lin_corte'] >= $clave){
+                if($key['lin_corte']-$clave > 0 && intval($key['lin_corte'])-$clave  <= 2  ){
+                    $result["dos"]++;
+                }elseif($key['lin_corte']-$clave > 2 && $key['lin_corte']-$clave <= 29){
+                    $result["otros"]++;
+                }elseif($key['lin_corte']-$clave == 0) {
+                    $result["hoy"]++;
+                }
+            }
 
+        }   
         return $result;
 
     }
