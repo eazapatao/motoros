@@ -46,6 +46,7 @@ class operacion_model extends CI_Model{
         {
 
             $data1 = array(
+                "estcue_debe" => $debe[0]['estcue_debe']-$this->input->post("valor"),
                 "estcue_abono" =>  $this->input->post("valor") + $abono[0]['estcue_abono'],
                 "estcue_saldo" =>  $debe[0]['estcue_debe'] - ($this->input->post("valor")+$abono[0]['estcue_abono']),
 
