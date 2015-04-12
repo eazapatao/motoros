@@ -25,4 +25,35 @@ class Reporte_model extends CI_Model{
         return $query->result_array();
 
     }
+
+    function get_sumasaldo_ayer()
+    {
+        $query = "SELECT sum(detban_valor) as total_deben FROM detalle_banco WHERE detban_transaccion = 'Ingreso' AND detban_ban_id='1'";
+        $result = $this->db->query($query);
+
+        $deben =  $result->result_array();
+
+        $deben = $deben[0]['total_deben'];
+
+
+        $query = "SELECT sum(detban_valor) as total_haber FROM detalle_banco WHERE detban_transaccion = 'Egreso' AND detban_ban_id='1'";
+        $result = $this->db->query($query);
+
+        $haber =  $result->result_array();
+
+        $haber = $haber[0]['total_haber'];
+
+        $total = array (
+            "debeb" => $deben,
+            "haberb" => $haber,
+            "deferenciab" => $deben - $haber
+        );
+
+        return $total;
+    }
+
+    function get_sumasaldo_hoy()
+    {
+
+    }
 }

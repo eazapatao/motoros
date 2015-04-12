@@ -46,6 +46,7 @@ class operacion_model extends CI_Model{
         {
 
             $data1 = array(
+                "estcue_debe" => $debe[0]['estcue_debe']-$this->input->post("valor"),
                 "estcue_abono" =>  $this->input->post("valor") + $abono[0]['estcue_abono'],
                 "estcue_saldo" =>  $debe[0]['estcue_debe'] - ($this->input->post("valor")+$abono[0]['estcue_abono']),
 
@@ -84,14 +85,14 @@ class operacion_model extends CI_Model{
             $data = array(
                 "inf_ope_id" => $idoperacion,
                 "inf_entra" => $valor,
-                "inf_saldo" => $valor,
+                //"inf_saldo" => $valor,
             );
         }
         else{
             $data = array(
                 "inf_ope_id" => $idoperacion,
                 "inf_sale" => $valor,
-                "inf_saldo" => $valor,
+               // "inf_saldo" => $valor,
             );
         }
         $this->db->insert("informediario", $data);

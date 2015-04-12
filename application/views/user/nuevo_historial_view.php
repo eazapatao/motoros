@@ -42,13 +42,14 @@
                             <div class="form-group">
                                 <label>Datos</label><br>
                                 <select class="selectpicker" name="datos" id="datos" data-live-search="true">
-                                    <option>Seleccione el paquete de datos</option>
+                                    <option value="3"><?php echo "Sin datos"; ?></option>
                                     <?php foreach($datos as $dato){?>
+
                                         <option value="<?= $dato['dat_id']?>"><?= $dato['dat_nombre']?></option>
                                     <?php }?>
                                 </select>
                             </div>
-                            <input type="hidden" name="fechainicio" id="fechainicio" value="<?php echo date("d/m/y"); ?>" readonly="true">
+                            <input type="hidden" name="fechainicio" id="fechainicio" value="<?php echo date("d-m-Y"); ?>" readonly="true">
                             <input type="hidden" name="estado" id="estado" value="Activo" readonly="true">
 
                         </div><!-- /.box-body -->

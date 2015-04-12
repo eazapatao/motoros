@@ -27,7 +27,6 @@ class linea_model extends CI_Model{
     {
         $this->db->select('*');
         $this->db->from('linea');
-        $this->db->from('linea');
         $this->db->where('linea',$id);
 
     }
@@ -92,28 +91,27 @@ class linea_model extends CI_Model{
         $query = $this->db->query($sql);
         $data = $query->result_array();
 
-
-        $data2 = array(
+        $data1 = array(
             "estcue_debe" => $data[0]['estcue_debe']-$data[0]['his_cargobasico']+($this->input->post("minconsumidos")*$this->input->post("valormin"))
 
         );
-
         $this->db->select('*');
         $this->db->from('estadocuenta');
         $this->db->where('estcue_id', $data[0]['estcue_id']);
-        $this->db->update("estadocuenta", $data2);
+        $this->db->update("estadocuenta", $data1);
 
-        $data = array(
+        $data2 = array(
             "his_fechafin" => $this->input->post("fechafin"),
             "his_estado"=> "Inactivo",
+
         );
         $this->db->select('*');
         $this->db->from('historialinea');
         $this->db->join('linea', 'linea.lin_id = historialinea.his_lin_id');
         $this->db->where('his_lin_id', $this->input->post("linea"));
-        $this->db->update("historialinea", $data);
+        $this->db->update("historialinea", $data2);
 
-        $data1 = array(
+        $data3 = array(
             "lin_estado"=>"Disponible",
             "lin_minutosconsumidos"=>$this->input->post("minconsumidos"),
             "lin_pasaminutos"=>$this->input->post("pasaminutos"),
@@ -121,13 +119,7 @@ class linea_model extends CI_Model{
         $this->db->select('*');
         $this->db->from('linea');
         $this->db->where('lin_id', $this->input->post("linea"));
-        $this->db->update("linea", $data1);
-
-
-
-
-
-
+        $this->db->update("linea", $data3);
     }
     function obtenercargobasico($linea)
     {
@@ -194,13 +186,14 @@ class linea_model extends CI_Model{
 
 
         $verificacion = $this->verificar_estado_cuenta($alquiler);
+
         $valordatos = ($this->obtener_preciodatos($numero));
 
 
         if($verificacion == 0)
         {
 
-            $debe = $this->input->post("vlorminvend") * $result[0]['pla_totalmin'] + $valordatos[0]['dat_precio'];
+            $debe = ($this->input->post("vlorminvend") * $result[0]['pla_totalmin']) + $valordatos;
             $data = array(
                 "estcue_alq_id" => $this->input->post("alquiler"),
                 "estcue_debe" => $debe,
@@ -214,8 +207,8 @@ class linea_model extends CI_Model{
         }
         else
         {
-            $datos=$this->obtener_preciodatos($numero);
-            $debe = $this->get_debe_estado_cuenta($alquiler)+($this->input->post("vlorminvend") * $result[0]['pla_totalmin']) + ($datos[0]['dat_precio']);
+
+            $debe = $this->get_debe_estado_cuenta($alquiler)+($this->input->post("vlorminvend") * $result[0]['pla_totalmin'])+ $valordatos;
             $data = array(
                 "estcue_debe" => $debe,
 
@@ -226,7 +219,7 @@ class linea_model extends CI_Model{
 
         }
         $data2=array(
-            "his_cargobasico"=>$debe
+            "his_cargobasico"=>($this->input->post("vlorminvend") * $result[0]['pla_totalmin']) + $valordatos
         );
         $this->db->where('his_lin_id', $numero);
         $this->db->update('historialinea', $data2);
@@ -235,9 +228,15 @@ class linea_model extends CI_Model{
 
     function obtener_preciodatos($numero)
     {
-        $sql = "select dat_precio from datos join (historialinea) on (historialinea.his_dat_id=dat_id AND historialinea.his_lin_id=$numero)";
-        $query = $this->db->query($sql);
-        return $query->result_array();
+        $this->db->select('dat_precio');
+        $this->db->from('datos');
+        $this->db->join('historialinea','historialinea.his_dat_id=datos.dat_id');
+        $this->db->join('linea','linea.lin_id=historialinea.his_lin_id');
+        $this->db->where('his_lin_id',$numero);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result[0]['dat_precio'];
+
     }
 
     function get_debe_estado_cuenta($id_alquiler){
