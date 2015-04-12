@@ -87,11 +87,9 @@ class linea_model extends CI_Model{
     {
         $lin_id = $this->input->post("linea");
         $sql = "SELECT estcue_id, estcue_debe, estcue_alq_id, his_cargobasico, his_lin_id, his_estado
-FROM (estadocuenta) JOIN historialinea ON historialinea.his_alq_id = estadocuenta.estcue_alq_id
-WHERE his_lin_id = $lin_id AND his_estado = 'Activo'";
-
+        FROM (estadocuenta) JOIN historialinea ON historialinea.his_alq_id = estadocuenta.estcue_alq_id
+        WHERE his_lin_id = $lin_id AND his_estado = 'Activo'";
         $query = $this->db->query($sql);
-
         $data = $query->result_array();
 
 
@@ -104,6 +102,7 @@ WHERE his_lin_id = $lin_id AND his_estado = 'Activo'";
         $this->db->from('estadocuenta');
         $this->db->where('estcue_id', $data[0]['estcue_id']);
         $this->db->update("estadocuenta", $data2);
+
         $data = array(
             "his_fechafin" => $this->input->post("fechafin"),
             "his_estado"=> "Inactivo",
