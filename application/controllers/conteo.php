@@ -20,7 +20,7 @@ class Conteo extends CI_Controller{
                 "conteo" => $this->conteo_model->get_lista_conteo()//Pendiente
             );
 
-            $this->load->view("templates/user_template", $content);
+            $this->load->view("templates/admin_template", $content);
         }
         else
         {
@@ -42,7 +42,7 @@ class Conteo extends CI_Controller{
                 "main_content" => "user/nuevo_conteo_view"
             );
 
-            $this->load->view("templates/user_template", $content);
+            $this->load->view("templates/admin_template", $content);
         }
         else
         {
@@ -82,7 +82,7 @@ class Conteo extends CI_Controller{
                 "main_content" => "user/editar_conteo_view"
             );
 
-            $this->load->view("templates/user_template", $content);
+            $this->load->view("templates/admin_template", $content);
         }
         else
         {

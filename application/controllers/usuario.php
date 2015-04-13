@@ -19,7 +19,7 @@ class Usuario extends CI_Controller{
 
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
     }
 
     public function nuevo_usuario(){
@@ -32,7 +32,7 @@ class Usuario extends CI_Controller{
             "cargos" => $this->usuario_model->get_lista_cargo()
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
     }
 
     function guardar_usuario(){
@@ -54,7 +54,7 @@ class Usuario extends CI_Controller{
 
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
     }
 
     function del($id)

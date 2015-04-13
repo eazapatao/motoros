@@ -22,7 +22,7 @@ class Operacion extends CI_Controller{
 
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
     }
 
     public function nuevo_operacion(){
@@ -36,7 +36,7 @@ class Operacion extends CI_Controller{
             "main_content" => "user/nuevo_operacion_view"
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
     }
 
     function guardar_operacion()
@@ -58,7 +58,7 @@ class Operacion extends CI_Controller{
             "main_content" => "user/editar_operacion_view"
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
     }
 
     function del($id)

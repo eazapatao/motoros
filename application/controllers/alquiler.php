@@ -22,7 +22,7 @@ class Alquiler extends CI_Controller{
                 "alquiler" => $this->alquiler_model->get_lista_alquiler()//Pendiente
             );
 
-            $this->load->view("templates/user_template", $content);
+            $this->load->view("templates/admin_template", $content);
         }
         else
         {
@@ -46,7 +46,7 @@ class Alquiler extends CI_Controller{
                 "main_content" => "user/nuevo_alquiler_view"
             );
 
-            $this->load->view("templates/user_template", $content);
+            $this->load->view("templates/admin_template", $content);
         }
         else
         {
@@ -90,7 +90,7 @@ class Alquiler extends CI_Controller{
                 "main_content" => "user/editar_alquiler_view"
             );
 
-            $this->load->view("templates/user_template", $content);
+            $this->load->view("templates/admin_template", $content);
         }
         else
         {

@@ -21,7 +21,7 @@ class Admin extends CI_Controller{
                 "main_content" => "admin/dashboard_view",
             );
 
-            $this->load->view("templates/user_template", $content);
+            $this->load->view("templates/admin_template", $content);
         }
         else
         {

@@ -20,7 +20,7 @@ class Nomina extends CI_Controller{
             "nomina" => $this->nomina_model->get_lista_nomina()//Pendiente
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
     }
     public function verprestamo(){
 
@@ -33,7 +33,7 @@ class Nomina extends CI_Controller{
             "nomina" => $this->nomina_model->get_lista_prestamo()//Pendiente
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
     }
 
     public function conteo(){
@@ -47,7 +47,7 @@ class Nomina extends CI_Controller{
             //"nomina" => $this->nomina_model->get_lista_prestamo()//Pendiente
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
     }
     public function nuevo_nomina(){
         $content = array(
@@ -59,7 +59,7 @@ class Nomina extends CI_Controller{
             "main_content" => "user/nueva_nomina_view"
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
     }
 
     public function nuevo_prestamo(){
@@ -72,7 +72,7 @@ class Nomina extends CI_Controller{
             "main_content" => "user/nuevo_prestamo_view"
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
     }
 
     function guardar_prestamo(){
@@ -106,7 +106,7 @@ class Nomina extends CI_Controller{
             "main_content" => "user/editar_nomina_view"
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
     }
     function editarp($id)
     {
@@ -120,7 +120,7 @@ class Nomina extends CI_Controller{
             "main_content" => "user/editar_prestamo_view"
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
     }
 
 

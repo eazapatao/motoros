@@ -22,7 +22,7 @@ class Control extends CI_Controller{
                 "lineas" => $this->linea_model->get_lista_lineas()//Pendiente
             );
 
-            $this->load->view("templates/user_template", $content);
+            $this->load->view("templates/admin_template", $content);
         }
         else
         {
@@ -47,7 +47,7 @@ class Control extends CI_Controller{
                 "main_content" => "user/nuevo_control_view"
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
         }
         else
         {
@@ -89,7 +89,7 @@ class Control extends CI_Controller{
                 "main_content" => "user/editar_control_view"
             );
 
-            $this->load->view("templates/user_template", $content);
+            $this->load->view("templates/admin_template", $content);
         }
         else
         {

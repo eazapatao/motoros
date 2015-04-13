@@ -18,7 +18,7 @@ class Plan extends CI_Controller{
             "plan" => $this->plan_model->get_lista_planes()//Pendiente
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
     }
 
     public function nuevo_plan(){
@@ -30,7 +30,7 @@ class Plan extends CI_Controller{
             "main_content" => "user/nuevo_plan_view"
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
     }
 
     function guardar_plan(){
@@ -50,7 +50,7 @@ class Plan extends CI_Controller{
             "main_content" => "user/editar_plan_view"
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
     }
 
     function del($id)

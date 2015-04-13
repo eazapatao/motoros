@@ -20,7 +20,7 @@ class Directorio extends CI_Controller{
                 "clientes" => $this->directorio_model->get_lista_clientes()//Pendiente
             );
 
-            $this->load->view("templates/user_template", $content);
+            $this->load->view("templates/admin_template", $content);
         }
         else
         {
@@ -42,7 +42,7 @@ class Directorio extends CI_Controller{
                 "main_content" => "user/nuevo_cliente_view"
             );
 
-            $this->load->view("templates/user_template", $content);
+            $this->load->view("templates/admin_template", $content);
         }
         else
         {
@@ -82,7 +82,7 @@ class Directorio extends CI_Controller{
                 "main_content" => "user/editar_cliente_view"
             );
 
-            $this->load->view("templates/user_template", $content);
+            $this->load->view("templates/admin_template", $content);
         }
         else
         {
