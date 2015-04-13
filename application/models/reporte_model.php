@@ -28,7 +28,7 @@ class Reporte_model extends CI_Model{
 
     function get_sumasaldo_ayer()
     {
-        $query = "SELECT sum(detban_valor) as total_deben FROM detalle_banco WHERE detban_transaccion = 'Ingreso' AND detban_ban_id='1'";
+        $query = "SELECT detban_valor as total_deben FROM detalle_banco WHERE detban_transaccion = 'Ingreso' AND detban_ban_id='1'";
         $result = $this->db->query($query);
 
         $deben =  $result->result_array();
