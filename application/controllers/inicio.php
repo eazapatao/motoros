@@ -15,7 +15,7 @@ class Inicio extends CI_Controller{
 
             );
 
-            $this->load->view("templates/user_template", $content);
+            $this->load->view("templates/admin_template", $content);
         }
         else
         {

@@ -21,7 +21,7 @@ class Linea extends CI_Controller{
                 "lineas" => $this->linea_model->get_lista_lineas()//Pendiente
             );
 
-            $this->load->view("templates/user_template", $content);
+            $this->load->view("templates/admin_template", $content);
         }
         else
         {
@@ -43,7 +43,7 @@ class Linea extends CI_Controller{
                 "historial" => $this->linea_model->get_lista_historial()//Pendiente
             );
 
-            $this->load->view("templates/user_template", $content);
+            $this->load->view("templates/admin_template", $content);
         }
         else
         {
@@ -63,7 +63,7 @@ class Linea extends CI_Controller{
             "main_content" => "user/nueva_linea_view"
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
     }
 
     public function nuevo_historial($id_ticket)
@@ -79,7 +79,7 @@ class Linea extends CI_Controller{
             "id_ticket" => $id_ticket
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
     }
 
     function guardar_linea(){
@@ -104,7 +104,7 @@ class Linea extends CI_Controller{
             "main_content" => "user/editar_linea_view"
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
     }
     function editarh($id)
     {
@@ -117,7 +117,7 @@ class Linea extends CI_Controller{
             "main_content" => "user/editar_historial_view"
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
     }
 
     function devolucion_linea()
@@ -131,7 +131,7 @@ class Linea extends CI_Controller{
             "main_content" => "user/nuevo_devolucionlinea_view"
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
     }
 
     function guardar_devolucion_linea(){
@@ -156,7 +156,7 @@ class Linea extends CI_Controller{
             "main_content" => "user/eliminar_historial_view"
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
     }
     function upd_linea()
     {

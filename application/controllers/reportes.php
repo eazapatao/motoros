@@ -20,7 +20,7 @@ class Reportes extends CI_Controller{
                 "estadocuentas" => $this->reporte_model->get_lista_estadocuentas()//Pendiente
             );
 
-            $this->load->view("templates/user_template", $content);
+            $this->load->view("templates/admin_template", $content);
         }
         else
         {
@@ -45,7 +45,7 @@ class Reportes extends CI_Controller{
                 "totalesh" => $this->reporte_model->get_sumasaldo_hoy(),
             );
 
-            $this->load->view("templates/user_template", $content);
+            $this->load->view("templates/admin_template", $content);
         }
         else
         {

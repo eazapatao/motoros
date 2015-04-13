@@ -24,7 +24,7 @@ class Detallebanco extends CI_Controller{
 
             );
 
-            $this->load->view("templates/user_template", $content);
+            $this->load->view("templates/admin_template", $content);
         }
         else
         {
@@ -49,7 +49,7 @@ class Detallebanco extends CI_Controller{
             "main_content" => "user/nuevo_detallebanco_view"
         );
 
-        $this->load->view("templates/user_template", $content);
+        $this->load->view("templates/admin_template", $content);
         }
         else
         {
@@ -92,7 +92,7 @@ class Detallebanco extends CI_Controller{
                 "main_content" => "user/editar_detallebanco_view"
             );
 
-            $this->load->view("templates/user_template", $content);
+            $this->load->view("templates/admin_template", $content);
         }
         else
         {

@@ -7,7 +7,7 @@ $content = array(
 );
 $this->load->view("templates/head");
 $this->load->view("templates/header", $content);
-$this->load->view("templates/admin_sidebar");
+$this->load->view("templates/sidebar");
 $this->load->view($main_content);
 $this->load->view("templates/footer");
 
