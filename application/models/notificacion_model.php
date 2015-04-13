@@ -14,10 +14,10 @@ class Notificacion_model extends CI_Model{
 
         foreach ($query->result_array() as $key){
             if ($key['lin_corte'] < $clave){
-                $clave = 30 - $clave;
-                if($clave+$key['lin_corte'] <= 15  ){
+                $clave2 = 30 - $clave;
+                if($clave2+$key['lin_corte'] <= 15  ){
                     $result["otros"]++;
-                }elseif($clave+$key['lin_corte'] <= 2  ){
+                }elseif($clave2+$key['lin_corte'] <= 2  ){
                     $result["dos"]++;
                 }
             }elseif ($key['lin_corte'] >= $clave){
@@ -25,12 +25,12 @@ class Notificacion_model extends CI_Model{
                     $result["dos"]++;
                 }elseif($key['lin_corte']-$clave > 2 && $key['lin_corte']-$clave <= 29){
                     $result["otros"]++;
-                }elseif($key['lin_corte']-$clave == 0) {
+                }elseif($key['lin_corte'] == $clave) {
                     $result["hoy"]++;
                 }
             }
 
-        }   
+        }
         return $result;
 
     }
