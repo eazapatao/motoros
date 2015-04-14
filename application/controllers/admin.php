@@ -5,6 +5,7 @@ class Admin extends CI_Controller{
         parent::__construct();
         $this->load->model('directorio_model');
         $this->load->model('linea_model');
+        $this->load->model('reporte_model');
 
     }
 
@@ -32,9 +33,9 @@ class Admin extends CI_Controller{
     }
 
     public function test(){
-       // echo $this->linea_model->obtener_preciodatos(48).'<br>';
-print_r($this->linea_model->get_debe_estado_cuenta(145));
+//        echo $this->linea_model->obtener_preciodatos(48).'<br>';
 
+   echo $this->reporte_model->calcular_saldo();
 
 
     }

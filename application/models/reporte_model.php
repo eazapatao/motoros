@@ -26,32 +26,71 @@ class Reporte_model extends CI_Model{
 
     }
 
-    function get_sumasaldo_ayer()
+    function get_sumasaldo_totales_hoy()
     {
-        $query = "SELECT detban_valor as total_deben FROM detalle_banco WHERE detban_transaccion = 'Ingreso' AND detban_ban_id='1'";
+        $fechahoy = date("d-m-Y");
+        $query = "SELECT sum(inf_entra) as total_entra FROM informediario JOIN operacion ON operacion.ope_id=informediario.inf_ope_id WHERE operacion.ope_fecha = '$fechahoy'";
         $result = $this->db->query($query);
 
-        $deben =  $result->result_array();
+        $entran =  $result->result_array();
 
-        $deben = $deben[0]['total_deben'];
+        $entran = $entran[0]['total_entra'];
 
 
-        $query = "SELECT sum(detban_valor) as total_haber FROM detalle_banco WHERE detban_transaccion = 'Egreso' AND detban_ban_id='1'";
+        $query = "SELECT sum(inf_sale) as total_sale FROM informediario JOIN operacion ON operacion.ope_id=informediario.inf_ope_id WHERE operacion.ope_fecha = '$fechahoy'";
         $result = $this->db->query($query);
 
-        $haber =  $result->result_array();
+        $salen =  $result->result_array();
 
-        $haber = $haber[0]['total_haber'];
+        $salen = $salen[0]['total_sale'];
 
         $total = array (
-            "debeb" => $deben,
-            "haberb" => $haber,
-            "deferenciab" => $deben - $haber
+            "entra" => $entran,
+            "sale" => $salen,
+            "saldo" => $entran - $salen,
+
         );
 
         return $total;
     }
 
+    function get_sumasaldo_totales_ayer()
+    {
+        $fechahoy = date("d-m-Y",time()-86400);
+        $query = "SELECT sum(inf_entra) as total_entra FROM informediario JOIN operacion ON operacion.ope_id=informediario.inf_ope_id WHERE operacion.ope_fecha = '$fechahoy'";
+        $result = $this->db->query($query);
+
+        $entran =  $result->result_array();
+
+        $entran = $entran[0]['total_entra'];
+
+
+        $query = "SELECT sum(inf_sale) as total_sale FROM informediario JOIN operacion ON operacion.ope_id=informediario.inf_ope_id WHERE operacion.ope_fecha = '$fechahoy'";
+        $result = $this->db->query($query);
+
+        $salen =  $result->result_array();
+
+        $salen = $salen[0]['total_sale'];
+
+        $total = array (
+            "entra" => $entran,
+            "sale" => $salen,
+            "saldo" => $entran - $salen,
+        );
+
+
+                return $total;
+    }
+
+    function calcular_saldo()
+    {
+        $ayer=$this->get_sumasaldo_totales_ayer();
+        $hoy=$this->get_sumasaldo_totales_hoy();
+
+        $saldoactual=$ayer['saldo']+$hoy['entra']-$hoy['sale'];
+        return $saldoactual;
+
+    }
     function get_sumasaldo_hoy()
     {
 

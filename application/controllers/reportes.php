@@ -41,8 +41,8 @@ class Reportes extends CI_Controller{
                 "titulo" => "",
                 "main_content" => "user/reporte_informediario_view",
                 "informesdiarios" => $this->reporte_model->get_lista_informesdiarios(),
-                "totalesa" => $this->reporte_model->get_sumasaldo_ayer(),
-                "totalesh" => $this->reporte_model->get_sumasaldo_hoy(),
+                "totales" => $this->reporte_model->get_sumasaldo_totales_ayer(),
+                "saldo" => $this->reporte_model->calcular_saldo()
             );
 
             $this->load->view("templates/admin_template", $content);

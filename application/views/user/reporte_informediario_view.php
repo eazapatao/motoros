@@ -24,12 +24,12 @@
                             <tbody><tr>
                                 <th style="">Total saldo ayer</th>
                                 <th>Total Saldo Hoy</th>
-                                <th style="">Saldo</th>
+
                             </tr>
                             <tr>
-                                <td>$<?= number_format ($totalesa['debeb'], 0, ',', '.')?></td>
-                                <td>$<?= number_format ($totalesh['haberb'], 0, ',', '.')?></td>
-                                <td>$<?= number_format ($totalesa['deferenciab'], 0, ',', '.')?></td>
+                                <td>$<?= number_format ($totales['saldo'], 0, ',', '.')?></td>
+                                <td>$<?= number_format ($saldo, 0, ',', '.')?></td>
+
                             </tr>
 
                             </tbody></table>
@@ -49,7 +49,6 @@
                                     <th>Tipo</th>
                                     <th>Entra</th>
                                     <th>Sale</th>
-                                    <th>Saldo</th>
                                     <th>Detalle</th>
                                 </tr>
                                 </thead>
@@ -62,7 +61,6 @@
                                     <th>Tipo</th>
                                     <th>Entra</th>
                                     <th>Sale</th>
-                                    <th>Saldo</th>
                                     <th>Detalle</th>
                                 </tr>
                                 </tfoot>
@@ -77,7 +75,6 @@
                                         <td><?= $key['ope_tipo']?></td>
                                         <td><?= $key['inf_entra']?></td>
                                         <td><?= $key['inf_sale']?></td>
-                                        <td><?= $key['inf_saldo']?></td>
                                         <td><?= $key['ope_observaciones']?></td>
 
 
