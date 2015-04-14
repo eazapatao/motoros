@@ -6,7 +6,7 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="<?php if($label == "dash") echo "class=active" ?>">
-                <a href="index.html">
+                <a href="<?=base_url()?>admin">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
@@ -88,7 +88,7 @@
 
             </li>
 
-            <li class="active">
+            <li class="">
                 <a href="<?= base_url()?>conteo">
                     <i class="fa fa-usd"></i> <span>Conteo de dinero</span>
                 </a>
@@ -96,7 +96,7 @@
 
             <li class="treeview <?php if($label == "nom") echo "active" ?>">
                 <a href="#">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-file"></i>
                     <span>Reportes</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
@@ -107,6 +107,24 @@
 
                     <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>reportes/ver_informediario"><i class="fa fa-angle-double-right"></i>Informe diario</a></li>
                     <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>nomina/verprestamo"><i class="fa fa-angle-double-right"></i>Ver Préstamos</a></li>
+
+                </ul>
+
+            </li>
+
+            <li class="treeview <?php if($label == "nom") echo "active" ?>">
+                <a href="#">
+                    <i class="fa fa-warning"></i>
+                    <span>Notificaciones</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+
+                <ul class="treeview-menu">
+
+                    <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>notificacion/corte"><i class="fa fa-angle-double-right"></i>Cortes proximos</a></li>
+                    <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>notificacion/factura"><i class="fa fa-angle-double-right"></i>Facturas a pagar</a></li>
+                    <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>notificacion/linea"><i class="fa fa-angle-double-right"></i>Lineas a suspender</a></li>
+                    <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>notificacion/consumo"><i class="fa fa-angle-double-right"></i>Promedio de consumo</a></li>
 
                 </ul>
 

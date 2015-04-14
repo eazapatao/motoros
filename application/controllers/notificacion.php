@@ -16,5 +16,30 @@ class Notificacion extends CI_Controller {
     }
 
 
+    public function index(){
+        $arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in') && $arr['role'] == 1)
+        {
+
+            $content = array(
+                "menu" => "Notificaciones",
+                "label" => "Cortes",
+                "label2" => "",
+                "titulo" => "Panel de control",
+                "main_content" => "admin/dashboard_view",
+            );
+
+            $this->load->view("templates/admin_template", $content);
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
+
+    }
+
+
+
     //control adicional datos pagos
 }
