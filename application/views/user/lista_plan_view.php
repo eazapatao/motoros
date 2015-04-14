@@ -35,6 +35,7 @@
                                     <th>Minutos</th>
                                     <th>Valor del minuto</th>
                                     <th>Cargo básico</th>
+                                    <th>Promedio a consumir al día</th>
                                     <th>Opciones</th>
                                 </tr>
                                 </thead>
@@ -45,6 +46,7 @@
                                     <th>Minutos</th>
                                     <th>Valor del minuto</th>
                                     <th>Cargo básico</th>
+                                    <th>Promedio a consumir al día</th>
                                     <th>Opciones</th>
                                 </tr>
                                 </tfoot>
@@ -57,6 +59,7 @@
                                         <td><?= $key['pla_totalmin']?></td>
                                         <td><?= $key['pla_vlrmin']?></td>
                                         <td><?= $key['pla_cargobasico']?></td>
+                                        <td><?= $key['pla_promedio']?></td>
 
                                         <td>
                                             <a href="<?php echo base_url()?>plan/editar/<?php echo $key['pla_id']?>" type="button" class="btn btn-xs btn-warning">

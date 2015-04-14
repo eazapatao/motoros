@@ -18,7 +18,8 @@ class plan_model extends CI_Model{
             "pla_operador" => $this->input->post("operador"),
             "pla_totalmin" => $this->input->post("minutos"),
             "pla_vlrmin" => $this->input->post("vlrmin"),
-            "pla_cargobasico" => $this->input->post("cargobasico")
+            "pla_cargobasico" => $this->input->post("cargobasico"),
+            "pla_promedio" => ($this->input->post("minutos"))/30
 
         );
 
@@ -42,7 +43,8 @@ class plan_model extends CI_Model{
             "pla_operador" => $this->input->post("operador"),
             "pla_totalmin" => $this->input->post("minutos"),
             "pla_vlrmin" => $this->input->post("vlrmin"),
-            "pla_cargobasico" => $this->input->post("cargobasico")
+            "pla_cargobasico" => $this->input->post("cargobasico"),
+            "pla_promedio" => ($this->input->post("minutos"))/30
         );
 
         $this->db->where("pla_id", $this->input->post("pla_id"));

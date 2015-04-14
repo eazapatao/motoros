@@ -37,7 +37,8 @@ class Admin extends CI_Controller{
 
    echo $this->reporte_model->calcular_saldo();
 
-
+echo date("d-m-Y");
+    echo    date("d-m-Y",time()-86400);
     }
 }
 
