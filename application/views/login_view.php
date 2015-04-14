@@ -36,7 +36,6 @@
     <div class="footer">
         <button type="submit" class="btn btn-danger btn-block">Entrar</button>
 
-        <a class="btn btn-danger btn-block" href="#">Olvide mi contraseña</a>
 
     </div>
     </form>

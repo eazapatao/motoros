@@ -39,6 +39,30 @@ class Notificacion extends CI_Controller {
 
     }
 
+    public function cortes(){
+        $arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in') && $arr['role'] == 1)
+        {
+
+            $content = array(
+                "menu" => "Notificaciones",
+                "label" => "Cortes",
+                "label2" => "",
+                "titulo" => "Cortes proximos",
+                "main_content" => "user/cortes_view",
+                "data" => $this->notificacion_model->get_lista_cortes()
+            );
+
+            $this->load->view("templates/admin_template", $content);
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
+
+    }
+
 
 
     //control adicional datos pagos

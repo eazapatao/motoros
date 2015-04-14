@@ -3,7 +3,7 @@
  */
 var base_url = $("#base_url").val();
 
-$('#client_list, #line_list, #banco_list, #usuario_list, #nomina_list, #prestamo_list, #operacion_list').DataTable();
+$('#client_list, #line_list, #banco_list, #usuario_list, #nomina_list, #prestamo_list, #operacion_list, .listas_general').DataTable();
 
 $("#guardar_alquiler").click(function(){
     $.ajax({

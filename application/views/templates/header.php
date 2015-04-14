@@ -66,23 +66,23 @@
             <!-- inner menu: contains the actual data -->
             <ul class="menu">
                 <li>
-                    <a href="#">
+                    <a href="javascript:;">
                         <i class="fa fa-warning danger"></i><?=$cortes["hoy"]?> Lineas hoy.
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="javascript:;">
                         <i class="fa fa-warning warning"></i> <?=$cortes["dos"]?> Lineas en menos dos días.
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="javascript:;">
                         <i class="fa fa-warning success"></i> <?=$cortes["otros"]?> Lineas en menos 15 días.
                     </a>
                 </li>
             </ul>
         </li>
-        <li class="footer"><a href="#">Ver todas</a></li>
+        <li class="footer"><a href="<?=base_url()?>notificacion/cortes">Ver todas</a></li>
     </ul>
 </li>
 <!-- Tasks: style can be found in dropdown.less -->
@@ -91,10 +91,7 @@
         <i class="glyphicon glyphicon-user"></i>
         <span>
 
-            <?php
-
-            ?>
-
+     <?=$user['username']?>
 
             <i class="caret"></i></span>
     </a>
