@@ -99,5 +99,42 @@ class Notificacion_model extends CI_Model{
     }
 
 
+    function get_corte_hoy($dia)
+    {
+        $query = $this->db->query("SELECT lin_id, lin_corte FROM linea WHERE lin_estado = 'Alquilada' AND lin_corte = $dia ");
+
+        $query = $query->result_array();
+
+        $result = array();
+
+        foreach ($query as $key) {
+            $lin_id = $key['lin_id'];
+            $cargo = $this->db->query("SELECT his_cargobasico, his_alq_id
+                                        FROM historialinea WHERE his_lin_id = $lin_id AND his_estado = 'Activo' ");
+            $cargo = $cargo->result_array();
+            $result[$lin_id] = array(
+                "cargo_basico" => $cargo[0]['his_cargobasico'],
+                "id_alq" => $cargo[0]['his_alq_id'],
+            );
+        }
+
+        foreach ($result as $key) {
+            $this->db->select('estcue_debe');
+            $this->db->where('estcue_alq_id', $key['id_alq']);
+            $query = $this->db->get('estadocuenta');
+            $query = $query->result_array();
+            $debe = $query[0]['estcue_debe'];
+            $debe +=  $key['cargo_basico'];
+
+            $dato= array(
+                "estcue_debe" => $debe
+            );
+            $this->db->where("estcue_alq_id", $key['id_alq']);
+            $this->db->update('estadocuenta', $dato);
+
+        }
+    }
+
+
 
 }
