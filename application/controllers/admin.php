@@ -6,6 +6,7 @@ class Admin extends CI_Controller{
         $this->load->model('directorio_model');
         $this->load->model('linea_model');
         $this->load->model('reporte_model');
+        $this->load->model('notificacion_model');
 
     }
 
@@ -29,6 +30,15 @@ class Admin extends CI_Controller{
             //If no session, redirect to login page
             redirect('login', 'refresh');
         }
+
+    }
+
+
+    function upd_estado_cuenta_corte()
+    {
+        $dia = intval(date('d'));
+
+        $this->notificacion_model->get_corte_hoy($dia);
 
     }
 
