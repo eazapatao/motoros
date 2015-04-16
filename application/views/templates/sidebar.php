@@ -7,7 +7,7 @@
         <ul class="sidebar-menu">
             <li class="<?php if($label == "dash") echo "class=active" ?>">
                 <a href="<?=base_url()?>admin">
-                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                    <i class="fa fa-dashboard"></i> <span>Inicio</span>
                 </a>
             </li>
 
@@ -111,7 +111,7 @@
                 </ul>
 
             </li>
-
+            <!--
             <li class="treeview <?php if($label == "nom") echo "active" ?>">
                 <a href="#">
                     <i class="fa fa-warning"></i>
@@ -121,14 +121,13 @@
 
                 <ul class="treeview-menu">
 
-                    <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>notificacion/corte"><i class="fa fa-angle-double-right"></i>Cortes proximos</a></li>
                     <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>notificacion/factura"><i class="fa fa-angle-double-right"></i>Facturas a pagar</a></li>
                     <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>notificacion/linea"><i class="fa fa-angle-double-right"></i>Lineas a suspender</a></li>
                     <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>notificacion/consumo"><i class="fa fa-angle-double-right"></i>Promedio de consumo</a></li>
 
                 </ul>
 
-            </li>
+            </li> -->
         </ul>
     </section>
     <!-- /.sidebar -->

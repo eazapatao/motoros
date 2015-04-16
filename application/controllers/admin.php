@@ -45,9 +45,10 @@ class Admin extends CI_Controller{
     public function test(){
 //        echo $this->linea_model->obtener_preciodatos(48).'<br>';
 
-        echo $this->reporte_model->calcular_saldo();
+   echo $this->reporte_model->calcular_saldo();
 
-        echo date("d-m-Y");
-        echo    date("d-m-Y",time()-86400);
+echo date("d-m-Y");
+    echo    date("d-m-Y",time()-86400);
     }
 }
+
