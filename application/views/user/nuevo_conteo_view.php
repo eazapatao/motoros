@@ -56,10 +56,7 @@
                                 <label>$2.000</label>
                                 <input type="text" class="form-control" id="2000" name="2000" placeholder="2000">
                             </div>
-                            <div class="form-group">
-                                <label>$3000</label>
-                                <input type="text" class="form-control" id="3000" name="3000" placeholder="3000" >
-                            </div>
+
                             <div class="form-group">
                                 <label>$5.000</label>
                                 <input type="text" class="form-control" id="5000" name="5000" placeholder="5000">
