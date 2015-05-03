@@ -68,38 +68,84 @@ class operacion_model extends CI_Model{
                 $this->db->where("estcue_alq_id", $alquiler[0]['alq_id']);
                 $this->db->update('estadocuenta', $data2);
             }
-        $this->guardar_informediario($last,$this->input->post("valor"),$this->input->post("tipo"));
+        $this->guardar_informediario($last,$this->input->post("valor"),$this->input->post("tipo"),$this->input->post("fecha"));
 
     }
 
     function ultimo()
     {
-       return $this->db->insert_id();
+        return $this->db->insert_id();
     }
 
-    function guardar_informediario($idoperacion,$valor,$tipo)
+    function guardar_informediario($idoperacion,$valor,$tipo,$fecha)
     {
-
+        $fechahoy = date("d-m-Y");
+        $saldoanterior=$this->obtener_saldo_ayer();
+        $saldohoy=$this->obtener_saldo_hoy();
+        $verificarexistenciasaldo=$this->verificar_existencia_saldo();
         if($tipo=='Ingreso Cliente' or $tipo=='Ingreso Prestamo' or $tipo=='Ingreso Tarjeta de Credito' or $tipo=='Ingreso Caja fuerte' or $tipo=='Ingreso Cargo' or $tipo=='Ingreso Otros')
         {
             $data = array(
                 "inf_ope_id" => $idoperacion,
                 "inf_entra" => $valor,
+                "inf_fecha" => $fecha);
 
-            );
         }
         else{
             $data = array(
                 "inf_ope_id" => $idoperacion,
                 "inf_sale" => $valor,
-
+                "inf_fecha" => $fecha,
             );
         }
         $this->db->insert("informediario", $data);
+        if($verificarexistenciasaldo==0)
+        {
+            $data1 = array(
+                "sal_saldo" => $saldoanterior[0]['sal_saldo'] + $valor,
+                "sal_fecha" => $fecha
+
+            );
+            $this->db->insert("saldos", $data1);
+        }
+        else{
+            $data1 = array(
+                "sal_saldo" => $saldohoy[0]['sal_saldo'] + $valor,
+                "sal_fecha" => $fecha
+            );
+            $this->db->where('sal_fecha', $fechahoy);
+            $this->db->update("saldos", $data1);
+
+        }
 
 
     }
+    function verificar_existencia_saldo()
+    {
+        $fecha = date("d-m-Y");
+        $this->db->where('sal_fecha', $fecha);
+        $numero = $this->db->count_all_results('saldos');
+        return $numero;
 
+    }
+    function obtener_saldo_ayer()
+    {
+        $fechaayer = date("d-m-Y",time()-86400);
+        $this->db->select('sal_saldo');
+        $this->db->from('saldos');
+        $this->db->where('sal_fecha', $fechaayer);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    function obtener_saldo_hoy()
+    {
+        $fechaayer = date("d-m-Y");
+        $this->db->select('sal_saldo');
+        $this->db->from('saldos');
+        $this->db->where('sal_fecha', $fechaayer);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
     function obtener_alquiler($cliente)
     {
         $this->db->select('alq_id');
@@ -145,6 +191,7 @@ class operacion_model extends CI_Model{
 
     function get_totales_operacion()
     {
+
         $query = "SELECT sum(ope_valor) as total_deben FROM operacion
  WHERE ope_tipo = 'Ingreso Cliente'
 OR ope_tipo = 'Ingreso Prestamo'
@@ -188,6 +235,9 @@ OR ope_tipo = 'Egreso Servicios'
 
         return $total;
     }
+
+
+
 
     function upd_operacion()
     {

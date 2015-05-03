@@ -43,6 +43,35 @@ class Detallebanco_model extends CI_Model{
         );
 
         $this->db->insert("detalle_banco", $data);
+        $this->guardar_estadocuenta($this->input->post("cliente"),$this->input->post("transaccion"),$this->input->post("valor"));
+
+    }
+    function guardar_estadocuenta($cliente,$transaccion,$valor)
+    {
+        $this->db->select('estcue_saldo,alq_id,alq_cli_id');
+        $this->db->from('estadocuenta');
+        $this->db->join('alquiler', 'alquiler.alq_id = estadocuenta.estcue_alq_id');
+        $this->db->where('alq_cli_id', $cliente);
+        $query = $this->db->get();
+        $saldo = $query->result_array();
+
+     if($transaccion=="Ingreso")
+     {
+         $data = array(
+            "estcue_saldo" => $saldo[0]['estcue_saldo']-$valor
+         );
+         $this->db->update("estadocuenta",$data);
+         $this->db->where('estcue_cli_id',$cliente);
+
+
+     }
+        else{
+            $data = array(
+                "estcue_saldo" => $saldo[0]['estcue_saldo']+$valor
+            );
+            $this->db->update("estadocuenta",$data);
+            $this->db->where('estcue_cli_id',$cliente);
+        }
 
     }
 

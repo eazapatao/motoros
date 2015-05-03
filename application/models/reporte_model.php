@@ -28,6 +28,7 @@ class Reporte_model extends CI_Model{
 
     function get_sumasaldo_totales_hoy()
     {
+
         $fechahoy = date("d-m-Y");
         $query = "SELECT sum(inf_entra) as total_entra FROM informediario JOIN operacion ON operacion.ope_id=informediario.inf_ope_id WHERE operacion.ope_fecha = '$fechahoy'";
         $result = $this->db->query($query);

@@ -7,7 +7,7 @@ class Admin extends CI_Controller{
         $this->load->model('linea_model');
         $this->load->model('reporte_model');
         $this->load->model('notificacion_model');
-
+        $this->load->model('operacion_model');
     }
 
     public function index(){
@@ -45,10 +45,9 @@ class Admin extends CI_Controller{
     public function test(){
 //        echo $this->linea_model->obtener_preciodatos(48).'<br>';
 
-   echo $this->reporte_model->calcular_saldo();
+        print_r($this->operacion_model->obtener_saldo_ayer()) ;
+        echo $this->operacion_model->verificar_existencia_saldo();
 
-echo date("d-m-Y");
-    echo    date("d-m-Y",time()-86400);
     }
 }
 
