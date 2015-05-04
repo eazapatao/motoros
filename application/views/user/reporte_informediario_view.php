@@ -22,13 +22,13 @@
                         <br>
                         <table class="table table-bordered">
                             <tbody><tr>
-                                <th style="">Total saldo ayer</th>
-                                <th>Total Saldo Hoy</th>
+                                <th style="">Total saldo hoy</th>
+
 
                             </tr>
                             <tr>
-                                <td>$<?= number_format ($totales['saldo'], 0, ',', '.')?></td>
-                                <td>$<?= number_format ($saldo, 0, ',', '.')?></td>
+                                <td>$<?= number_format ($totales[0]['sal_saldo'], 0, ',', '.')?></td>
+
 
                             </tr>
 

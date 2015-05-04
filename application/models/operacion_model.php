@@ -89,7 +89,24 @@ class operacion_model extends CI_Model{
                 "inf_ope_id" => $idoperacion,
                 "inf_entra" => $valor,
                 "inf_fecha" => $fecha);
+            if($verificarexistenciasaldo==0)
+            {
+                $data1 = array(
+                    "sal_saldo" => $saldoanterior[0]['sal_saldo'] + $valor,
+                    "sal_fecha" => $fecha
 
+                );
+                $this->db->insert("saldos", $data1);
+            }
+            else{
+                $data1 = array(
+                    "sal_saldo" => $saldohoy[0]['sal_saldo'] + $valor,
+                    "sal_fecha" => $fecha
+                );
+                $this->db->where('sal_fecha', $fechahoy);
+                $this->db->update("saldos", $data1);
+
+            }
         }
         else{
             $data = array(
@@ -97,26 +114,27 @@ class operacion_model extends CI_Model{
                 "inf_sale" => $valor,
                 "inf_fecha" => $fecha,
             );
+            if($verificarexistenciasaldo==0)
+            {
+                $data1 = array(
+                    "sal_saldo" => $saldoanterior[0]['sal_saldo'] - $valor,
+                    "sal_fecha" => $fecha
+
+                );
+                $this->db->insert("saldos", $data1);
+            }
+            else{
+                $data1 = array(
+                    "sal_saldo" => $saldohoy[0]['sal_saldo'] - $valor,
+                    "sal_fecha" => $fecha
+                );
+                $this->db->where('sal_fecha', $fechahoy);
+                $this->db->update("saldos", $data1);
+
+            }
         }
         $this->db->insert("informediario", $data);
-        if($verificarexistenciasaldo==0)
-        {
-            $data1 = array(
-                "sal_saldo" => $saldoanterior[0]['sal_saldo'] + $valor,
-                "sal_fecha" => $fecha
 
-            );
-            $this->db->insert("saldos", $data1);
-        }
-        else{
-            $data1 = array(
-                "sal_saldo" => $saldohoy[0]['sal_saldo'] + $valor,
-                "sal_fecha" => $fecha
-            );
-            $this->db->where('sal_fecha', $fechahoy);
-            $this->db->update("saldos", $data1);
-
-        }
 
 
     }
