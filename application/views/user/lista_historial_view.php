@@ -64,6 +64,7 @@
                                         <td><?= $key['dat_nombre']?></td>
                                         <td><?= $key['dat_precio']?></td>
                                         <td><?= $key['his_cargobasico']?></td>
+
                                         <td>
                                             <a href="<?php echo base_url()?>linea/editarh/<?php echo $key['his_id']?>" type="button" class="btn btn-xs btn-warning">
                                                 <i class="glyphicon glyphicon-edit"></i>

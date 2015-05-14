@@ -52,6 +52,7 @@
                                     <option value="<?= $key['ope_tipo'] ?>" disabled="true"><?= $key['ope_tipo'] ?></option>
                                     <option value="Ingresos" disabled="true" >Ingresos</option>
                                     <option value="Ingreso Cliente">Ingreso Cliente</option>
+                                    <option value="Ingreso Cliente">Ingreso Paga diario</option>
                                     <option value="Ingreso Prestamo">Ingreso Préstamo</option>
                                     <option value="Ingreso Tarjeta de credito">Ingreso Tarjeta de credito</option>
                                     <option value="Ingreso Caja fuerte">Ingreso Caja fuerte</option>

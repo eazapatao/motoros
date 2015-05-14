@@ -19,7 +19,7 @@
             <div class="col-lg-12">
                 <div class="box box-success">
                     <div class="box-header">
-                        <h3 class="box-title">Devolución de líneas</h3>
+                        <h3 class="box-title"></h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <form action="<?= base_url()?>index.php/linea/guardar_devolucion_linea/" method="POST" enctype="multipart/form-data">
@@ -44,6 +44,10 @@
                             <div class="form-group">
                                 <label>Valor del minuto al cancelar la línea</label>
                                 <input type="text" class="form-control" id="valormin" name="valormin">
+                            </div>
+                            <div class="form-group">
+                                <label>Realizó pago</label>
+                                <input type="checkbox" class="form-control" id="pago" name="pago">
                             </div>
                             <input type="hidden" name="fechafin" id="fechafin" value="<?php echo date("d-m-Y"); ?>" readonly="true">
 

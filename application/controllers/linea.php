@@ -123,10 +123,10 @@ class Linea extends CI_Controller{
     function devolucion_linea()
     {
         $content = array(
-            "menu" => "Historial",
+            "menu" => "Devolución de líneas",
             "label" => "lin",
             "label2" => "list",
-            "titulo" => "Editar_historial",
+            "titulo" => "",
             "lineas" => $this->linea_model->get_lista_lineas_alquiladas(),
             "main_content" => "user/nuevo_devolucionlinea_view"
         );

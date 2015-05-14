@@ -47,7 +47,7 @@
             <a href="http://www.bancolombia.com" class="small-box-footer" target="_blank">
                 Bancolombia <i class="fa fa-arrow-circle-right"></i>
             </a>
-            <a href="www.davivienda.com" class="small-box-footer" target="_blank">
+            <a href="http://www.davivienda.com" class="small-box-footer" target="_blank">
                 Davivienda <i class="fa fa-arrow-circle-right"></i>
             </a>
         </div>

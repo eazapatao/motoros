@@ -84,42 +84,80 @@ class linea_model extends CI_Model{
 
     function guardar_devolucion_linea()
     {
-        $lin_id = $this->input->post("linea");
-        $sql = "SELECT estcue_id, estcue_debe, estcue_alq_id, his_cargobasico, his_lin_id, his_estado
+        if($this->input->post("pago")=='on')
+        {
+
+            $lin_id = $this->input->post("linea");
+            $sql = "SELECT estcue_id, estcue_debe, estcue_alq_id, his_cargobasico, his_lin_id, his_estado
         FROM (estadocuenta) JOIN historialinea ON historialinea.his_alq_id = estadocuenta.estcue_alq_id
         WHERE his_lin_id = $lin_id AND his_estado = 'Activo'";
-        $query = $this->db->query($sql);
-        $data = $query->result_array();
+            $query = $this->db->query($sql);
+            $data = $query->result_array();
 
-        $data1 = array(
-            "estcue_debe" => $data[0]['estcue_debe']-$data[0]['his_cargobasico']+($this->input->post("minconsumidos")*$this->input->post("valormin"))
+            $data1 = array(
+                "estcue_debe" => $data[0]['estcue_debe']-$data[0]['his_cargobasico']+($this->input->post("minconsumidos")*$this->input->post("valormin"))
 
-        );
-        $this->db->select('*');
-        $this->db->from('estadocuenta');
-        $this->db->where('estcue_id', $data[0]['estcue_id']);
-        $this->db->update("estadocuenta", $data1);
+            );
+            $this->db->select('*');
+            $this->db->from('estadocuenta');
+            $this->db->where('estcue_id', $data[0]['estcue_id']);
+            $this->db->update("estadocuenta", $data1);
 
-        $data2 = array(
-            "his_fechafin" => $this->input->post("fechafin"),
-            "his_estado"=> "Inactivo",
+            $data2 = array(
+                "his_fechafin" => $this->input->post("fechafin"),
+                "his_estado"=> "Inactivo",
+                "his_pago" => "Pago"
 
-        );
-        $this->db->select('*');
-        $this->db->from('historialinea');
-        $this->db->join('linea', 'linea.lin_id = historialinea.his_lin_id');
-        $this->db->where('his_lin_id', $this->input->post("linea"));
-        $this->db->update("historialinea", $data2);
+            );
+            $this->db->select('*');
+            $this->db->from('historialinea');
+            $this->db->join('linea', 'linea.lin_id = historialinea.his_lin_id');
+            $this->db->where('his_lin_id', $this->input->post("linea"));
+            $this->db->update("historialinea", $data2);
 
-        $data3 = array(
-            "lin_estado"=>"Disponible",
-            "lin_minutosconsumidos"=>$this->input->post("minconsumidos"),
-            "lin_pasaminutos"=>$this->input->post("pasaminutos"),
-        );
-        $this->db->select('*');
-        $this->db->from('linea');
-        $this->db->where('lin_id', $this->input->post("linea"));
-        $this->db->update("linea", $data3);
+            $data3 = array(
+                "lin_estado"=>"Disponible",
+                "lin_minutosconsumidos"=>$this->input->post("minconsumidos"),
+                "lin_pasaminutos"=>$this->input->post("pasaminutos"),
+            );
+            $this->db->select('*');
+            $this->db->from('linea');
+            $this->db->where('lin_id', $this->input->post("linea"));
+            $this->db->update("linea", $data3);
+
+        }
+        else{
+
+            $lin_id = $this->input->post("linea");
+            $sql = "SELECT estcue_id, estcue_debe, estcue_alq_id, his_cargobasico, his_lin_id, his_estado
+        FROM (estadocuenta) JOIN historialinea ON historialinea.his_alq_id = estadocuenta.estcue_alq_id
+        WHERE his_lin_id = $lin_id AND his_estado = 'Activo'";
+            $query = $this->db->query($sql);
+            $data = $query->result_array();
+
+            $data2 = array(
+                "his_fechafin" => $this->input->post("fechafin"),
+                "his_estado"=> "Inactivo",
+                "his_pago" => "No pago"
+
+            );
+            $this->db->select('*');
+            $this->db->from('historialinea');
+            $this->db->join('linea', 'linea.lin_id = historialinea.his_lin_id');
+            $this->db->where('his_lin_id', $this->input->post("linea"));
+            $this->db->update("historialinea", $data2);
+
+            $data3 = array(
+                "lin_estado"=>"Disponible",
+                "lin_minutosconsumidos"=>$this->input->post("minconsumidos"),
+                "lin_pasaminutos"=>$this->input->post("pasaminutos"),
+            );
+            $this->db->select('*');
+            $this->db->from('linea');
+            $this->db->where('lin_id', $this->input->post("linea"));
+            $this->db->update("linea", $data3);
+        }
+
     }
     function obtenercargobasico($linea)
     {
