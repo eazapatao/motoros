@@ -52,9 +52,9 @@
     </ul>
 </li>-->
 
-    <!-- Messages: style can be found in dropdown.less-->
+    <!-- Notificaciones de los cortes proximos a vencerse-->
 <li class="dropdown notifications-menu">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cortes
         <i class="fa fa-warning"></i>
         <span class="label label-warning"><?php
             echo ($cortes["hoy"]+$cortes["dos"]+$cortes["otros"]);
@@ -85,6 +85,39 @@
         <li class="footer"><a href="<?=base_url()?>notificacion/cortes">Ver todas</a></li>
     </ul>
 </li>
+    <!-- Notificaciones de las facturas proximas a vencerse-->
+    <li class="dropdown notifications-menu">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Facturación
+            <i class="fa fa-warning"></i>
+        <span class="label label-warning"><?php
+            echo ($pagos["hoy"]+$pagos["dos"]+$pagos["otros"]);
+            ?></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li class="header"><?=$pagos["hoy"]+$pagos["dos"]+$pagos["otros"];?> Lineas tienen facturación en:</li>
+            <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                    <li>
+                        <a href="javascript:;">
+                            <i class="fa fa-warning danger"></i><?=$pagos["hoy"]?> Lineas hoy.
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="fa fa-warning warning"></i> <?=$pagos["dos"]?> Lineas en menos dos días.
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="fa fa-warning success"></i> <?=$pagos["otros"]?> Lineas en menos 15 días.
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="footer"><a href="<?=base_url()?>notificacion/cortes">Ver todas</a></li>
+        </ul>
+    </li>
 <!-- Tasks: style can be found in dropdown.less -->
 <li class="dropdown user user-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">

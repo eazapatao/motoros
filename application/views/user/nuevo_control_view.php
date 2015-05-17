@@ -54,6 +54,10 @@
                                 <input type="text" class="form-control" id="descuentos" name="descuentos" placeholder="descuentos">
                             </div>
                            </div><!-- /.box-body -->
+                        <?=form_open_multipart(base_url().'upload/upload_file')?>
+                        <?=form_upload('file')?>
+                        <?=form_submit('submit', 'Upload')?>
+                        <?=form_close()?>
 
                         <div class="box-footer">
                             <button id="guardar_control" type="submit" class="btn btn-primary">Guardar</button>

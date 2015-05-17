@@ -3,12 +3,15 @@
 class Notificacion_model extends CI_Model{
 
     function get_cortes($clave){
+
         $result = array(
             "hoy" => 0,
             "dos" => 0,
             "otros" => 0
         );
+
         $query = $this->db->query("SELECT lin_numero, lin_corte FROM linea WHERE lin_estado = 'Alquilada' ");
+
         foreach ($query->result_array() as $key){
             if ($key['lin_corte'] < $clave){
                 $clave2 = 30 - $clave;
@@ -26,17 +29,21 @@ class Notificacion_model extends CI_Model{
                     $result["hoy"]++;
                 }
             }
+
         }
         return $result;
-    }
 
+    }
     function get_pagos($clave){
+
         $result = array(
             "hoy" => 0,
             "dos" => 0,
             "otros" => 0
         );
+
         $query = $this->db->query("SELECT lin_numero, lin_corte FROM linea WHERE lin_estado = 'Alquilada' ");
+
         foreach ($query->result_array() as $key){
             if ($key['lin_corte'] < $clave){
                 $clave2 = 30 - $clave;
@@ -54,20 +61,23 @@ class Notificacion_model extends CI_Model{
                     $result["hoy"]++;
                 }
             }
+
         }
         return $result;
+
     }
-
-
-
     function  get_lista_cortes(){
         $clave = intval(date('d'));
+
+
         $result = array(
             "hoy" => array(),
             "dos" => array(),
             "otros" => array()
         );
+
         $query = $this->db->query("SELECT lin_id, lin_numero, lin_corte FROM linea WHERE lin_estado = 'Alquilada' ");
+
         foreach ($query->result_array() as $key){
             if ($key['lin_corte'] < $clave){
                 $clave2 = 30 - $clave;
@@ -85,34 +95,49 @@ class Notificacion_model extends CI_Model{
                     array_push($result["hoy"], $this->get_cliente_linea_id($key['lin_id'], $key['lin_numero']));
                 }
             }
+
         }
         return $result;
+
+
     }
 
     function get_cliente_linea_id($lin_id, $lin_num){
+
         $this->db->select('his_alq_id');
         $this->db->where("his_lin_id", $lin_id);
         $this->db->where("his_estado", "Activo");
         $query = $this->db->get('historialinea');
+
         $query = $query->result_array();
+
         $this->db->select('alq_cli_id');
         $this->db->where("alq_id", $query[0]['his_alq_id']);
         $query = $this->db->get('alquiler');
         $query = $query->result_array();
+
         $this->db->select('cli_nombre, cli_apellido, cli_telefono, cli_celular');
         $this->db->where("cli_id", $query[0]['alq_cli_id']);
         $query = $this->db->get('cliente');
+
+
         $result = $query->result_array();
+
         $result['lin_num'] = $lin_num;
         return $result;
+
+
     }
 
 
     function get_corte_hoy($dia)
     {
         $query = $this->db->query("SELECT lin_id, lin_corte FROM linea WHERE lin_estado = 'Alquilada' AND lin_corte = $dia ");
+
         $query = $query->result_array();
+
         $result = array();
+
         foreach ($query as $key) {
             $lin_id = $key['lin_id'];
             $cargo = $this->db->query("SELECT his_cargobasico, his_alq_id
@@ -123,6 +148,7 @@ class Notificacion_model extends CI_Model{
                 "id_alq" => $cargo[0]['his_alq_id'],
             );
         }
+
         foreach ($result as $key) {
             $this->db->select('estcue_debe');
             $this->db->where('estcue_alq_id', $key['id_alq']);
@@ -130,11 +156,16 @@ class Notificacion_model extends CI_Model{
             $query = $query->result_array();
             $debe = $query[0]['estcue_debe'];
             $debe +=  $key['cargo_basico'];
+
             $dato= array(
                 "estcue_debe" => $debe
             );
             $this->db->where("estcue_alq_id", $key['id_alq']);
             $this->db->update('estadocuenta', $dato);
+
         }
     }
+
+
+
 }

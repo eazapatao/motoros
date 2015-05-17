@@ -61,7 +61,7 @@ class Control extends CI_Controller{
         $arr = $this->session->userdata('logged_in');
         if($this->session->userdata('logged_in'))
         {
-            $this->control_model->guardar_controles();
+            $this->control_model->guardar_control();
             redirect('control', 'refresh');
         }
         else

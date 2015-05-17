@@ -14,7 +14,12 @@ class Notificacion extends CI_Controller {
 
             $this->notificacion_model->get_cortes($dias_faltantes);
     }
+    public function noti_pago(){
 
+        $dias_faltantes = intval(date('d'));
+
+        $this->notificacion_model->get_pagos($dias_faltantes);
+    }
 
     public function index(){
         $arr = $this->session->userdata('logged_in');
