@@ -115,7 +115,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="footer"><a href="<?=base_url()?>notificacion/cortes">Ver todas</a></li>
+            <li class="footer"><a href="<?=base_url()?>notificacion/pagos">Ver todas</a></li>
         </ul>
     </li>
 <!-- Tasks: style can be found in dropdown.less -->

@@ -34,30 +34,30 @@ class Notificacion_model extends CI_Model{
         return $result;
 
     }
-    function get_pagos($clave){
-
+    function get_pagos($dia,$mes,$ano){
+//clave es el día
         $result = array(
             "hoy" => 0,
             "dos" => 0,
             "otros" => 0
         );
 
-        $query = $this->db->query("SELECT lin_numero, lin_corte FROM linea WHERE lin_estado = 'Alquilada' ");
+        $query = $this->db->query("SELECT con_facturacion FROM control_adicional");
 
         foreach ($query->result_array() as $key){
-            if ($key['lin_corte'] < $clave){
-                $clave2 = 30 - $clave;
-                if($clave2+$key['lin_corte'] <= 15  ){
+            if (substr($key['con_facturacion'],0,2) < $dia and substr($key['con_facturacion'],3,2) == $mes and substr($key['con_facturacion'],6,4) == $ano){
+                $clave2 = 30 - $dia;
+                if($clave2+substr($key['con_facturacion'],0,2) <= 15  ){
                     $result["otros"]++;
-                }elseif($clave2+$key['lin_corte'] <= 2  ){
+                }elseif($clave2+substr($key['con_facturacion'],0,2) <= 2  ){
                     $result["dos"]++;
                 }
-            }elseif ($key['lin_corte'] >= $clave){
-                if($key['lin_corte']-$clave > 0 && intval($key['lin_corte'])-$clave  <= 2  ){
+            }elseif (substr($key['con_facturacion'],0,2) >= $dia){
+                if(substr($key['con_facturacion'],0,2)-$dia > 0 && intval(substr($key['con_facturacion'],0,2))-$dia  <= 2  ){
                     $result["dos"]++;
-                }elseif($key['lin_corte']-$clave > 2 && $key['lin_corte']-$clave <= 29){
+                }elseif(substr($key['con_facturacion'],0,2)-$dia > 2 && substr($key['con_facturacion'],0,2)-$dia <= 29){
                     $result["otros"]++;
-                }elseif($key['lin_corte'] == $clave) {
+                }elseif(substr($key['con_facturacion'],0,2) == $dia) {
                     $result["hoy"]++;
                 }
             }
@@ -98,8 +98,40 @@ class Notificacion_model extends CI_Model{
 
         }
         return $result;
+    }
+    function  get_lista_facturaciones(){
+        $clave = intval(date('d'));
+        $mes = intval(date('m'));
+        $ano = intval(date('y'));
 
 
+        $result = array(
+            "hoy" => array(),
+            "dos" => array(),
+            "otros" => array()
+        );
+
+        $query = $this->db->query("SELECT lin_numero, con_valorapagar,con_facturacion FROM linea,control_adicional WHERE linea.lin_id = control_adicional.con_lin_id");
+        foreach ($query->result_array() as $key){
+            if (substr($key['con_facturacion'],0,2) < $clave && substr($key['con_facturacion'],3,2) == $mes and substr($key['con_facturacion'],6,4) == $ano){
+                $clave2 = 30 - $clave;
+                if($clave2+substr($key['con_facturacion'],0,2) <= 15  ){
+                    array_push($result["otros"], $key['lin_numero'],$key['con_valorapagar']);
+                }elseif($clave2+substr($key['con_facturacion'],0,2) <= 2  ){
+                    array_push($result["dos"], $key['lin_numero'],$key['con_valorapagar']);
+                }
+            }elseif (substr($key['con_facturacion'],0,2) >= $clave){
+                if(substr($key['con_facturacion'],0,2)-$clave > 0 && intval(substr($key['con_facturacion'],0,2))-$clave  <= 2  ){
+                    array_push($result["dos"], $key['lin_numero'],$key['con_valorapagar']);
+                }elseif(substr($key['con_facturacion'],0,2)-$clave > 2 && substr($key['con_facturacion'],0,2)-$clave <= 29){
+                    array_push($result["otros"],$key['lin_numero'],$key['con_valorapagar']);
+                }elseif(substr($key['con_facturacion'],0,2) == $clave) {
+                    array_push($result["hoy"], $key['lin_numero'],$key['con_valorapagar']);
+                }
+            }
+
+        }
+        return $result;
     }
 
     function get_cliente_linea_id($lin_id, $lin_num){

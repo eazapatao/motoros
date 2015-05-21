@@ -16,9 +16,10 @@ class Notificacion extends CI_Controller {
     }
     public function noti_pago(){
 
-        $dias_faltantes = intval(date('d'));
-
-        $this->notificacion_model->get_pagos($dias_faltantes);
+        $dia = intval(date('d'));
+        $mes = intval(date('m'));
+        $ano = intval(date('y'));
+        $this->notificacion_model->get_pagos($dia,$mes,$ano);
     }
 
     public function index(){
@@ -68,7 +69,29 @@ class Notificacion extends CI_Controller {
 
     }
 
+    public function pagos(){
+        $arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in') && $arr['role'] == 1)
+        {
 
+            $content = array(
+                "menu" => "Notificaciones",
+                "label" => "Facturación",
+                "label2" => "",
+                "titulo" => "Próximas facturaciones",
+                "main_content" => "user/facturaciones_view",
+                "data" => $this->notificacion_model->get_lista_facturaciones()
+            );
+
+            $this->load->view("templates/admin_template", $content);
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
+
+    }
 
     //control adicional datos pagos
 }
