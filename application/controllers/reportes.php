@@ -54,4 +54,28 @@ class Reportes extends CI_Controller{
         }
 
     }
+
+    public function imprimir_factura(){
+
+        if($this->session->userdata('logged_in')) {
+
+
+
+                $content = array(
+                    //"data" => $this->apply_model->get_corte($corte_id),
+                    "doit" => 'I'
+                );
+                $this->load->library('Pdf');
+                $this->load->view("factura_view");
+
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
+
+
+    }
+
 }
