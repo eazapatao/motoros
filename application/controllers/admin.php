@@ -47,8 +47,10 @@ class Admin extends CI_Controller{
 
        // print_r($this->operacion_model->obtener_saldo_ayer()) ;
        // echo $this->operacion_model->verificar_existencia_saldo();
-        print_r( $this->notificacion_model->get_lista_facturaciones());
-        print_r(date('d/m/y')) ;
+        //print_r( $this->notificacion_model->get_lista_facturaciones());
+       // print_r(date('d/m/y')) ;
+
+        echo $this->reporte_model->get_total_lineasxcorte(16);
 
     }
 }

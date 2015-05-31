@@ -14,6 +14,21 @@ $("#guardar_alquiler").click(function(){
         $("#guardar_alquiler").hide();
         $("#asociar_alquiler").attr("href", base_url+"linea/nuevo_historial/"+msg);
         $("#asociar_alquiler").show();
+    });
+});
+
+function mostrar() {
+    document.getElementById('tabla').style.display ='inherit';
+};
+
+$("#consultar").click(function(){
+    $.ajax({
+        document:getElementById('tabla').style.display ='inherit',
+        type: "POST",
+        data: $("#tabla").serialize()
+    }) .done(function( msg ) {
+
+        location.reload(true);
 
     });
 });

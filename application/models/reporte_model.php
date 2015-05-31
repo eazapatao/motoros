@@ -25,16 +25,42 @@ class Reporte_model extends CI_Model{
         return $query->result_array();
 
     }
+    function get_total_lineasxcorte($corte){
+        $alquilada = "Alquilada";
+        $this->db->select('*');
+        $this->db->from('linea');
+        $this->db->where('lin_corte', $corte);
+        $this->db->where('lin_estado', $alquilada);
+
+        $query = $this->db->get();
+        return $query->num_rows();
+
+    }
+    function get_lineasxcorte_discriminado($corte)
+    {
+
+        $alquilada = "Alquilada";
+        $this->db->select('*');
+        $this->db->from('linea');
+        $this->db->join('historialinea','historialinea.his_lin_id=linea.lin_id');
+        $this->db->join('alquiler','alquiler.alq_id=historialinea.his_alq_id');
+        $this->db->join('cliente','cliente.cli_id=alquiler.alq_cli_id');
+        $this->db->where('lin_corte', $corte);
+        $this->db->where('lin_estado', $alquilada);
+        $query = $this->db->get();
+        $result=$query->result_array();
+        return $result;
+    }
 
     function get_sumasaldo_totales_hoy()
     {
 
         $fechahoy = date("d-m-Y");
         $this->db->select('sal_saldo');
-            $this->db->from('saldos');
-            $this->db->where('sal_fecha', $fechahoy);
-            $query = $this->db->get();
-            $result=$query->result_array();
+        $this->db->from('saldos');
+        $this->db->where('sal_fecha', $fechahoy);
+        $query = $this->db->get();
+        $result=$query->result_array();
 
         return $result;
     }
