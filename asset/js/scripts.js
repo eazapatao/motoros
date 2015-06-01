@@ -17,21 +17,6 @@ $("#guardar_alquiler").click(function(){
     });
 });
 
-function mostrar() {
-    document.getElementById('tabla').style.display ='inherit';
-};
-
-$("#consultar").click(function(){
-    $.ajax({
-        document:getElementById('tabla').style.display ='inherit',
-        type: "POST",
-        data: $("#tabla").serialize()
-    }) .done(function( msg ) {
-
-        location.reload(true);
-
-    });
-});
 
 $("#guardar_historial").click(function(){
     $.ajax({

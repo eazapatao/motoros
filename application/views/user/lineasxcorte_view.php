@@ -17,51 +17,36 @@
         <div class="row">
 
             <div class="col-lg-12">
-                <div class="box box-primary">
+                <div class="box box-success">
                     <div class="box-header">
-                        <br>
+                        <h3 class="box-title">Líneas por corte</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <form role="form">
-                        <div class="box-body" >
-                            <table id="line_list" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                <thead>
-                                <tr>
-                                    <th>Número</th>
-                                    <th>Cliente</th>
-                                </tr>
-                                </thead>
-                                <tfoot>
-                                <tr>
-                                    <th>Número</th>
-                                    <th>Cliente</th>
-                                </tr>
-                                </tfoot>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label>Corte</label>
+                                <select class="form-control" id="corte" name="corte" placeholder="Fecha de corte">
+                                    <option value="2">2</option>
+                                    <option value="4">4</option>
+                                    <option value="6">6</option>
+                                    <option value="9">9</option>
+                                    <option value="12">12</option>
+                                    <option value="14">14</option>
+                                    <option value="18">18</option>
+                                    <option value="24">24</option>
+                                </select>
+                            </div>
+                        </div><!-- /.box-body -->
+                        <a href="<?php echo base_url()?>reportes/lineasxcortediscriminado/" type="button"  class="btn btn-primary">
+                            Consultar
+                        </a>
 
-                                <tbody>
-                                <?php foreach ($lineasxcorte as $key) {?>
-                                    <tr>
-                                        <td><?= $key['lin_numero']?></td>
-                                        <td><?= $key['cli_nombre'].' '.$key['cli_apellido']?></td>
-
-                                  <td>
-                                            <a href="<?php echo base_url()?>alquiler/editar/<?php echo $key['alq_id']?>" type="button" class="btn btn-xs btn-warning">
-                                                <i class="glyphicon glyphicon-edit"></i>
-                                            </a>
-
-                                        <a data-ref="<?php echo base_url()?>alquiler/del/<?php echo $key['alq_id']?>"  type="button" class="btn btn-xs btn-danger delete" data-toggle="confirmation" data-placement="left">
-                                            <i class="glyphicon glyphicon-trash"></i>
-                                        </a>
-                                        </td>
-                                    </tr>
-                                <?php }?>
-
-                                </tbody>
-                            </table>
-                        </div>
+                    </form>
                 </div>
-
             </div>
+
+        </div>
 
     </section><!-- /.content -->
 </aside><!-- /.right-side -->

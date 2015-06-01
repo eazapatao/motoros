@@ -64,8 +64,31 @@ class Reportes extends CI_Controller{
                 "label2" => "list",
                 "titulo" => "",
                 "main_content" => "user/lineasxcorte_view",
-                "lineasxcorte" => $this->reporte_model->get_total_lineasxcorte(30),
-               // "lineasxcortediscriminado" => $this->reporte_model->get_lineasxcorte_discriminado(),
+
+
+            );
+
+            $this->load->view("templates/admin_template", $content);
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
+
+    }
+    public function lineasxcortediscriminado($corte){
+        $arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in'))
+        {
+            $content = array(
+                "menu" => "Líneas por corte",
+                "label" => "Lin",
+                "label2" => "list",
+                "titulo" => "",
+                "main_content" => "user/lista_lineasxcortediscriminado_view",
+                "lineasxcorte" => $this->reporte_model->get_lineasxcorte_discriminado($corte),
+
                 );
 
             $this->load->view("templates/admin_template", $content);
