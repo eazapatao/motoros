@@ -37,8 +37,9 @@
                                     <option value="24">24</option>
                                 </select>
                             </div>
+                            <input type="text" id="corte-text">
                         </div><!-- /.box-body -->
-                        <a href="<?php echo base_url()?>reportes/lineasxcortediscriminado/" type="button"  class="btn btn-primary">
+                        <a id="cortes" href="" type="button" data-campo1="valor1"  class="btn btn-primary">
                             Consultar
                         </a>
 
@@ -50,3 +51,4 @@
 
     </section><!-- /.content -->
 </aside><!-- /.right-side -->
+

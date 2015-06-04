@@ -43,3 +43,8 @@ $('[data-toggle=confirmation]').confirmation({
     }
 });
 
+
+$("#corte").on("change", function(){
+    var input = $("#corte-text").val();
+    $("#cortes").attr("href", base_url+'reportes/lineasxcortediscriminado/'+this.value+'/'+input);
+});
