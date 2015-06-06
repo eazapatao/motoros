@@ -37,7 +37,7 @@
                                     <option value="24">24</option>
                                 </select>
                             </div>
-                            <input type="text" id="corte-text">
+
                         </div><!-- /.box-body -->
                         <a id="cortes" href="" type="button" data-campo1="valor1"  class="btn btn-primary">
                             Consultar
