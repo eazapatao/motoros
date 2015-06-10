@@ -88,6 +88,7 @@ class Reportes extends CI_Controller{
                 "titulo" => "",
                 "main_content" => "user/lista_lineasxcortediscriminado_view",
                 "lineasxcorte" => $this->reporte_model->get_lineasxcorte_discriminado($corte),
+                "numerodelineas" => $this->reporte_model->get_totallineasporcorte($corte),
 
                 );
 

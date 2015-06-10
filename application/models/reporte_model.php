@@ -51,7 +51,13 @@ class Reporte_model extends CI_Model{
         $result=$query->result_array();
         return $result;
     }
-
+    function get_totallineasporcorte($corte)
+    {
+        $alquilada = "Alquilada";
+        $this->db->where("lin_corte", $corte);
+        $this->db->where("lin_estado", $alquilada);
+        return $this->db->count_all_results('linea');
+    }
     function get_sumasaldo_totales_hoy()
     {
 

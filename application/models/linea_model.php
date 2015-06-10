@@ -89,8 +89,8 @@ class linea_model extends CI_Model{
 
             $lin_id = $this->input->post("linea");
             $sql = "SELECT estcue_id, estcue_debe, estcue_alq_id, his_cargobasico, his_lin_id, his_estado
-        FROM (estadocuenta) JOIN historialinea ON historialinea.his_alq_id = estadocuenta.estcue_alq_id
-        WHERE his_lin_id = $lin_id AND his_estado = 'Activo'";
+            FROM (estadocuenta) JOIN historialinea ON historialinea.his_alq_id = estadocuenta.estcue_alq_id
+            WHERE his_lin_id = $lin_id AND his_estado = 'Activo'";
             $query = $this->db->query($sql);
             $data = $query->result_array();
 

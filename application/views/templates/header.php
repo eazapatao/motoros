@@ -55,7 +55,7 @@
     <!-- Notificaciones de los cortes proximos a vencerse-->
 <li class="dropdown notifications-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cortes
-        <i class="fa fa-warning"></i>
+        <i class="fa fa-cut"></i>
         <span class="label label-warning"><?php
             echo ($cortes["hoy"]+$cortes["dos"]+$cortes["otros"]);
             ?></span>
