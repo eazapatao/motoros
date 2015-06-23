@@ -40,6 +40,18 @@ $('[data-toggle=confirmation]').confirmation({
         $('[data-toggle=confirmation]').confirmation('hide')
     }
 });
+$('[data-toggle=confirmation1]').confirmation({
+    title: '¿Esta seguro de imprimir este registro?',
+    btnOkLabel: 'Si',
+    btnCancelLabel: 'No',
+    href: function(){
+        var ref = $(this).attr('data-ref');
+        return ref;
+    },
+    onCancel: function(){
+        $('[data-toggle=confirmation]').confirmation('hide')
+    }
+});
 
 
 $("#corte").on("change", function(){

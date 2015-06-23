@@ -8,6 +8,7 @@ class Admin extends CI_Controller{
         $this->load->model('reporte_model');
         $this->load->model('notificacion_model');
         $this->load->model('operacion_model');
+        $this->load->model('admin_model');
     }
 
     public function index(){
@@ -21,6 +22,8 @@ class Admin extends CI_Controller{
                 "label2" => "",
                 "titulo" => "Panel de control",
                 "main_content" => "admin/dashboard_view",
+                "totalesM" => $this->admin_model->get_totales_mes(date('d'),date('m'),date('Y')),
+
             );
 
             $this->load->view("templates/admin_template", $content);

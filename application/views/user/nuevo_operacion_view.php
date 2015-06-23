@@ -20,6 +20,7 @@
                 <div class="box box-success">
                     <div class="box-header">
                         <h3 class="box-title">Nueva operación</h3>
+
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <form action="<?= base_url()?>index.php/operacion/guardar_operacion/" method="POST" enctype="multipart/form-data" id="form_guardar_operacion">
@@ -68,6 +69,10 @@
                                     <option value="Egreso otros">Egreso otros</option>
                                 </select>
 
+                            </div>
+                            <div class="form-group">
+                                <label>Opc. N° Tarjeta</label>
+                                <input type="text" class="form-control" id="tarjeta" name="tarjeta" placeholder="Valor">
                             </div>
                             <div class="form-group">
                                 <label>Valor</label>

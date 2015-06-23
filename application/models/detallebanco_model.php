@@ -37,6 +37,7 @@ class Detallebanco_model extends CI_Model{
             "detban_cli_id" => $this->input->post("cliente"),
             "detban_fecha" => $this->input->post("fecha"),
             "detban_transaccion" => $this->input->post("transaccion"),
+            "detban_corte" => $this->input->post("corte"),
             "detban_valor" => $this->input->post("valor"),
             "detban_detalle" => $this->input->post("detalle"),
 

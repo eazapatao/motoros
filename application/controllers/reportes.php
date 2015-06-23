@@ -6,6 +6,7 @@ class Reportes extends CI_Controller{
         parent::__construct();
         $this->load->model("reporte_model");
         $this->load->model("directorio_model");
+        $this->load->model("operacion_model");
     }
 
     public function ver_estadocuentas(){
@@ -102,6 +103,29 @@ class Reportes extends CI_Controller{
         }
 
     }
+    public function morosos(){
+        $arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in'))
+        {
+            $content = array(
+                "menu" => "Clientes morosos",
+                "label" => "Inf",
+                "label2" => "list",
+                "titulo" => "",
+                "main_content" => "user/morosos_view",
+                "morosos" => $this->reporte_model->get_lista_morosos(),
+
+            );
+
+            $this->load->view("templates/admin_template", $content);
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
+
+    }
     public function lineasxcorte(){
         $arr = $this->session->userdata('logged_in');
         if($this->session->userdata('logged_in'))
@@ -138,7 +162,7 @@ class Reportes extends CI_Controller{
                 "lineasxcorte" => $this->reporte_model->get_lineasxcorte_discriminado($corte),
                 "numerodelineas" => $this->reporte_model->get_totallineasporcorte($corte),
 
-                );
+            );
 
             $this->load->view("templates/admin_template", $content);
         }
@@ -150,39 +174,39 @@ class Reportes extends CI_Controller{
         }
 
     }
+
     public function imprimir_factura($corte)
     {
         $arr = $this->session->userdata('logged_in');
         if ($this->session->userdata('logged_in')) {
-
-
             $content = array(
                 //"data" => $this->apply_model->get_corte($corte_id),
                 "doit" => 'I',
                 "facturacion" => $this->reporte_model->get_facturacion($corte),
             );
-            /*print_r($this->reporte_model->get_facturacion($corte));
-              foreach($this->reporte_model->get_facturacion($corte) as $key => $value){
-                  foreach($value as $value2){
-                      if($key == $value2['cli_id']) {
-                            print_r($value2);
-                          echo"------------";
-                      }
-                      }
-                  }*/
             $this->load->library('Pdf');
             $this->load->view("factura_view", $content);
         }
-
-
-
         else
         {
-            //If no session, redirect to login page
             redirect('login', 'refresh');
         }
-
-
     }
-
+    public function imprimir_operacion($operacion)
+    {
+        $arr = $this->session->userdata('logged_in');
+        if ($this->session->userdata('logged_in')) {
+            $content = array(
+                //"data" => $this->apply_model->get_corte($corte_id),
+                "doit" => 'I',
+                "operacion" => $this->operacion_model->get_operacion1($operacion),
+            );
+            $this->load->library('Pdf');
+            $this->load->view("facturaoperacion_view", $content);
+        }
+        else
+        {
+            redirect('login', 'refresh');
+        }
+    }
 }

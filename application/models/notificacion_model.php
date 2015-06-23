@@ -66,16 +66,55 @@ class Notificacion_model extends CI_Model{
         return $result;
 
     }
+    function get_suspenciones($dia,$mes,$ano){
+//clave es el día
+        $result = array(
+            "hoy" => 0,
+            "dos" => 0,
+            "otros" => 0
+        );
+
+        $query = $this->db->query("SELECT con_suspencion FROM control_adicional");
+
+        foreach ($query->result_array() as $key){
+            if (substr($key['con_suspencion'],0,2) < $dia and substr($key['con_suspencion'],3,2) == $mes and substr($key['con_suspencion'],6,4) == $ano){
+                $clave2 = 30 - $dia;
+                if($clave2+substr($key['con_suspencion'],0,2) <= 15  ){
+                    $result["otros"]++;
+                }elseif($clave2+substr($key['con_suspencion'],0,2) <= 2  ){
+                    $result["dos"]++;
+                }
+            }elseif (substr($key['con_suspencion'],0,2) >= $dia){
+                if(substr($key['con_suspencion'],0,2)-$dia > 0 && intval(substr($key['con_suspencion'],0,2))-$dia  <= 2  ){
+                    $result["dos"]++;
+                }elseif(substr($key['con_suspencion'],0,2)-$dia > 2 && substr($key['con_suspencion'],0,2)-$dia <= 29){
+                    $result["otros"]++;
+                }elseif(substr($key['con_suspencion'],0,2) == $dia) {
+                    $result["hoy"]++;
+                }
+            }
+
+        }
+        return $result;
+
+    }
+    function guardar_programarproxpago(){
+
+        $data = array(
+            "prox_cli_id" => $this->input->post("cliente"),
+            "prox_lin_corte" => $this->input->post("corte"),
+            "prox_fecha" => $this->input->post("fecha"),
+        );
+
+        $this->db->insert("proxpago", $data);
+    }
     function  get_lista_cortes(){
         $clave = intval(date('d'));
-
-
         $result = array(
             "hoy" => array(),
             "dos" => array(),
             "otros" => array()
         );
-
         $query = $this->db->query("SELECT lin_id, lin_numero, lin_corte FROM linea WHERE lin_estado = 'Alquilada' ");
 
         foreach ($query->result_array() as $key){
@@ -95,11 +134,158 @@ class Notificacion_model extends CI_Model{
                     array_push($result["hoy"], $this->get_cliente_linea_id($key['lin_id'], $key['lin_numero']));
                 }
             }
+        }
+        return $result;
+    }
+    function  get_lista_suspenciones(){
+        $clave = intval(date('d'));
+        $mes = intval(date('m'));
+        $ano = intval(date('Y'));
+
+
+        $result = array(
+            "hoy" => array(),
+            "dos" => array(),
+            "otros" => array()
+        );
+
+        $this->db->select('lin_numero,con_suspencion');
+        $this->db->from('linea');
+        $this->db->join('control_adicional','control_adicional.con_lin_id=linea.lin_id');
+
+        $query = $this->db->get();
+        // $query = $query->result_array();
+
+
+        // $query = $this->db->query("SELECT lin_numero, con_valorapagar,con_facturacion FROM linea,control_adicional WHERE linea.lin_id = control_adicional.con_lin_id");
+        foreach ($query->result_array() as $key){
+            $temp=array(
+                "lin_numero"=>$key['lin_numero'],
+                "con_suspencion"=>$key['con_suspencion'],
+            );
+            if (substr($key['con_suspencion'],0,2) < $clave && substr($key['con_suspencion'],3,2) == $mes and substr($key['con_suspencion'],6,4) == $ano){
+                $clave2 = 30 - $clave;
+                if($clave2+substr($key['con_suspencion'],0,2) <= 15  ){
+
+                    array_push($result["otros"], $temp);
+                }elseif($clave2+substr($key['con_suspencion'],0,2) <= 2  ){
+                    array_push($result["dos"], $temp);
+                }
+            }elseif (substr($key['con_suspencion'],0,2) >= $clave){
+                if(substr($key['con_suspencion'],0,2)-$clave > 0 && intval(substr($key['con_suspencion'],0,2))-$clave  <= 2  ){
+                    array_push($result["dos"], $temp);
+                }elseif(substr($key['con_suspencion'],0,2)-$clave > 2 && substr($key['con_facturacion'],0,2)-$clave <= 29){
+                    array_push($result["otros"],$temp);
+                }elseif(substr($key['con_suspencion'],0,2) == $clave) {
+                    array_push($result["hoy"], $temp);
+                }
+            }
 
         }
         return $result;
+    }
+    function  get_lista_simcard(){
+        $clave = intval(date('d'));
+        $mes = intval(date('m'));
+        $ano = intval(date('Y'));
 
-    }   function  get_lista_devolucion(){
+
+        $result = array(
+            "hoy" => array(),
+            "dos" => array(),
+            "otros" => array()
+        );
+
+        $this->db->select('*');
+        $this->db->from('devolucion_linea');
+        $this->db->join('cliente','cliente.cli_id=devolucion_linea.dev_cli_id');
+        $this->db->join('linea','linea.lin_id=devolucion_linea.dev_lin_id');
+        $this->db->join('usuario','usuario.usu_id=devolucion_linea.dev_usu_id');
+
+        $query = $this->db->get();
+        // $query = $query->result_array();
+
+
+        // $query = $this->db->query("SELECT lin_numero, con_valorapagar,con_facturacion FROM linea,control_adicional WHERE linea.lin_id = control_adicional.con_lin_id");
+        foreach ($query->result_array() as $key){
+            $temp=array(
+                "cli_nombre"=>$key['cli_nombre'],
+                "cli_apellido"=>$key['cli_apellido'],
+                "lin_numero"=>$key['lin_numero'],
+                "dev_fecha"=>$key['dev_fecha'],
+                "usu_nombre"=>$key['usu_nombre'],
+                "usu_apellido"=>$key['usu_apellido'],
+            );
+            if (substr($key['dev_fecha'],0,2) < $clave && substr($key['dev_fecha'],3,2) == $mes and substr($key['dev_fecha'],6,4) == $ano){
+                $clave2 = 30 - $clave;
+                if($clave2+substr($key['dev_fecha'],0,2) <= 15  ){
+
+                    array_push($result["otros"], $temp);
+                }elseif($clave2+substr($key['dev_fecha'],0,2) <= 2  ){
+                    array_push($result["dos"], $temp);
+                }
+            }elseif (substr($key['dev_fecha'],0,2) >= $clave){
+                if(substr($key['dev_fecha'],0,2)-$clave > 0 && intval(substr($key['dev_fecha'],0,2))-$clave  <= 2  ){
+                    array_push($result["dos"], $temp);
+                }elseif(substr($key['dev_fecha'],0,2)-$clave > 2 && substr($key['dev_fecha'],0,2)-$clave <= 29){
+                    array_push($result["otros"],$temp);
+                }elseif(substr($key['dev_fecha'],0,2) == $clave) {
+                    array_push($result["hoy"], $temp);
+                }
+            }
+
+        }
+        return $result;
+    }
+    function  get_simcard($dia,$mes,$ano){
+        //clave es el día
+        $result = array(
+            "hoy" => 0,
+            "dos" => 0,
+            "otros" => 0
+        );
+
+        $query = $this->db->query("SELECT dev_fecha FROM devolucion_linea");
+
+        foreach ($query->result_array() as $key){
+            if (substr($key['dev_fecha'],0,2) < $dia and substr($key['dev_fecha'],3,2) == $mes and substr($key['dev_fecha'],6,4) == $ano){
+                $clave2 = 30 - $dia;
+                if($clave2+substr($key['dev_fecha'],0,2) <= 15  ){
+                    $result["otros"]++;
+                }elseif($clave2+substr($key['dev_fecha'],0,2) <= 2  ){
+                    $result["dos"]++;
+                }
+            }elseif (substr($key['dev_fecha'],0,2) >= $dia){
+                if(substr($key['dev_fecha'],0,2)-$dia > 0 && intval(substr($key['dev_fecha'],0,2))-$dia  <= 2  ){
+                    $result["dos"]++;
+                }elseif(substr($key['dev_fecha'],0,2)-$dia > 2 && substr($key['dev_fecha'],0,2)-$dia <= 29){
+                    $result["otros"]++;
+                }elseif(substr($key['dev_fecha'],0,2) == $dia) {
+                    $result["hoy"]++;
+                }
+            }
+
+        }
+        return $result;
+    }
+    function  get_lista_cortes_only(){
+        $fecha=date('d');
+
+        $this->db->select('*');
+        $this->db->from('cliente');
+        $this->db->join('alquiler', 'alquiler.alq_cli_id = cliente.cli_id');
+        $this->db->join('historialinea', 'historialinea.his_alq_id = alquiler.alq_id');
+        $this->db->join('linea', 'linea.lin_id = historialinea.his_lin_id');
+
+        $this->db->where('lin_corte',$fecha);
+        $query = $this->db->get();
+
+
+        return $query->result_array();
+
+
+    }
+    function  get_lista_devolucion(){
         $clave = intval(date('d'));
 
 
@@ -145,18 +331,20 @@ class Notificacion_model extends CI_Model{
             "otros" => array()
         );
 
-        $this->db->select('lin_numero, con_valorapagar,con_facturacion');
+        $this->db->select('lin_numero, con_valorapagar,con_facturacion,');
         $this->db->from('control_adicional');
         $this->db->join('linea','linea.lin_id=control_adicional.con_lin_id');
         $query = $this->db->get();
-       // $query = $query->result_array();
+        // $query = $query->result_array();
 
 
-       // $query = $this->db->query("SELECT lin_numero, con_valorapagar,con_facturacion FROM linea,control_adicional WHERE linea.lin_id = control_adicional.con_lin_id");
+        // $query = $this->db->query("SELECT lin_numero, con_valorapagar,con_facturacion FROM linea,control_adicional WHERE linea.lin_id = control_adicional.con_lin_id");
         foreach ($query->result_array() as $key){
+
             $temp=array(
                 "lin_numero"=>$key['lin_numero'],
                 "con_valorapagar"=>$key['con_valorapagar']
+
             );
             if (substr($key['con_facturacion'],0,2) < $clave && substr($key['con_facturacion'],3,2) == $mes and substr($key['con_facturacion'],6,4) == $ano){
                 $clave2 = 30 - $clave;
@@ -267,6 +455,34 @@ class Notificacion_model extends CI_Model{
         return $result[0]['cli_id'];
     }
 
+function vlrapagar()
+{
+    $dia=date('d');
+    $mes=date('m');
+    $ano=date('Y');
 
+    $query = "SELECT sum(con_valorapagar) as total_deben FROM control_adicional WHERE detban_transaccion = 'Ingreso' AND detban_ban_id='1'";
+    $result = $this->db->query($query);
+
+    $deben =  $result->result_array();
+
+    $deben = $deben[0]['total_deben'];
+
+
+    $query = "SELECT sum(detban_valor) as total_haber FROM detalle_banco WHERE detban_transaccion = 'Egreso' AND detban_ban_id='1'";
+    $result = $this->db->query($query);
+
+    $haber =  $result->result_array();
+
+    $haber = $haber[0]['total_haber'];
+
+    $total = array (
+        "debeb" => $deben,
+        "haberb" => $haber,
+        "deferenciab" => $deben - $haber
+    );
+
+    return $total;
+}
 
 }

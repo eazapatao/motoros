@@ -46,6 +46,18 @@ class Reporte_model extends CI_Model{
         return $query->result_array();
 
     }
+    function get_lista_morosos(){
+        $nopago="No pago";
+        $this->db->select('*');
+        $this->db->from('cliente');
+        $this->db->join('alquiler', 'alquiler.alq_cli_id = cliente.cli_id');
+        $this->db->join('estadocuenta', 'estadocuenta.estcue_alq_id = alquiler.alq_id');
+        $this->db->join('historialinea', 'historialinea.his_alq_id = alquiler.alq_id');
+        $this->db->where('his_pago',$nopago);
+        $query = $this->db->get();
+       return  $query->result_array();
+
+    }
     function get_total_lineasxcorte($corte){
         $alquilada = "Alquilada";
         $this->db->select('*');

@@ -12,9 +12,7 @@
         <?php
         $dia=date("d");
         ?>
-        <a class="btn btn-primary" id="cortes" href="<?= base_url()?>reportes/imprimir_factura/<?=$dia?>">
-            <i class="fa fa-edit"></i> Imprimir facturación de hoy
-        </a>
+
 
     </section>
     <!-- Main content -->
@@ -24,7 +22,7 @@
                 <div class="box box-danger">
 
                     <div class="box-header">
-                        <h3 class="box-title">Cortes hoy</h3>
+                        <h3 class="box-title">Devoluciones hoy</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                         <div class="box-body">

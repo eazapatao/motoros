@@ -12,6 +12,36 @@ class operacion_model extends CI_Model{
         return $query->result_array();
 
     }
+   function get_operacion1($id)
+   {
+       $this->db->select('*');
+       $this->db->from('operacion');
+       $this->db->join('cliente','cliente.cli_id=operacion.ope_cli_id');
+       $this->db->where('ope_id', $id);
+       $query = $this->db->get();
+       $result=$query->result_array();
+       $final = array();
+       $i = 0;
+       $tmp = array();
+       foreach($result as $key){
+
+           $final[] = $key['ope_id'];
+
+       }
+       $final = array_unique($final);
+
+       foreach($final as $f){
+           $i=0;
+           foreach($result as $key){
+
+               if ($f == $key['ope_id']){
+                   $tmp[$f][$i] = $key;
+               }
+               $i++;
+
+           }
+       }        return $tmp;
+   }
     function get_info_operacion($id){
         $this->db->select('*');
         $this->db->from('operacion');
@@ -27,6 +57,7 @@ class operacion_model extends CI_Model{
             "ope_cli_id" => $this->input->post("cliente"),
             "ope_usu_id" => $this->input->post("usuario"),
             "ope_tipo" => $this->input->post("tipo"),
+            "ope_tarjeta" => $this->input->post("tarjeta"),
             "ope_valor" => $this->input->post("valor"),
             "ope_fecha" => $this->input->post("fecha"),
             "ope_nfactura" => $this->input->post("nfactura"),
@@ -293,6 +324,7 @@ OR ope_tipo = 'Egreso Servicios'
             "ope_cli_id" => $this->input->post("cliente"),
             "ope_usu_id" => $this->input->post("usuario"),
             "ope_tipo" => $this->input->post("tipo"),
+            "ope_tarjeta" => $this->input->post("tarjeta"),
             "ope_valor" => $this->input->post("valor"),
             "ope_fecha" => $this->input->post("fecha"),
             "ope_nfactura" => $this->input->post("nfactura"),

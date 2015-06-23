@@ -12,8 +12,8 @@
         <?php
         $dia=date("d");
         ?>
-        <a class="btn btn-primary" id="cortes" href="<?= base_url()?>reportes/imprimir_factura/<?=$dia?>">
-            <i class="fa fa-edit"></i> Imprimir facturación de hoy
+        <a class="btn btn-primary" id="cortes" href="<?= base_url()?>notificaciones/proximipago/<?=$dia?>">
+            <i class="fa fa-edit"></i> Programar próximo pago
         </a>
     </section>
 
@@ -35,7 +35,7 @@
                                 <tr>
                                     <th>Linea</th>
                                     <th>Valor a pagar</th>
-                                    <th>Observación</th>
+
                                 </tr>
                                 </thead>
 
@@ -43,7 +43,7 @@
                                 <tr>
                                     <th>Linea</th>
                                     <th>Valor a pagar</th>
-                                    <th>Observación</th>
+
                                 </tr>
                                 </tfoot>
 
@@ -55,11 +55,7 @@
                                     <tr>
                                         <td><?= $value["lin_numero"]?></td>
                                         <td><?= $value["con_valorapagar"]?></td>
-                                        <td>
-                                            <a href="<?php echo base_url()?>linea/editar/<?php echo $key['lin_numero']?>" type="button" class="btn btn-xs btn-warning">
-                                                <i class="glyphicon glyphicon-edit"></i>
-                                            </a>
-                                        </td>
+
                                     </tr>
                                 <?php }?>
 

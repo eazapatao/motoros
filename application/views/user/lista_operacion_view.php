@@ -35,6 +35,7 @@
                                     <th>Cliente</th>
                                     <th>Usuario</th>
                                     <th>Tipo</th>
+                                    <th>opc. Número tarjeta</th>
                                     <th>Valor</th>
                                     <th>Fecha</th>
                                     <th>Número de factura</th>
@@ -51,6 +52,7 @@
                                     <th>Cliente</th>
                                     <th>Usuario</th>
                                     <th>Tipo</th>
+                                    <th>opc. Número tarjeta</th>
                                     <th>Valor</th>
                                     <th>Fecha</th>
                                     <th>Número de factura</th>
@@ -67,8 +69,9 @@
                                 <?php foreach ($operacion as $key) {?>
                                     <tr>
                                         <td><?=  $key['cli_nombre'].' '.$key['cli_apellido']?></td>
-                                        <td><?= $key['usu_nombre'].' '.$key['usu_apellido']?></td>
+                                        <td><?= $key['usu_nombre']?></td>
                                         <td><?= $key['ope_tipo']?></td>
+                                        <td><?= $key['ope_tarjeta']?></td>
                                         <td><?= $key['ope_valor']?></td>
                                         <td><?= $key['ope_fecha']?></td>
                                         <td><?= $key['ope_nfactura']?></td>
@@ -82,6 +85,9 @@
                                             </a>
                                             <a data-ref="<?php echo base_url()?>operacion/del/<?php echo $key['ope_id']?>"  type="button" class="btn btn-xs btn-danger delete" data-toggle="confirmation" data-placement="left">
                                                 <i class="glyphicon glyphicon-trash"></i>
+                                            </a>
+                                            <a data-ref="<?php echo base_url()?>reportes/imprimir_operacion/<?php echo $key['ope_id']?>"  type="button" class="btn btn-xs btn-warning delete" data-toggle="confirmation1" data-placement="left">
+                                                <i class="glyphicon fa-print"></i>
                                             </a>
                                         </td>
                                         <?php }?>

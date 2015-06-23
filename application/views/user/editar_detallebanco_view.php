@@ -52,6 +52,10 @@
                                 </select>
                                </div>
                             <div class="form-group">
+                                <label>Corte</label>
+                                <input type="text" class="form-control" id="corte" name="corte" placeholder="Valor" value="<?= $key['detban_corte'] ?>">
+                            </div>
+                            <div class="form-group">
                                 <label>Valor</label>
                                 <input type="text" class="form-control" id="valor" name="valor" placeholder="Valor" value="<?= $key['detban_valor'] ?>">
                             </div>

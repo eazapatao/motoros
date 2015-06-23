@@ -30,7 +30,8 @@
                                 <tr>
                                     <th>Cliente</th>
                                     <th>Línea</th>
-                                    <th>Ticket Alquiler</th>
+                                    <th>Corte</th>
+
                                     <th>Valor del minuto vendido</th>
                                     <th>Cargo por voz</th>
                                     <th>Datos</th>
@@ -47,7 +48,8 @@
                                 <tr>
                                     <th>Cliente</th>
                                     <th>Línea</th>
-                                    <th>Ticket Alquiler</th>
+                                    <th>Corte</th>
+
                                     <th>Valor del minuto vendido</th>
                                     <th>Cargo por voz</th>
                                     <th>Datos</th>
@@ -66,7 +68,8 @@
                                     <tr>
                                         <td><?= $key['cli_nombre'].' '.$key['cli_apellido']?></td>
                                         <td><?= $key['lin_numero']?></td>
-                                        <td><?= $key['his_alq_id']?></td>
+                                        <td><?= $key['lin_corte']?></td>
+
                                         <td><?= $key['his_valor_minvend']?></td>
                                         <td><?= $key['his_valor_minvend'] * $key['pla_totalmin']?></td>
                                         <td><?= $key['dat_nombre']?></td>

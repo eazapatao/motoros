@@ -45,6 +45,7 @@ class Operacion extends CI_Controller{
         redirect('operacion', 'refresh');
     }
 
+
     function editar($id)
     {
         $content = array(

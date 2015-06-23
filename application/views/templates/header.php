@@ -92,6 +92,73 @@
             <li class="footer"><a href="<?=base_url()?>notificacion/pagos">Ver todas</a></li>
         </ul>
     </li>
+
+    <!-- Notificaciones de las lineas proximas a suspenderse -->
+    <li class="dropdown notifications-menu">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Suspenciones
+            <i class="fa fa-warning"></i>
+        <span class="label label-warning"><?php
+            echo ($suspenciones["hoy"]+$suspenciones["dos"]+$suspenciones["otros"]);
+            ?></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li class="header"><?=$suspenciones["hoy"]+$suspenciones["dos"]+$suspenciones["otros"];?> Lineas tienen suspención en:</li>
+            <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                    <li>
+                        <a href="javascript:;">
+                            <i class="fa fa-warning danger"></i><?=$suspenciones["hoy"]?> Lineas hoy.
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="fa fa-warning warning"></i> <?=$suspenciones["dos"]?> Lineas en menos dos días.
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="fa fa-warning success"></i> <?=$suspenciones["otros"]?> Lineas en menos 15 días.
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="footer"><a href="<?=base_url()?>notificacion/suspenciones">Ver todas</a></li>
+        </ul>
+    </li>
+    <!-- Notificaciones de las sim a recojer -->
+    <li class="dropdown notifications-menu">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sim a recojer
+            <i class="fa fa-warning"></i>
+        <span class="label label-warning"><?php
+            echo ($sim["hoy"]+$sim["dos"]+$sim["otros"]);
+            ?></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li class="header"><?=$sim["hoy"]+$sim["dos"]+$sim["otros"];?> Sim card a recojer en:</li>
+            <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                    <li>
+                        <a href="javascript:;">
+                            <i class="fa fa-warning danger"></i><?=$sim["hoy"]?> Sim card a recojer hoy.
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="fa fa-warning warning"></i> <?=$sim["dos"]?> Sim card a recojer en dos días.
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="fa fa-warning success"></i> <?=$sim["otros"]?> Sim card a recojer en menos 15 días.
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="footer"><a href="<?=base_url()?>notificacion/sim">Ver todas</a></li>
+        </ul>
+    </li>
 <!-- Tasks: style can be found in dropdown.less -->
 <li class="dropdown user user-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">

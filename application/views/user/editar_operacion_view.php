@@ -75,6 +75,10 @@
 
                             </div>
                             <div class="form-group">
+                                <label>Opc. N° Tarjeta</label>
+                                <input type="text" class="form-control" id="valor" name="valor" placeholder="Valor" value="<?= $key['ope_tarjeta'] ?>">
+                            </div>
+                            <div class="form-group">
                                 <label>Valor</label>
                                 <input type="text" class="form-control" id="valor" name="valor" placeholder="Valor" value="<?= $key['ope_valor'] ?>">
                             </div>

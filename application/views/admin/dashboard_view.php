@@ -31,7 +31,7 @@
         </div>
     </div><!-- ./col -->
     <div class="col-lg-4 col-xs-6">
-        <!-- small box -->
+        <!-- links del dashboard -->
         <div class="small-box bg-green">
             <div class="inner">
                 <h3>
@@ -51,7 +51,8 @@
                 Davivienda <i class="fa fa-arrow-circle-right"></i>
             </a>
         </div>
-    </div><!-- ./col -->
+    </div>
+    <!-- operadores -->
     <div class="col-lg-4 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-yellow">
@@ -76,7 +77,33 @@
                 Movistar <i class="fa fa-arrow-circle-right"></i>
             </a>
         </div>
-    </div><!-- ./col -->
+    </div>
+    <!-- Informe mensual de caja -->
+    <div class="col-lg-6">
+        <div class="box box-success">
+            <div class="box-header">
+                <?php $mes=date('M');?>
+                <h3 class="box-title">Informe en caja</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <table class="table table-bordered">
+
+                    <tbody><tr>
+                        <th style="">Total ingresos</th>
+                        <th>Total egresos</th>
+                        <th style="">Saldo</th>
+                    </tr>
+                    <tr>
+                        <td>$<?= number_format ($totalesM['debeb'], 0, ',', '.')?></td>
+                        <td>$<?= number_format ($totalesM['haberb'], 0, ',', '.')?></td>
+                        <td>$<?= number_format ($totalesM['deferenciab'], 0, ',', '.')?></td>
+                    </tr>
+
+                    </tbody></table>
+            </div><!-- /.box-body -->
+        </div>
+    </div>
+
 
     <!-- Main content -->
     <section class="content">

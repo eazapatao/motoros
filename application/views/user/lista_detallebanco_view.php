@@ -76,6 +76,7 @@
                                     <th>Cliente</th>
                                     <th>Fecha</th>
                                     <th>Transacción</th>
+                                    <th>Corte</th>
                                     <th>Valor</th>
                                     <th>Detalle</th>
                                     <?php   $arr = $arr = $this->session->userdata('logged_in');
@@ -91,6 +92,7 @@
                                     <th>Cliente</th>
                                     <th>Fecha</th>
                                     <th>Transacción</th>
+                                    <th>Corte</th>
                                     <th>Valor</th>
                                     <th>Detalle</th>
                                     <?php   $arr = $arr = $this->session->userdata('logged_in');
@@ -108,6 +110,7 @@
                                         <td><?= $key['cli_nombre'].' '.$key['cli_apellido']?></td>
                                         <td><?= $key['detban_fecha']?></td>
                                         <td><?= $key['detban_transaccion']?></td>
+                                        <td><?= $key['detban_corte']?></td>
                                         <td><?= $key['detban_valor']?></td>
                                         <td><?= $key['detban_detalle']?></td>
                                         <?php   $arr = $arr = $this->session->userdata('logged_in');

@@ -58,6 +58,10 @@
 
                             </div>
                             <div class="form-group">
+                                <label>Corte</label>
+                                <input type="text" class="form-control" id="corte" name="corte" placeholder="Corte">
+                            </div>
+                            <div class="form-group">
                                 <label>Valor</label>
                                 <input type="text" class="form-control" id="valor" name="valor" placeholder="Valor">
                             </div>
