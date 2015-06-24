@@ -6,6 +6,8 @@ class Linea extends CI_Controller{
         parent::__construct();
         $this->load->model("linea_model");
         $this->load->model("plan_model");
+        $this->load->model("directorio_model");
+        $this->load->model("usuario_model");
     }
 
     public function index(){
@@ -133,10 +135,29 @@ class Linea extends CI_Controller{
 
         $this->load->view("templates/admin_template", $content);
     }
+    function programar_entregasim()
+    {
+        $content = array(
+            "menu" => "Devolución de líneas",
+            "label" => "lin",
+            "label2" => "list",
+            "titulo" => "",
+            "lineas" => $this->linea_model->get_lista_lineas_alquiladas(),
+            "clientes" => $this->directorio_model->get_lista_clientes(),
+            "usuarios" => $this->usuario_model->get_lista_usuarios(),
+            "main_content" => "user/programar_entregasim_view"
+        );
 
+        $this->load->view("templates/admin_template", $content);
+    }
     function guardar_devolucion_linea(){
         $this->linea_model->guardar_devolucion_linea();
         redirect("linea/devolucion_linea", "refresh");
+
+    }
+    function guardar_programarentregasim(){
+        $this->linea_model->guardar_programarentregasim();
+        redirect("linea/programar_entregasim", "refresh");
 
     }
     function del($id)

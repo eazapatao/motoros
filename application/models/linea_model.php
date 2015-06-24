@@ -80,7 +80,19 @@ class linea_model extends CI_Model{
 
         $this->db->insert("linea", $data);
 
-    }
+    }  function guardar_programarentregasim(){
+
+    $data = array(
+        "dev_cli_id" => $this->input->post("cliente"),
+        "dev_lin_id" => $this->input->post("linea"),
+        "dev_fecha" => $this->input->post("fecha"),
+        "dev_usu_id" => $this->input->post("usuario"),
+
+    );
+
+    $this->db->insert("devolucion_linea", $data);
+
+}
 
     function guardar_devolucion_linea()
     {

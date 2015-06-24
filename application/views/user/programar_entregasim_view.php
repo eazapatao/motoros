@@ -22,14 +22,36 @@
                         <h3 class="box-title"></h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form action="<?= base_url()?>index.php/linea/guardar_devolucion_linea/" method="POST" enctype="multipart/form-data">
+                    <form action="<?= base_url()?>index.php/linea/guardar_programarentregasim/" method="POST" enctype="multipart/form-data">
                         <div class="box-body">
+                            <div class="form-group">
+                                <label>Cliente</label><br>
+                                <select class="selectpicker" name="cliente" id="cliente" data-live-search="true">
+                                    <option>Seleccione Cliente</option>
+                                    <?php foreach($clientes as $cliente){?>
+                                        <option value="<?= $cliente['cli_id']?>"><?= $cliente['cli_nombre'].' '.$cliente['cli_apellido']?></option>
+                                    <?php }?>
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label>Línea</label><br>
                                 <select class="selectpicker" name="linea" id="linea" data-live-search="true">
                                     <option>Seleccione línea</option>
                                     <?php foreach($lineas as $linea){?>
                                         <option value="<?= $linea['lin_id']?>"><?= 'Línea '.$linea['lin_numero'].' Pasaminutos '.$linea['lin_pasaminutos'].' Disponibles '.$linea['lin_minutosconsumidos']?></option>
+                                    <?php }?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Fecha</label>
+                                <input type="date" class="form-control" id="fecha" name="fecha" placeholder="Fecha" value="<?php echo date("d-m-Y"); ?>" readonly="true" >
+                            </div>
+                            <div class="form-group">
+                                <label>Responsable</label><br>
+                                <select class="selectpicker" name="usuario" id="usuario" data-live-search="true">
+                                    <option>Seleccione responsable</option>
+                                    <?php foreach($usuarios as $usuario){?>
+                                        <option value="<?= $usuario['usu_id']?>"><?= $usuario['usu_nombre'].' '.$usuario['usu_apellido']?></option>
                                     <?php }?>
                                 </select>
                             </div>

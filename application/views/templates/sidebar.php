@@ -43,6 +43,7 @@
                     <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>alquiler"><i class="fa fa-angle-double-right"></i>Alquiler de líneas</a></li>
                     <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>plan"><i class="fa fa-angle-double-right"></i>Administración de planes</a></li>
                     <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>linea/devolucion_linea"><i class="fa fa-angle-double-right"></i>Devolución de líneas</a></li>
+                    <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>linea/programar_entregasim"><i class="fa fa-angle-double-right"></i>Programar devolución sim</a></li>
                     <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>control"><i class="fa fa-angle-double-right"></i>Control de adicionales</a></li>
 
                 </ul>
