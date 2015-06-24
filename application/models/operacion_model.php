@@ -39,7 +39,7 @@ class operacion_model extends CI_Model{
         $debe = $this->obtener_debe( $alquiler[0]['alq_id']);
         $abono = $this->obtener_abono( $alquiler[0]['alq_id']);
         $saldo = $this->obtener_saldo( $alquiler[0]['alq_id']);
-
+        $valorestadocuenta = $this->obtener_estadocuenta($alquiler[0]['alq_id']);
 
 
         if($this->input->post("tipo")== 'Ingreso Cliente')
@@ -54,6 +54,16 @@ class operacion_model extends CI_Model{
 
             $this->db->where("estcue_alq_id", $alquiler[0]['alq_id']);
             $this->db->update('estadocuenta', $data1);
+
+            $fecha=date("d-m-Y");
+            $data1 = array(
+                "estcuefec_estcue_id" =>  $valorestadocuenta,
+                "estcuefec_estcue_abono" => $this->input->post("valor"),
+                "estcuefec_estcue_saldo" => 0,
+                "estcuefec_fecha" => $fecha,
+                "estcuefec_cli_id" => $this->input->post("cliente")
+            );
+            $this->db->insert("estadocuenta_fecha", $data1);
         }
         else
             if($this->input->post("tipo")== 'Egreso Cliente')
@@ -67,11 +77,31 @@ class operacion_model extends CI_Model{
 
                 $this->db->where("estcue_alq_id", $alquiler[0]['alq_id']);
                 $this->db->update('estadocuenta', $data2);
+                $fecha=date("d-m-Y");
+                $data1 = array(
+                    "estcuefec_estcue_id" =>  $valorestadocuenta,
+                    "estcuefec_estcue_debe" => $this->input->post("valor"),
+                    "estcuefec_estcue_abono" => 0,
+                    "estcuefec_estcue_saldo" => 0,
+                    "estcuefec_fecha" => $fecha,
+                    "estcuefec_cli_id" => $this->input->post("cliente")
+                );
+                $this->db->insert("estadocuenta_fecha", $data1);
             }
         $this->guardar_informediario($last,$this->input->post("valor"),$this->input->post("tipo"),$this->input->post("fecha"));
 
     }
+    function obtener_estadocuenta($alquiler)
+    {
+        $this->db->select('estcue_id');
+        $this->db->from('estadocuenta');
+        $this->db->join('alquiler','alquiler.alq_id=estadocuenta.estcue_alq_id');
+        $this->db->where('alq_id',$alquiler);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result[0]['estcue_id'];
 
+    }
     function ultimo()
     {
         return $this->db->insert_id();

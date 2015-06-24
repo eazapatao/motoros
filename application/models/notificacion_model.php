@@ -102,7 +102,7 @@ class Notificacion_model extends CI_Model{
     function  get_lista_facturaciones(){
         $clave = intval(date('d'));
         $mes = intval(date('m'));
-        $ano = intval(date('y'));
+        $ano = intval(date('Y'));
 
 
         $result = array(
@@ -111,7 +111,14 @@ class Notificacion_model extends CI_Model{
             "otros" => array()
         );
 
-        $query = $this->db->query("SELECT lin_numero, con_valorapagar,con_facturacion FROM linea,control_adicional WHERE linea.lin_id = control_adicional.con_lin_id");
+        $this->db->select('lin_numero, con_valorapagar,con_facturacion');
+        $this->db->from('control_adicional');
+        $this->db->join('linea','linea.lin_id=control_adicional.con_lin_id');
+        $query = $this->db->get();
+       // $query = $query->result_array();
+
+
+       // $query = $this->db->query("SELECT lin_numero, con_valorapagar,con_facturacion FROM linea,control_adicional WHERE linea.lin_id = control_adicional.con_lin_id");
         foreach ($query->result_array() as $key){
             if (substr($key['con_facturacion'],0,2) < $clave && substr($key['con_facturacion'],3,2) == $mes and substr($key['con_facturacion'],6,4) == $ano){
                 $clave2 = 30 - $clave;
@@ -164,6 +171,7 @@ class Notificacion_model extends CI_Model{
 
     function get_corte_hoy($dia)
     {
+
         $query = $this->db->query("SELECT lin_id, lin_corte FROM linea WHERE lin_estado = 'Alquilada' AND lin_corte = $dia ");
 
         $query = $query->result_array();
@@ -182,7 +190,7 @@ class Notificacion_model extends CI_Model{
         }
 
         foreach ($result as $key) {
-            $this->db->select('estcue_debe');
+            $this->db->select('estcue_debe,estcue_id');
             $this->db->where('estcue_alq_id', $key['id_alq']);
             $query = $this->db->get('estadocuenta');
             $query = $query->result_array();
@@ -194,8 +202,30 @@ class Notificacion_model extends CI_Model{
             );
             $this->db->where("estcue_alq_id", $key['id_alq']);
             $this->db->update('estadocuenta', $dato);
-
+            $cliente=$this->obtenercliente($query[0]['estcue_id']);
+            $fecha=date("d-m-Y");
+            $data1 = array(
+                "estcuefec_estcue_id" =>  $query[0]['estcue_id'],
+                "estcuefec_estcue_debe" => $debe,
+                "estcuefec_estcue_abono" => 0,
+                "estcuefec_estcue_saldo" => 0,
+                "estcuefec_fecha" => $fecha,
+                "estcuefec_cli_id" => $cliente
+            );
+            $this->db->insert("estadocuenta_fecha", $data1);
         }
+    }
+
+    function obtenercliente($estadocuenta)
+    {
+        $this->db->select('cli_id');
+        $this->db->from('cliente');
+        $this->db->join('alquiler','alquiler.alq_cli_id=cliente.cli_id');
+        $this->db->join('estadocuenta','estadocuenta.estcue_alq_id=alquiler.alq_id');
+        $this->db->where('estcue_id',$estadocuenta);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result[0]['cli_id'];
     }
 
 

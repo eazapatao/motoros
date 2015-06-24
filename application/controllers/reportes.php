@@ -5,6 +5,7 @@ class Reportes extends CI_Controller{
     function __construct()    {
         parent::__construct();
         $this->load->model("reporte_model");
+        $this->load->model("directorio_model");
     }
 
     public function ver_estadocuentas(){
@@ -29,7 +30,54 @@ class Reportes extends CI_Controller{
         }
 
     }
+    public function ver_estadocuentasxfecha(){
+        $arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in'))
+        {
+            $content = array(
+                "menu" => "Estado de cuentas por fecha",
+                "label" => "Rep",
+                "label2" => "list",
+                "titulo" => "",
+                "main_content" => "user/estadodecuentaxfecha_view",
+                "clientes" => $this->directorio_model->get_lista_clientes(),
 
+            );
+
+            $this->load->view("templates/admin_template", $content);
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
+
+    }
+    public function estadocuentasxfecha($fecha,$cliente){
+        $arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in'))
+        {
+            $content = array(
+                "menu" => "Estado de cuentas por fecha",
+                "label" => "Lin",
+                "label2" => "list",
+                "titulo" => "",
+                "ecxfecha" => $this->reporte_model->get_estadocuentasxfecha($fecha,$cliente),
+                "main_content" => "user/lista_estadocuentasxfecha_view",
+
+
+            );
+
+            $this->load->view("templates/admin_template", $content);
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+
+        }
+
+    }
     public function ver_informediario(){
         $arr = $this->session->userdata('logged_in');
         if($this->session->userdata('logged_in'))
@@ -98,23 +146,36 @@ class Reportes extends CI_Controller{
         {
             //If no session, redirect to login page
             redirect('login', 'refresh');
+
         }
 
     }
-    public function imprimir_factura(){
+    public function imprimir_factura($corte)
+    {
+        $arr = $this->session->userdata('logged_in');
+        if ($this->session->userdata('logged_in')) {
 
-        if($this->session->userdata('logged_in')) {
 
-
-
-                $content = array(
-                    //"data" => $this->apply_model->get_corte($corte_id),
-                    "doit" => 'I'
-                );
-                $this->load->library('Pdf');
-                $this->load->view("factura_view");
-
+            $content = array(
+                //"data" => $this->apply_model->get_corte($corte_id),
+                "doit" => 'I',
+                "facturacion" => $this->reporte_model->get_facturacion($corte),
+            );
+            /*print_r($this->reporte_model->get_facturacion($corte));
+              foreach($this->reporte_model->get_facturacion($corte) as $key => $value){
+                  foreach($value as $value2){
+                      if($key == $value2['cli_id']) {
+                            print_r($value2);
+                          echo"------------";
+                      }
+                      }
+                  }*/
+            $this->load->library('Pdf');
+            $this->load->view("factura_view", $content);
         }
+
+
+
         else
         {
             //If no session, redirect to login page

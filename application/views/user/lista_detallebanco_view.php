@@ -78,7 +78,11 @@
                                     <th>Transacción</th>
                                     <th>Valor</th>
                                     <th>Detalle</th>
+                                    <?php   $arr = $arr = $this->session->userdata('logged_in');
+                                    if($arr['role'] == 1)
+                                    {?>
                                     <th>Opciones</th>
+                                    <?php }?>
                                 </tr>
                                 </thead>
                                 <tfoot>
@@ -89,7 +93,11 @@
                                     <th>Transacción</th>
                                     <th>Valor</th>
                                     <th>Detalle</th>
+                                    <?php   $arr = $arr = $this->session->userdata('logged_in');
+                                    if($arr['role'] == 1)
+                                    {?>
                                     <th>Opciones</th>
+                                    <?php }?>
                                 </tr>
                                 </tfoot>
 
@@ -102,6 +110,9 @@
                                         <td><?= $key['detban_transaccion']?></td>
                                         <td><?= $key['detban_valor']?></td>
                                         <td><?= $key['detban_detalle']?></td>
+                                        <?php   $arr = $arr = $this->session->userdata('logged_in');
+                                        if($arr['role'] == 1)
+                                        {?>
                                         <td>
                                             <a href="<?php echo base_url()?>detallebanco/editar/<?php echo $key['detban_id']?>" type="button" class="btn btn-xs btn-warning">
                                                 <i class="glyphicon glyphicon-edit"></i>
@@ -110,6 +121,7 @@
                                             <i class="glyphicon glyphicon-trash"></i>
                                             </a>
                                         </td>
+                                        <?php }?>
                                     </tr>
                                 <?php }?>
 

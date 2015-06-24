@@ -47,7 +47,11 @@
                         <th>20.000</th>
                         <th>50.000</th>
                         <th>Total</th>
+                        <?php   $arr = $arr = $this->session->userdata('logged_in');
+                        if($arr['role'] == 1)
+                        {?>
                         <th>Opciones</th>
+                        <?php }?>
                     </tr>
                     </thead>
 
@@ -66,7 +70,11 @@
                         <th>20.000</th>
                         <th>50.000</th>
                         <th>Total</th>
+                        <?php   $arr = $arr = $this->session->userdata('logged_in');
+                        if($arr['role'] == 1)
+                        {?>
                         <th>Opciones</th>
+                        <?php }?>
                     </tr>
                     </tfoot>
 
@@ -86,6 +94,9 @@
                             <td><?= $key['den_20000']?></td>
                             <td><?= $key['den_50000']?></td>
                             <td><?= $key['den_total']?></td>
+                            <?php   $arr = $arr = $this->session->userdata('logged_in');
+                            if($arr['role'] == 1)
+                            {?>
                             <td>
                                 <a href="<?php echo base_url()?>conteo/editar/<?php echo $key['den_id']?>" type="button" class="btn btn-xs btn-warning">
                                     <i class="glyphicon glyphicon-edit"></i>
@@ -94,6 +105,7 @@
                                     <i class="glyphicon glyphicon-trash"></i>
                                 </a>
                             </td>
+                            <?php }?>
                         </tr>
                     <?php }?>
 

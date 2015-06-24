@@ -40,7 +40,11 @@
                         <th>Desde</th>
                         <th>Hasta</th>
                         <th>Total</th>
+                        <?php   $arr = $arr = $this->session->userdata('logged_in');
+                        if($arr['role'] == 1)
+                        {?>
                         <th>Opciones</th>
+                        <?php }?>
                     </tr>
                     </thead>
 
@@ -56,7 +60,11 @@
                         <th>Desde</th>
                         <th>Hasta</th>
                         <th>Total</th>
+                        <?php   $arr = $arr = $this->session->userdata('logged_in');
+                        if($arr['role'] == 1)
+                        {?>
                         <th>Opciones</th>
+                        <?php }?>
                     </tr>
                     </tfoot>
 
@@ -73,6 +81,9 @@
                             <td><?= $key['nomquin_fechainicio']?></td>
                             <td><?= $key['nomquin_fechafin']?></td>
                             <td><?= $key['nomquin_total']?></td>
+                            <?php   $arr = $arr = $this->session->userdata('logged_in');
+                            if($arr['role'] == 1)
+                            {?>
                             <td>
                                 <a href="<?php echo base_url()?>nomina/editar/<?php echo $key['nomquin_id']?>" type="button" class="btn btn-xs btn-warning">
                                     <i class="glyphicon glyphicon-edit"></i>
@@ -81,6 +92,7 @@
                                     <i class="glyphicon glyphicon-trash"></i>
                                 </a>
                             </td>
+                            <?php }?>
                         </tr>
                     <?php }?>
 

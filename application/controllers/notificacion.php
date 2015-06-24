@@ -24,7 +24,7 @@ class Notificacion extends CI_Controller {
 
     public function index(){
         $arr = $this->session->userdata('logged_in');
-        if($this->session->userdata('logged_in') && $arr['role'] == 1)
+        if($this->session->userdata('logged_in'))
         {
 
             $content = array(
@@ -47,7 +47,7 @@ class Notificacion extends CI_Controller {
 
     public function cortes(){
         $arr = $this->session->userdata('logged_in');
-        if($this->session->userdata('logged_in') && $arr['role'] == 1)
+        if($this->session->userdata('logged_in'))
         {
 
             $content = array(
@@ -71,7 +71,7 @@ class Notificacion extends CI_Controller {
 
     public function pagos(){
         $arr = $this->session->userdata('logged_in');
-        if($this->session->userdata('logged_in') && $arr['role'] == 1)
+        if($this->session->userdata('logged_in'))
         {
 
             $content = array(

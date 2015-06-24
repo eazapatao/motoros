@@ -1,9 +1,17 @@
 <header class="header">
-
+<?php   $arr = $arr = $this->session->userdata('logged_in');
+    if($arr['role'] == 1)
+    {?>
 <a href="<?=base_url()?>admin" class="logo icon">
     <!-- Add the class icon to your logo image or logo icon to add the margining -->
     <img class="logo" src="<?php echo base_url()?>asset/img/logo.png">
 </a>
+    <?php } else {?>
+    <a href="<?=base_url()?>inicio" class="logo icon">
+        <!-- Add the class icon to your logo image or logo icon to add the margining -->
+        <img class="logo" src="<?php echo base_url()?>asset/img/logo.png">
+    </a>
+    <?php }?>
 <!-- Header Navbar: style can be found in header.less -->
 <nav class="navbar navbar-static-top" role="navigation">
 <!-- Sidebar toggle button-->
@@ -16,41 +24,6 @@
 <div class="navbar-right">
 <ul class="nav navbar-nav">
 
-
-
-<!-- Messages: style can be found in dropdown.less
-<li class="dropdown notifications-menu">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <i class="fa fa-phone"></i>
-        <span class="label label-warning"><?php
-            echo ($cortes["hoy"]+$cortes["dos"]+$cortes["otros"]);
-            ?></span>
-    </a>
-    <ul class="dropdown-menu">
-        <li class="header"><?=$cortes["hoy"]+$cortes["dos"]+$cortes["otros"];?> Lineas tienen corte en:</li>
-        <li>
-
-            <ul class="menu">
-                <li>
-                    <a href="#">
-                        <i class="fa fa-warning danger"></i><?=$cortes["hoy"]?> Lineas hoy.
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-warning warning"></i> <?=$cortes["dos"]?> Lineas en menos dos días.
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-warning success"></i> <?=$cortes["otros"]?> Lineas en menos 15 días.
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="footer"><a href="#">Ver todas</a></li>
-    </ul>
-</li>-->
 
     <!-- Notificaciones de los cortes proximos a vencerse-->
 <li class="dropdown notifications-menu">
@@ -85,7 +58,8 @@
         <li class="footer"><a href="<?=base_url()?>notificacion/cortes">Ver todas</a></li>
     </ul>
 </li>
-    <!-- Notificaciones de las facturas proximas a vencerse-->
+
+    <!-- Notificaciones de las facturas proximas a vencerse -->
     <li class="dropdown notifications-menu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Facturación
             <i class="fa fa-warning"></i>

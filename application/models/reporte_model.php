@@ -13,7 +13,28 @@ class Reporte_model extends CI_Model{
         return $query->result_array();
 
     }
+    function get_estadocuentasxfecha($fecha,$cliente){
+        $this->db->select('*');
+        $this->db->from('estadocuenta_fecha');
 
+        $this->db->join('estadocuenta', 'estadocuenta.estcue_id = estadocuenta_fecha.estcuefec_estcue_id');
+        $this->db->join('alquiler', 'alquiler.alq_id = estadocuenta.estcue_alq_id');
+        $this->db->join('cliente', 'cliente.cli_id = alquiler.alq_cli_id');
+        $this->db->join('historialinea', 'historialinea.his_alq_id = alquiler.alq_id');
+        $this->db->join('linea', 'linea.lin_id = historialinea.his_lin_id');
+
+        $this->db->where('estcuefec_fecha', $fecha);
+        $this->db->where('estcuefec_cli_id', $cliente);
+        $query = $this->db->get();
+        return $query->result_array();
+
+    }
+    function get_lista_estadocuentasxfecha(){
+        $query = $this->db->get("estadocuenta_fecha");
+
+        return $query->result_array();
+
+    }
     function get_lista_informesdiarios(){
         $this->db->select('*');
         $this->db->from('operacion');
@@ -82,8 +103,41 @@ class Reporte_model extends CI_Model{
         return $saldoactual;
 
     }
-    function get_sumasaldo_hoy()
+    function get_facturacion($corte)
     {
+        $activo = "Activo";
+        $this->db->select('*');
+        $this->db->from('cliente');
+        $this->db->join('alquiler','alquiler.alq_cli_id=cliente.cli_id');
+        $this->db->join('historialinea','historialinea.his_alq_id=alquiler.alq_id');
+        $this->db->join('linea','linea.lin_id=historialinea.his_lin_id');
+        $this->db->join('datos','datos.dat_id=historialinea.his_dat_id');
+        $this->db->join('plan','plan.pla_id=linea.lin_pla_id');
+        $this->db->join('control_adicional','control_adicional.con_lin_id=linea.lin_id');
+        $this->db->where('his_estado', $activo);
+        $this->db->where('lin_corte', $corte);
+        $query = $this->db->get();
+        $result=$query->result_array();
+        $final = array();
+        $i = 0;
+        $tmp = array();
+        foreach($result as $key){
 
+                $final[] = $key['cli_id'];
+
+        }
+        $final = array_unique($final);
+
+        foreach($final as $f){
+            $i=0;
+            foreach($result as $key){
+
+                if ($f == $key['cli_id']){
+                    $tmp[$f][$i] = $key;
+                }
+                $i++;
+
+            }
+        }        return $tmp;
     }
 }

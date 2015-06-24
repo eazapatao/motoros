@@ -34,7 +34,11 @@
                                     <th>Fecha</th>
                                     <th>Valor</th>
                                     <th>Coutas</th>
+                                    <?php   $arr = $arr = $this->session->userdata('logged_in');
+                                    if($arr['role'] == 1)
+                                    {?>
                                     <th>Opciones</th>
+                                    <?php }?>
                                 </tr>
                                 </thead>
                                 <tfoot>
@@ -43,7 +47,11 @@
                                     <th>Fecha</th>
                                     <th>Valor</th>
                                     <th>Cuotas</th>
+                                    <?php   $arr = $arr = $this->session->userdata('logged_in');
+                                    if($arr['role'] == 1)
+                                    {?>
                                     <th>Opciones</th>
+                                    <?php }?>
                                 </tr>
                                 </tfoot>
 
@@ -54,6 +62,9 @@
                                         <td><?= $key['emppre_fecha']?></td>
                                         <td><?= $key['emppre_valor']?></td>
                                         <td><?= $key['emppre_cuotas']?></td>
+                                        <?php   $arr = $arr = $this->session->userdata('logged_in');
+                                        if($arr['role'] == 1)
+                                        {?>
                                     <td>
                                             <a href="<?php echo base_url()?>nomina/editarp/<?php echo $key['emppre_id']?>" type="button" class="btn btn-xs btn-warning">
                                                 <i class="glyphicon glyphicon-edit"></i>
@@ -63,6 +74,7 @@
                                             <i class="glyphicon glyphicon-trash"></i>
                                         </a>
                                         </td>
+                                        <?php }?>
                                     </tr>
                                 <?php }?>
 

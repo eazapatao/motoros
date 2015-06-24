@@ -8,7 +8,14 @@
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> <?= $menu?></a></li>
             <li class="active"><?= $titulo?></li>
-        </ol>
+        </ol><br>
+        <?php
+        $dia=date("d");
+        ?>
+        <a class="btn btn-primary" id="cortes" href="<?= base_url()?>reportes/imprimir_factura/<?=$dia?>">
+            <i class="fa fa-edit"></i> Imprimir facturación de hoy
+        </a>
+
     </section>
     <!-- Main content -->
     <section class="content">

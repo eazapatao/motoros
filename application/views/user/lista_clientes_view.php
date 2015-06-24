@@ -44,7 +44,11 @@
                         <th>Ciudad</th>
                         <th>Categoría</th>
                         <th>Observaciones</th>
+                        <?php   $arr = $arr = $this->session->userdata('logged_in');
+                        if($arr['role'] == 1)
+                        {?>
                         <th>Opciones</th>
+                        <?php }?>
                     </tr>
                     </thead>
 
@@ -60,7 +64,11 @@
                         <th>Ciudad</th>
                         <th>Categoría</th>
                         <th>Observaciones</th>
+                        <?php   $arr = $arr = $this->session->userdata('logged_in');
+                        if($arr['role'] == 1)
+                        {?>
                         <th>Opciones</th>
+                        <?php }?>
                     </tr>
                     </tfoot>
 
@@ -77,6 +85,9 @@
                             <td><?= $key['cli_ciudad']?></td>
                             <td><?= $key['cli_tipo']?></td>
                             <td><?= $key['cli_observaciones']?></td>
+                            <?php   $arr = $arr = $this->session->userdata('logged_in');
+                            if($arr['role'] == 1)
+                            {?>
                             <td>
                                 <a href="<?php echo base_url()?>directorio/editar/<?php echo $key['cli_id']?>" type="button" class="btn btn-xs btn-warning">
                                     <i class="glyphicon glyphicon-edit"></i>
@@ -85,6 +96,7 @@
                                     <i class="glyphicon glyphicon-trash"></i>
                                 </a>
                             </td>
+                            <?php }?>
                         </tr>
                     <?php }?>
 

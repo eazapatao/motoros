@@ -50,7 +50,8 @@ class Admin extends CI_Controller{
         //print_r( $this->notificacion_model->get_lista_facturaciones());
        // print_r(date('d/m/y')) ;
 
-       print_r($this->reporte_model->get_lineasxcorte_discriminado(31));
+       //print_r($this->reporte_model->get_lineasxcorte_discriminado(31));
+        print_r($this->reporte_model->get_estadocuentasxfecha('22-06-2015',765));
 
     }
 }

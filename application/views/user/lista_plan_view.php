@@ -36,7 +36,11 @@
                                     <th>Valor del minuto</th>
                                     <th>Cargo básico</th>
                                     <th>Promedio a consumir al día</th>
+                                    <?php   $arr = $arr = $this->session->userdata('logged_in');
+                                    if($arr['role'] == 1)
+                                    {?>
                                     <th>Opciones</th>
+                                    <?php }?>
                                 </tr>
                                 </thead>
                                 <tfoot>
@@ -47,7 +51,11 @@
                                     <th>Valor del minuto</th>
                                     <th>Cargo básico</th>
                                     <th>Promedio a consumir al día</th>
+                                    <?php   $arr = $arr = $this->session->userdata('logged_in');
+                                    if($arr['role'] == 1)
+                                    {?>
                                     <th>Opciones</th>
+                                    <?php }?>
                                 </tr>
                                 </tfoot>
 
@@ -60,7 +68,9 @@
                                         <td><?= $key['pla_vlrmin']?></td>
                                         <td><?= $key['pla_cargobasico']?></td>
                                         <td><?= $key['pla_promedio']?></td>
-
+                                        <?php   $arr = $arr = $this->session->userdata('logged_in');
+                                        if($arr['role'] == 1)
+                                        {?>
                                         <td>
                                             <a href="<?php echo base_url()?>plan/editar/<?php echo $key['pla_id']?>" type="button" class="btn btn-xs btn-warning">
                                                 <i class="glyphicon glyphicon-edit"></i>
@@ -70,6 +80,7 @@
                                                 <i class="glyphicon glyphicon-trash"></i>
                                             </a>
                                         </td>
+                                        <?php }?>
                                     </tr>
                                 <?php }?>
 

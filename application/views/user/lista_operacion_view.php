@@ -39,7 +39,11 @@
                                     <th>Fecha</th>
                                     <th>Número de factura</th>
                                     <th>Observaciones</th>
+                                    <?php   $arr = $arr = $this->session->userdata('logged_in');
+                                    if($arr['role'] == 1)
+                                    {?>
                                     <th>Opciones</th>
+                                    <?php }?>
                                 </tr>
                                 </thead>
                                 <tfoot>
@@ -51,7 +55,11 @@
                                     <th>Fecha</th>
                                     <th>Número de factura</th>
                                     <th>Observaciones</th>
+                                    <?php   $arr = $arr = $this->session->userdata('logged_in');
+                                    if($arr['role'] == 1)
+                                    {?>
                                     <th>Opciones</th>
+                                    <?php }?>
                                 </tr>
                                 </tfoot>
 
@@ -65,6 +73,9 @@
                                         <td><?= $key['ope_fecha']?></td>
                                         <td><?= $key['ope_nfactura']?></td>
                                         <td><?= $key['ope_observaciones']?></td>
+                                        <?php   $arr = $arr = $this->session->userdata('logged_in');
+                                        if($arr['role'] == 1)
+                                        {?>
                                         <td>
                                             <a href="<?php echo base_url()?>operacion/editar/<?php echo $key['ope_id']?>" type="button" class="btn btn-xs btn-warning">
                                                 <i class="glyphicon glyphicon-edit"></i>
@@ -73,6 +84,7 @@
                                                 <i class="glyphicon glyphicon-trash"></i>
                                             </a>
                                         </td>
+                                        <?php }?>
                                     </tr>
                                 <?php }?>
 

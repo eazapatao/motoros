@@ -35,7 +35,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Fecha</label>
-                                <input type="date" class="form-control" id="fecha" name="fecha" placeholder="Fecha" value="<?php echo date("d/m/y"); ?>" readonly="true" >
+                                <input type="date" class="form-control" id="fecha" name="fecha" placeholder="Fecha" value="<?php echo date("d-m-Y"); ?>" readonly="true" >
                             </div>
                             <div class="form-group">
                                 <label>Valor</label>

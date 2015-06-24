@@ -24,9 +24,7 @@ $("#guardar_historial").click(function(){
         url: base_url+"index.php/linea/guardar_historial/",
         data: $("#form_historial").serialize()
     }) .done(function( msg ) {
-
         location.reload(true);
-
     });
 });
 
@@ -46,4 +44,11 @@ $('[data-toggle=confirmation]').confirmation({
 
 $("#corte").on("change", function(){
     $("#cortes").attr("href", base_url+'reportes/lineasxcortediscriminado/'+this.value);
+});
+
+
+$("#cliente").on("change", function(){
+
+    var fecha = $("#fecha").val();
+    $("#ecfecha").attr("href", base_url+'reportes/estadocuentasxfecha/'+fecha+'/'+this.value);
 });

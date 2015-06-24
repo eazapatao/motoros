@@ -8,8 +8,16 @@
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> <?= $menu?></a></li>
             <li class="active"><?= $titulo?></li>
-        </ol>
+        </ol><br>
+        <?php
+        $dia=date("d");
+        ?>
+        <a class="btn btn-primary" id="cortes" href="<?= base_url()?>reportes/imprimir_factura/<?=$dia?>">
+            <i class="fa fa-edit"></i> Imprimir facturación de hoy
+        </a>
     </section>
+
+
     <!-- Main content -->
     <section class="content">
         <div class="row">
@@ -27,6 +35,7 @@
                                 <tr>
                                     <th>Linea</th>
                                     <th>Valor a pagar</th>
+                                    <th>Observación</th>
                                 </tr>
                                 </thead>
 
@@ -34,6 +43,7 @@
                                 <tr>
                                     <th>Linea</th>
                                     <th>Valor a pagar</th>
+                                    <th>Observación</th>
                                 </tr>
                                 </tfoot>
 
@@ -41,7 +51,12 @@
                                 <?php foreach ($data["hoy"] as $key) {?>
                                     <tr>
                                         <td><?= $key['lin_numero']?></td>
-                                        <td><?= $key['con_valorapagar']?></td>
+                                        <td><?= $key[0]['con_valorapagar']?></td>
+                                        <td>
+                                            <a href="<?php echo base_url()?>linea/editar/<?php echo $key['lin_numero']?>" type="button" class="btn btn-xs btn-warning">
+                                                <i class="glyphicon glyphicon-edit"></i>
+                                            </a>
+                                        </td>
                                     </tr>
                                 <?php }?>
 
