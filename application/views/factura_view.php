@@ -104,7 +104,7 @@ EOD;
     <td>' . $dia . '</td>
     <td>' . $mes . '</td>
     <td>' . $ano . '</td>
-    <td> 123 </td>
+    <td></td>
 </tr>
         ';
 
@@ -149,10 +149,10 @@ EOD;
 
 //bloque de resumen de pagos
 
-            $tbl_header = '<table  cellspacing="0" cellpadding="1" border="0.5">';
-            $tbl_footer = '</table>';
-            $tbl = '';
-            $tbl_header = '<table id="gallerytab"  cellspacing="0" cellpadding="0"   border="0.5" align="center">
+    $tbl_header = '<table  cellspacing="0" cellpadding="1" border="0.5">';
+    $tbl_footer = '</table>';
+    $tbl = '';
+    $tbl_header = '<table id="gallerytab"  cellspacing="0" cellpadding="0"   border="0.5" align="center">
     <tr>
     <th><font face="Arial, Helvetica, sans-serif">LINEA</font></th>
     <th><font face="Arial, Helvetica, sans-serif">CORTE</font></th>
@@ -162,15 +162,20 @@ EOD;
     </tr>
     ';
 
-            $tbl_footer = '</table>';
-            $tbl = '';
+    $tbl_footer = '</table>';
+    $tbl = '';
+    $total = 0;
+    $total1=0;
+    $totallineas=sizeof($value);
+    if(sizeof($value)<=9) {
     foreach ($value as $value2) {
-        if($key == $value2['cli_id']){
+        $total += $value2['his_cargobasico'];
+        if ($key == $value2['cli_id']) {
             $tbl .= '
 <tr>
     <td>' . $value2['lin_numero'] . '</td>
     <td>' . $value2['lin_corte'] . '</td>
-    <td>' . $value2['pla_totalmin'].' - '.$value2['dat_nombre'].'</td>
+    <td>' . $value2['pla_totalmin'] . ' - ' . $value2['dat_nombre'] . '</td>
     <td></td>
     <td>$ ' . $value2['his_cargobasico'] . '</td>
 </tr>
@@ -181,7 +186,25 @@ EOD;
     }
     $pdf->writeHTML($tbl_header . $tbl . $tbl_footer, true, false, false, false, '');
 
+}
+    else
+    {
 
+        foreach($value as $value2)
+        {
+            $total+=$value2['his_cargobasico'];
+        }
+
+        $tbl .= '
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+        ';
+    }
 
     //bloque de observaciones y total
 
@@ -204,8 +227,8 @@ EOD;
 
     $tbl .= '
 <tr>
-    <td></td>
-    <td></td>
+    <td>Al corte usted tiene ' . $totallineas . ' líneas</td>
+    <td>$ ' . $total . '</td>
 
 </tr>
         ';

@@ -68,7 +68,29 @@ class Notificacion extends CI_Controller {
         }
 
     }
+    public function sim(){
+        $arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in'))
+        {
 
+            $content = array(
+                "menu" => "Notificaciones",
+                "label" => "Sin",
+                "label2" => "",
+                "titulo" => "",
+                "main_content" => "user/devolucionsim_view",
+                "data" => $this->notificacion_model->get_lista_devolucion()
+            );
+
+            $this->load->view("templates/admin_template", $content);
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
+
+    }
     public function pagos(){
         $arr = $this->session->userdata('logged_in');
         if($this->session->userdata('logged_in'))

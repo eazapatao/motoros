@@ -15,9 +15,8 @@
         <a class="btn btn-primary" id="cortes" href="<?= base_url()?>reportes/imprimir_factura/<?=$dia?>">
             <i class="fa fa-edit"></i> Imprimir facturación de hoy
         </a>
+
     </section>
-
-
     <!-- Main content -->
     <section class="content">
         <div class="row">
@@ -25,7 +24,7 @@
                 <div class="box box-danger">
 
                     <div class="box-header">
-                        <h3 class="box-title">Facturaciones hoy</h3>
+                        <h3 class="box-title">Cortes hoy</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                         <div class="box-body">
@@ -34,32 +33,28 @@
                                 <thead>
                                 <tr>
                                     <th>Linea</th>
-                                    <th>Valor a pagar</th>
-                                    <th>Observación</th>
+                                    <th>Nombre</th>
+                                    <th>Telefono</th>
+                                    <th>Celular</th>
                                 </tr>
                                 </thead>
 
                                 <tfoot>
                                 <tr>
                                     <th>Linea</th>
-                                    <th>Valor a pagar</th>
-                                    <th>Observación</th>
+                                    <th>Nombre</th>
+                                    <th>Telefono</th>
+                                    <th>Celular</th>
                                 </tr>
                                 </tfoot>
 
                                 <tbody>
-                                <?php
-
-                                foreach ($data["hoy"] as $key=>$value) {
-                                  ?>
+                                <?php foreach ($data["hoy"] as $key) {?>
                                     <tr>
-                                        <td><?= $value["lin_numero"]?></td>
-                                        <td><?= $value["con_valorapagar"]?></td>
-                                        <td>
-                                            <a href="<?php echo base_url()?>linea/editar/<?php echo $key['lin_numero']?>" type="button" class="btn btn-xs btn-warning">
-                                                <i class="glyphicon glyphicon-edit"></i>
-                                            </a>
-                                        </td>
+                                        <td><?= $key['lin_num']?></td>
+                                        <td><?= $key[0]['cli_nombre'].' '.$key[0]['cli_apellido']?></td>
+                                        <td><?= $key[0]['cli_telefono']?></td>
+                                        <td><?= $key[0]['cli_celular']?></td>
                                     </tr>
                                 <?php }?>
 
@@ -72,7 +67,7 @@
                 <div class="box box-warning">
 
                     <div class="box-header">
-                        <h3 class="box-title">Facturación +2 días</h3>
+                        <h3 class="box-title">Cortes +2 días</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <div class="box-body">
@@ -81,22 +76,28 @@
                             <thead>
                             <tr>
                                 <th>Linea</th>
-                                <th>Valor a pagar</th>
+                                <th>Nombre</th>
+                                <th>Telefono</th>
+                                <th>Celular</th>
                             </tr>
                             </thead>
 
                             <tfoot>
                             <tr>
                                 <th>Linea</th>
-                                <th>Valor a pagar</th>
+                                <th>Nombre</th>
+                                <th>Telefono</th>
+                                <th>Celular</th>
                             </tr>
                             </tfoot>
 
                             <tbody>
                             <?php foreach ($data["dos"] as $key) {?>
                                 <tr>
-                                    <td><?= $key['lin_numero']?></td>
-                                    <td><?= $key['con_valorapagar']?></td>
+                                    <td><?= $key['lin_num']?></td>
+                                    <td><?= $key[0]['cli_nombre'].' '.$key[0]['cli_apellido']?></td>
+                                    <td><?= $key[0]['cli_telefono']?></td>
+                                    <td><?= $key[0]['cli_celular']?></td>
                                 </tr>
                             <?php }?>
 
@@ -109,7 +110,7 @@
                 <div class="box box-success">
 
                     <div class="box-header">
-                        <h3 class="box-title">Facturación +3 dias</h3>
+                        <h3 class="box-title">Cortes +3 dias</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <div class="box-body">
@@ -118,22 +119,28 @@
                             <thead>
                             <tr>
                                 <th>Linea</th>
-                                <th>Valor a pagar</th>
+                                <th>Nombre</th>
+                                <th>Telefono</th>
+                                <th>Celular</th>
                             </tr>
                             </thead>
 
                             <tfoot>
                             <tr>
                                 <th>Linea</th>
-                                <th>Valor a pagar</th>
+                                <th>Nombre</th>
+                                <th>Telefono</th>
+                                <th>Celular</th>
                             </tr>
                             </tfoot>
 
                             <tbody>
                             <?php foreach ($data["otros"] as $key) {?>
                                 <tr>
-                                    <td><?= $key['lin_numero']?></td>
-                                    <td><?= $key['con_valorapagar']?></td>
+                                    <td><?= $key['lin_num']?></td>
+                                    <td><?= $key[0]['cli_nombre'].' '.$key[0]['cli_apellido']?></td>
+                                    <td><?= $key[0]['cli_telefono']?></td>
+                                    <td><?= $key[0]['cli_celular']?></td>
                                 </tr>
                             <?php }?>
 

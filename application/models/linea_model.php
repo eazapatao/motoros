@@ -114,7 +114,7 @@ class linea_model extends CI_Model{
             $this->db->from('estadocuenta');
             $this->db->where('estcue_id', $data[0]['estcue_id']);
             $this->db->update("estadocuenta", $data1);
-            $cliente=$this->obtenercliente($query[0]['estcue_id']);
+            $cliente=$this->obtenercliente($data[0]['estcue_id']);
             $fecha=date("d-m-Y");
             $data1 = array(
                 "estcuefec_estcue_id" =>   $data[0]['estcue_id'],

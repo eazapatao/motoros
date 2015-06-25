@@ -98,7 +98,41 @@ class Notificacion_model extends CI_Model{
 
         }
         return $result;
+
+    }   function  get_lista_devolucion(){
+        $clave = intval(date('d'));
+
+
+        $result = array(
+            "hoy" => array(),
+            "dos" => array(),
+            "otros" => array()
+        );
+
+        $query = $this->db->query("SELECT * FROM devolucion_linea");
+
+        foreach ($query->result_array() as $key){
+            if ($key['lin_corte'] < $clave){
+                $clave2 = 30 - $clave;
+                if($clave2+$key['lin_corte'] <= 15  ){
+                    array_push($result["otros"], $this->get_cliente_linea_id($key['lin_id'], $key['lin_numero']));
+                }elseif($clave2+$key['lin_corte'] <= 2  ){
+                    array_push($result["dos"], $this->get_cliente_linea_id($key['lin_id'], $key['lin_numero']));
+                }
+            }elseif ($key['lin_corte'] >= $clave){
+                if($key['lin_corte']-$clave > 0 && intval($key['lin_corte'])-$clave  <= 2  ){
+                    array_push($result["dos"], $this->get_cliente_linea_id($key['lin_id'], $key['lin_numero']));
+                }elseif($key['lin_corte']-$clave > 2 && $key['lin_corte']-$clave <= 29){
+                    array_push($result["otros"], $this->get_cliente_linea_id($key['lin_id'], $key['lin_numero']));
+                }elseif($key['lin_corte'] == $clave) {
+                    array_push($result["hoy"], $this->get_cliente_linea_id($key['lin_id'], $key['lin_numero']));
+                }
+            }
+
+        }
+        return $result;
     }
+
     function  get_lista_facturaciones(){
         $clave = intval(date('d'));
         $mes = intval(date('m'));
@@ -120,20 +154,25 @@ class Notificacion_model extends CI_Model{
 
        // $query = $this->db->query("SELECT lin_numero, con_valorapagar,con_facturacion FROM linea,control_adicional WHERE linea.lin_id = control_adicional.con_lin_id");
         foreach ($query->result_array() as $key){
+            $temp=array(
+                "lin_numero"=>$key['lin_numero'],
+                "con_valorapagar"=>$key['con_valorapagar']
+            );
             if (substr($key['con_facturacion'],0,2) < $clave && substr($key['con_facturacion'],3,2) == $mes and substr($key['con_facturacion'],6,4) == $ano){
                 $clave2 = 30 - $clave;
                 if($clave2+substr($key['con_facturacion'],0,2) <= 15  ){
-                    array_push($result["otros"], $key['lin_numero'],$key['con_valorapagar']);
+
+                    array_push($result["otros"], $temp);
                 }elseif($clave2+substr($key['con_facturacion'],0,2) <= 2  ){
-                    array_push($result["dos"], $key['lin_numero'],$key['con_valorapagar']);
+                    array_push($result["dos"], $temp);
                 }
             }elseif (substr($key['con_facturacion'],0,2) >= $clave){
                 if(substr($key['con_facturacion'],0,2)-$clave > 0 && intval(substr($key['con_facturacion'],0,2))-$clave  <= 2  ){
-                    array_push($result["dos"], $key['lin_numero'],$key['con_valorapagar']);
+                    array_push($result["dos"], $temp);
                 }elseif(substr($key['con_facturacion'],0,2)-$clave > 2 && substr($key['con_facturacion'],0,2)-$clave <= 29){
-                    array_push($result["otros"],$key['lin_numero'],$key['con_valorapagar']);
+                    array_push($result["otros"],$temp);
                 }elseif(substr($key['con_facturacion'],0,2) == $clave) {
-                    array_push($result["hoy"], $key['lin_numero'],$key['con_valorapagar']);
+                    array_push($result["hoy"], $temp);
                 }
             }
 
