@@ -37,8 +37,8 @@ class Nomina_model extends CI_Model{
         return $query->result_array();
 
     }
-function calcularnomina()
-{
+    function calcularnomina()
+    {
 
         $nomina = intval($this->input->post("nomina"));
         $diaslaborados = intval($this->input->post("diaslaborados"));
@@ -47,10 +47,10 @@ function calcularnomina()
         $liquidacion = intval($this->input->post("liquidacion"));
         $total = (($nomina * $diaslaborados) - ($descuentos + $descuadres) + $liquidacion);
 
-    return $total;
+        return $total;
 
 
-        }
+    }
 
 
     function calcular()
@@ -76,24 +76,48 @@ function calcularnomina()
     }
 
 
-        function guardar_nomina(){
+    function guardar_nomina(){
         $nomina=$this->calcularnomina();
+        $tipo="Egreso Nómina";
+
         $data = array(
 
-        "nomquin_usu_id" => $this->input->post("usuario"),
-        "nomquin_nomina" => $this->input->post("nomina"),
-        "nomquin_diaslaborados" => $this->input->post("diaslaborados"),
-        "nomquin_descuentos" => $this->input->post("descuentos"),
-        "nomquin_descuadres" => $this->input->post("descuadres"),
-        "nomquin_liquidacion" => $this->input->post("liquidacion"),
-        "nomquin_novedades" => $this->input->post("novedades"),
-        "nomquin_fechainicio" => $this->input->post("fechainicio"),
-        "nomquin_fechafin" => $this->input->post("fechafin"),
-        "nomquin_total" => $nomina
+            "nomquin_usu_id" => $this->input->post("usuario"),
+            "nomquin_nomina" => $this->input->post("nomina"),
+            "nomquin_diaslaborados" => $this->input->post("diaslaborados"),
+            "nomquin_descuentos" => $this->input->post("descuentos"),
+            "nomquin_descuadres" => $this->input->post("descuadres"),
+            "nomquin_liquidacion" => $this->input->post("liquidacion"),
+            "nomquin_novedades" => $this->input->post("novedades"),
+            "nomquin_fechainicio" => $this->input->post("fechainicio"),
+            "nomquin_fechafin" => $this->input->post("fechafin"),
+            "nomquin_total" => $nomina
         );
 
         $this->db->insert("nomina", $data);
-        }
+        $fecha=date('d-m-Y');
+        $data1 = array(
+
+            "ope_cli_id" => 790,
+            "ope_usu_id" => $this->input->post("usuario"),
+            "ope_tipo" => $tipo,
+            "ope_valor" => $nomina,
+            "ope_fecha" => $fecha,
+            "ope_observaciones" => $this->input->post("novedades"),
+        );
+        $this->db->insert("operacion", $data1);
+        $last = $this->db->insert_id();
+
+        $data2 = array(
+
+            "inf_ope_id" => $last,
+            "inf_sale" => $nomina,
+            "inf_fecha" =>$fecha
+        );
+
+        $this->db->insert("informediario", $data2);
+
+    }
 
     function guardar_prestamo(){
         $data = array(
@@ -106,6 +130,7 @@ function calcularnomina()
         );
 
         $this->db->insert("prestamo_empleado", $data);
+
     }
 
     function get_nomina($id){

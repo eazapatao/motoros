@@ -35,6 +35,7 @@
                                     <option value="14">14</option>
                                     <option value="18">18</option>
                                     <option value="24">24</option>
+                                    <option value="24">27</option>
                                 </select>
                             </div>
 

@@ -52,10 +52,10 @@
                                     <tr>
                                         <td><?= $key['estcue_alq_id']?></td>
                                         <td><?= $key['cli_nombre'].' '.$key['cli_apellido']?></td>
-                                        <td><?= $key['estcue_debe']?></td>
-                                        <td><?= $key['estcue_abono']?></td>
-                                        <td><?= $key['estcue_saldo']?></td>
-                                        <td><?= $key['estcue_estado']?></td>
+                                        <td>$<?= number_format ($key['estcue_debe'], 0, ',', '.')?></td>
+                                        <td>$<?= number_format ($key['estcue_abono'], 0, ',', '.')?></td>
+                                        <td>$<?= number_format ($key['estcue_saldo'], 0, ',', '.')?></td>
+                                        <td><?=$key['estcue_estado']?></td>
 
 
                                     </tr>

@@ -51,7 +51,10 @@
                                 <label>Fecha de próximo pago</label>
                                 <input type="date" class="form-control" id="fecha" name="fecha" placeholder="Fecha">
                             </div>
-
+                            <div class="form-group">
+                                <label>Observaciones</label>
+                                <input type="text" class="form-control" id="observaciones" name="observaciones" placeholder="observaciones">
+                            </div>
                         </div><!-- /.box-body -->
 
                         <div class="box-footer">

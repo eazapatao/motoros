@@ -52,6 +52,7 @@
                                     <option value="14">14</option>
                                     <option value="18">18</option>
                                     <option value="24">24</option>
+                                    <option value="27">27</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -64,7 +65,7 @@
                                     <option value="Perdida">Perdida</option>
                                     <option value="Acabada">Acabada</option>
                                     <option value="Suspendida a petición">Suspendida a petición del cliente</option>
-                                    <option value="Suspendida por pago">Suspendida a petición del cliente</option>
+                                    <option value="Congelada">Congelada</option>
                                 </select>
 
                             </div>

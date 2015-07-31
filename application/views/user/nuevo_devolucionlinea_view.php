@@ -45,6 +45,7 @@
                                 <label>Valor del minuto al cancelar la línea</label>
                                 <input type="text" class="form-control" id="valormin" name="valormin">
                             </div>
+
                             <div class="form-group">
                                 <label>Realizó pago</label>
                                 <input type="checkbox" class="form-control" id="pago" name="pago">

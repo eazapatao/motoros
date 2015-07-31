@@ -91,6 +91,24 @@ class Reporte_model extends CI_Model{
         $this->db->where("lin_estado", $alquilada);
         return $this->db->count_all_results('linea');
     }
+    function get_totallineasporcortemys($corte)
+    {
+        $propietario="Mys";
+        $alquilada = "Alquilada";
+        $this->db->where("lin_corte", $corte);
+        $this->db->where("lin_estado", $alquilada);
+        $this->db->where("lin_propietario", $propietario);
+        return $this->db->count_all_results('linea');
+    }
+    function get_totallineasporcortealejandro($corte)
+    {
+        $propietario="Alejandro";
+        $alquilada = "Alquilada";
+        $this->db->where("lin_corte", $corte);
+        $this->db->where("lin_estado", $alquilada);
+        $this->db->where("lin_propietario", $propietario);
+        return $this->db->count_all_results('linea');
+    }
     function get_sumasaldo_totales_hoy()
     {
 

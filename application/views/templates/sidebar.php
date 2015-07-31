@@ -41,6 +41,7 @@
                 <ul class="treeview-menu">
                     <li <?php if($label2 == "list") echo "class=active" ?>><a href="<?= base_url()?>linea"><i class="fa fa-angle-double-right"></i>Líneas</a></li>
                     <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>alquiler"><i class="fa fa-angle-double-right"></i>Alquiler de líneas</a></li>
+                    <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>alquiler/agregaroquitardatos"><i class="fa fa-angle-double-right"></i>Agregar o quitar datos</a></li>
                     <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>plan"><i class="fa fa-angle-double-right"></i>Administración de planes</a></li>
                     <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>linea/devolucion_linea"><i class="fa fa-angle-double-right"></i>Devolución de líneas</a></li>
                     <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>linea/programar_entregasim"><i class="fa fa-angle-double-right"></i>Programar devolución sim</a></li>
@@ -83,9 +84,7 @@
 
             </li>
             <?php }?>
-            <?php   $arr = $arr = $this->session->userdata('logged_in');
-            if($arr['role'] == 1)
-            {?>
+
             <li class="treeview <?php if($label == "nom") echo "active" ?>">
                 <a href="#">
                     <i class="fa fa-users"></i>
@@ -102,7 +101,7 @@
                 </ul>
 
             </li>
-<?php }?>
+
             <li class="">
                 <a href="<?= base_url()?>conteo">
                     <i class="fa fa-usd"></i> <span>Conteo de dinero</span>
@@ -123,7 +122,7 @@
                     <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>reportes/ver_informediario"><i class="fa fa-angle-double-right"></i>Informe diario</a></li>
                     <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>nomina/verprestamo"><i class="fa fa-angle-double-right"></i>Ver Préstamos</a></li>
                     <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>reportes/lineasxcorte"><i class="fa fa-angle-double-right"></i>Líneas x corte</a></li>
-                    <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>reportes/morosos"><i class="fa fa-angle-double-right"></i>Morosos sin lineas</a></li>
+                    <li <?php if($label2 == "new") echo "class=active" ?>><a href="<?= base_url()?>reportes/morosos"><i class="fa fa-angle-double-right"></i>EC clientes sin lineas</a></li>
 
 
                 </ul>

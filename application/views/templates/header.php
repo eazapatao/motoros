@@ -62,7 +62,7 @@
     <!-- Notificaciones de las facturas proximas a vencerse -->
     <li class="dropdown notifications-menu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Facturación
-            <i class="fa fa-warning"></i>
+            <i class="fa fa-file"></i>
         <span class="label label-warning"><?php
             echo ($pagos["hoy"]+$pagos["dos"]+$pagos["otros"]);
             ?></span>
@@ -129,7 +129,7 @@
     <!-- Notificaciones de las sim a recojer -->
     <li class="dropdown notifications-menu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sim a recojer
-            <i class="fa fa-warning"></i>
+            <i class="fa fa-columns"></i>
         <span class="label label-warning"><?php
             echo ($sim["hoy"]+$sim["dos"]+$sim["otros"]);
             ?></span>
@@ -159,6 +159,8 @@
             <li class="footer"><a href="<?=base_url()?>notificacion/sim">Ver todas</a></li>
         </ul>
     </li>
+
+    <!-- -->
 <!-- Tasks: style can be found in dropdown.less -->
 <li class="dropdown user user-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">

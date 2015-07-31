@@ -67,23 +67,24 @@
             <div class="icon">
                 <i class="ion ion-person-add"></i>
             </div>
-            <a href="http://www.claro.com.co" class="small-box-footer" target="_blank">
+            <a href="http://www.claro.com.co/wps/portal/co/pc/empresas" class="small-box-footer" target="_blank">
                 Claro <i class="fa fa-arrow-circle-right"></i>
             </a>
             <a href="http://www.tigo.com.co" class="small-box-footer" target="_blank">
                 Tigo <i class="fa fa-arrow-circle-right"></i>
             </a>
-            <a href="http://www.movistar.com.co" class="small-box-footer" target="_blank">
+            <a href="http://www.movistar.co" class="small-box-footer" target="_blank">
                 Movistar <i class="fa fa-arrow-circle-right"></i>
             </a>
         </div>
     </div>
     <!-- Informe mensual de caja -->
-    <div class="col-lg-6">
+    <div class="col-lg-12">
+        <!--Informe de caja -->
         <div class="box box-success">
             <div class="box-header">
                 <?php $mes=date('M');?>
-                <h3 class="box-title">Informe en caja</h3>
+                <h3 class="box-title">Informe al mes en caja</h3>
             </div><!-- /.box-header -->
             <div class="box-body">
                 <table class="table table-bordered">
@@ -102,7 +103,98 @@
                     </tbody></table>
             </div><!-- /.box-body -->
         </div>
+
+        <!-- Informe de les cliente-->
+        <div class="box box-success">
+            <div class="box-header">
+                <?php $mes=date('M');?>
+                <h3 class="box-title">Informe al mes de transacciones de clientes</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <table class="table table-bordered">
+
+                    <tbody><tr>
+                        <th style="">Total ingresos</th>
+                        <th>Total egresos</th>
+                        <th style="">Saldo</th>
+                    </tr>
+                    <tr>
+                        <td>$<?= number_format ($totalesMCliente['debeb'], 0, ',', '.')?></td>
+                        <td>$<?= number_format ($totalesMCliente['haberb'], 0, ',', '.')?></td>
+                        <td>$<?= number_format ($totalesMCliente['deferenciab'], 0, ',', '.')?></td>
+                    </tr>
+
+                    </tbody></table>
+            </div><!-- /.box-body -->
+        </div>
+
+        <!-- Papeleria-->
+        <div class="box box-success">
+            <div class="box-header">
+                <?php $mes=date('M');?>
+                <h3 class="box-title">Informe al mes de gastos de papeleria</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <table class="table table-bordered">
+
+                    <tbody><tr>
+                        <th style="">Total</th>
+
+                    </tr>
+                    <tr>
+                        <td>$<?= number_format ($totalesMPapeleria['debeb'], 0, ',', '.')?></td>
+
+                    </tr>
+
+                    </tbody></table>
+            </div><!-- /.box-body -->
+        </div>
+        <!-- gasolina-->
+        <div class="box box-success">
+            <div class="box-header">
+                <?php $mes=date('M');?>
+                <h3 class="box-title">Informe al mes de gastos de gasolina</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <table class="table table-bordered">
+
+                    <tbody><tr>
+                        <th style="">Total</th>
+
+                    </tr>
+                    <tr>
+                        <td>$<?= number_format ($totalesMgasolina['debeb'], 0, ',', '.')?></td>
+
+                    </tr>
+
+                    </tbody></table>
+            </div><!-- /.box-body -->
+        </div>
+        <!-- Min vendido min comprado-->
+        <div class="box box-success">
+            <div class="box-header">
+                <?php $mes=date('M');?>
+                <h3 class="box-title">Informe al mes de facturaciones a pagar al operador / facturaciones clientes</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <table class="table table-bordered">
+
+                    <tbody><tr>
+                        <th style="">Total Facturaciones a cancelar</th>
+                        <th>Total Facturaciones clientes</th>
+                        <th style="">Saldo</th>
+                    </tr>
+                    <tr>
+                        <td>$<?= number_format ($totalesminvend['debeb'], 0, ',', '.')?></td>
+                        <td>$<?= number_format ($totalesminvend['haberb'], 0, ',', '.')?></td>
+                        <td>$<?= number_format ($totalesminvend['deferenciab'], 0, ',', '.')?></td>
+                    </tr>
+
+                    </tbody></table>
+            </div><!-- /.box-body -->
+        </div>
     </div>
+
 
 
     <!-- Main content -->

@@ -12,9 +12,7 @@
         <?php
         $dia=date("d");
         ?>
-        <a class="btn btn-primary" id="cortes" href="<?= base_url()?>notificaciones/proximipago/<?=$dia?>">
-            <i class="fa fa-edit"></i> Programar próximo pago
-        </a>
+
     </section>
 
 

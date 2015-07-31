@@ -23,6 +23,10 @@ class Admin extends CI_Controller{
                 "titulo" => "Panel de control",
                 "main_content" => "admin/dashboard_view",
                 "totalesM" => $this->admin_model->get_totales_mes(date('d'),date('m'),date('Y')),
+                "totalesMCliente" => $this->admin_model->get_totales_mes_cliente(),
+                "totalesMPapeleria" => $this->admin_model->get_totales_mes_papeleria(),
+                "totalesminvend" => $this->admin_model->get_totales_facturacionesoperadorcliente(),
+                "totalesMgasolina" => $this->admin_model->get_totales_mes_gasolina(),
 
             );
 

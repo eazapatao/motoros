@@ -40,11 +40,9 @@
                                     <th>Fecha</th>
                                     <th>Número de factura</th>
                                     <th>Observaciones</th>
-                                    <?php   $arr = $arr = $this->session->userdata('logged_in');
-                                    if($arr['role'] == 1)
-                                    {?>
+
                                     <th>Opciones</th>
-                                    <?php }?>
+
                                 </tr>
                                 </thead>
                                 <tfoot>
@@ -57,11 +55,9 @@
                                     <th>Fecha</th>
                                     <th>Número de factura</th>
                                     <th>Observaciones</th>
-                                    <?php   $arr = $arr = $this->session->userdata('logged_in');
-                                    if($arr['role'] == 1)
-                                    {?>
+
                                     <th>Opciones</th>
-                                    <?php }?>
+
                                 </tr>
                                 </tfoot>
 
@@ -89,8 +85,16 @@
                                             <a data-ref="<?php echo base_url()?>reportes/imprimir_operacion/<?php echo $key['ope_id']?>"  type="button" class="btn btn-xs btn-warning delete" data-toggle="confirmation1" data-placement="left">
                                                 <i class="glyphicon fa-print"></i>
                                             </a>
+
+                                            </td> <?php }else{?>
+                                        <td>
+                                            <a data-ref="<?php echo base_url()?>reportes/imprimir_operacion/<?php echo $key['ope_id']?>"  type="button" class="btn btn-xs btn-warning delete" data-toggle="confirmation1" data-placement="left">
+                                                <i class="glyphicon fa-print"></i>
+                                            </a>
+                                            </td>
+                                            <?php } ?>
                                         </td>
-                                        <?php }?>
+
                                     </tr>
                                 <?php }?>
 

@@ -6,6 +6,7 @@ class Alquiler extends CI_Controller{
         parent::__construct();
         $this->load->model("alquiler_model");
         $this->load->model("directorio_model");
+        $this->load->model("linea_model");
     }
 
     public function index(){
@@ -20,6 +21,33 @@ class Alquiler extends CI_Controller{
                 "titulo" => "Lista",
                 "main_content" => "user/lista_alquiler_view",
                 "alquiler" => $this->alquiler_model->get_lista_alquiler()//Pendiente
+            );
+
+            $this->load->view("templates/admin_template", $content);
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
+
+    }
+
+    public function agregaroquitardatos(){
+
+        $arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in'))
+        {
+            $content = array(
+                "menu" => "Agregar o quitar datos",
+                "label" => "alq",
+                "label2" => "list",
+                "titulo" => "Lista",
+                "main_content" => "user/nuevo_adddatos_view",
+                "alquiler" => $this->alquiler_model->get_lista_alquiler(),
+                "clientes" => $this->directorio_model->get_lista_clientes(),
+                "lineas" => $this->linea_model->get_lista_lineas(),
+                "datos" => $this->linea_model->get_lista_datos(),
             );
 
             $this->load->view("templates/admin_template", $content);
@@ -63,7 +91,7 @@ class Alquiler extends CI_Controller{
             $last_id = $this->alquiler_model->guardar_alquiler();
 
 
-                echo $last_id;
+            echo $last_id;
 
         }
         else
@@ -130,7 +158,22 @@ class Alquiler extends CI_Controller{
             redirect('login', 'refresh');
         }
 
+    } function upd_adddatos()
+    {
+        $arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in'))
+        {
+            $this->alquiler_model->upd_adddatos();
+            redirect("alquiler", "refresh");
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
+
     }
+
 
     function del_alquiler()
     {$arr = $this->session->userdata('logged_in');

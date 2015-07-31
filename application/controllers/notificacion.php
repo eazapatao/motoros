@@ -11,7 +11,7 @@ class Notificacion extends CI_Controller {
     function guardar_programarproxpago()
     {
         $this->notificacion_model->guardar_programarproxpago();
-        redirect('notificacion/proximipago', 'refresh');
+        redirect('notificacion/cortes', 'refresh');
     }
 
     public function noti_corte(){
@@ -63,6 +63,29 @@ class Notificacion extends CI_Controller {
                 "titulo" => "Cortes proximos",
                 "main_content" => "user/cortes_view",
                 "data" => $this->notificacion_model->get_lista_cortes()
+            );
+
+            $this->load->view("templates/admin_template", $content);
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('login', 'refresh');
+        }
+
+    }
+    public function verprogramacionpagos(){
+        $arr = $this->session->userdata('logged_in');
+        if($this->session->userdata('logged_in'))
+        {
+
+            $content = array(
+                "menu" => "Pagos programados",
+                "label" => "Cortes",
+                "label2" => "",
+                "titulo" => "",
+                "main_content" => "user/lista_proxpagos_view",
+                "data" => $this->notificacion_model->get_lista_proxpago()
             );
 
             $this->load->view("templates/admin_template", $content);
@@ -144,6 +167,7 @@ class Notificacion extends CI_Controller {
         }
 
     }
+
     public function pagos(){
         $arr = $this->session->userdata('logged_in');
         if($this->session->userdata('logged_in'))

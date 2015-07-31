@@ -102,6 +102,7 @@ class linea_model extends CI_Model{
             $lin_id = $this->input->post("linea");
             $sql = "SELECT estcue_id, estcue_debe, estcue_alq_id, his_cargobasico, his_lin_id, his_estado
             FROM (estadocuenta) JOIN historialinea ON historialinea.his_alq_id = estadocuenta.estcue_alq_id
+            JOIN datos ON datos.dat_id = historialinea.his_dat_id
             WHERE his_lin_id = $lin_id AND his_estado = 'Activo'";
             $query = $this->db->query($sql);
             $data = $query->result_array();
@@ -224,25 +225,50 @@ class linea_model extends CI_Model{
 
     function guardar_historial(){
         $totalmin=$this->obtener_totalmin($this->input->post("linea"));
-        $data = array(
-            "his_lin_id" => $this->input->post("linea"),
-            "his_alq_id" => $this->input->post("alquiler"),
-            "his_dat_id" => $this->input->post("datos"),
-            "his_valor_minvend" => $this->input->post("vlorminvend"),
-            "his_fechainicio" => $this->input->post("fechainicio"),
-            "his_estado" => $this->input->post("estado"),
-            "his_cargobasico" => $this->input->post("vlorminvend") * $totalmin,
+        $pasaminutos=$this->obtener_pasaminutos($this->input->post("linea"));
+        $totalminconsumidos=$this->obtener_minutosconsumidos($this->input->post("linea"));
+        $totaldatos=$this->obtener_preciodatosid($this->input->post("datos"));
+        $totalpasamintos=$pasaminutos*$this->input->post("vlorminvend");
+        $cargobasico=($this->input->post("vlorminvend") * ($totalmin + $totalpasamintos-$totalminconsumidos))+ $totaldatos;
+        if($this->input->post("deposito")=='on')
+        {
+            $data = array(
+                "his_lin_id" => $this->input->post("linea"),
+                "his_alq_id" => $this->input->post("alquiler"),
+                "his_dat_id" => $this->input->post("datos"),
+                "his_valor_minvend" => $this->input->post("vlorminvend"),
+                "his_fechainicio" => $this->input->post("fechainicio"),
+                "his_estado" => $this->input->post("estado"),
+                "his_cargobasico" => $cargobasico +5000
 
-        );
+            );
+            $this->db->insert("historialinea", $data);
+        }
+        else
+        {
+            $data = array(
+                "his_lin_id" => $this->input->post("linea"),
+                "his_alq_id" => $this->input->post("alquiler"),
+                "his_dat_id" => $this->input->post("datos"),
+                "his_valor_minvend" => $this->input->post("vlorminvend"),
+                "his_fechainicio" => $this->input->post("fechainicio"),
+                "his_estado" => $this->input->post("estado"),
+                "his_cargobasico" => $cargobasico
 
-        $this->db->insert("historialinea", $data);
+            );
+
+
+            $this->db->insert("historialinea", $data);
+        }
+
+
         $dato= array(
             "lin_estado" => "Alquilada"
         );
         $this->db->where("lin_id", $this->input->post("linea"));
         $this->db->update('linea', $dato);
 
-        $this->guardar_estado_cuenta($this->input->post("linea"),$this->input->post("alquiler"));
+        $this->guardar_estado_cuenta($this->input->post("linea"),$this->input->post("alquiler"),$cargobasico);
 
 
     }
@@ -257,11 +283,36 @@ class linea_model extends CI_Model{
         $result = $query->result_array();
         return $result[0]['pla_totalmin'];
     }
-
-    function guardar_estado_cuenta($numero,$alquiler)
+    function obtener_pasaminutos($linea)
+    {
+        $this->db->select('lin_pasaminutos');
+        $this->db->from('linea');
+        $this->db->where('lin_id', $linea);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result[0]['lin_pasaminutos'];
+    }   function obtener_preciodatosid($datos)
+{
+    $this->db->select('dat_precio');
+    $this->db->from('datos');
+    $this->db->where('dat_id', $datos);
+    $query = $this->db->get();
+    $result = $query->result_array();
+    return $result[0]['dat_precio'];
+}
+    function obtener_minutosconsumidos($linea)
+    {
+        $this->db->select('lin_minutosconsumidos');
+        $this->db->from('linea');
+        $this->db->where('lin_id', $linea);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result[0]['lin_minutosconsumidos'];
+    }
+    function guardar_estado_cuenta($numero,$alquiler,$cargobasico)
     {
 
-        $this->db->select('lin_pla_id, pla_totalmin');
+        $this->db->select('lin_pla_id, pla_totalmin,lin_minutosconsumidos');
         $this->db->from('linea');
         $this->db->join('plan', 'plan.pla_id = linea.lin_pla_id');
         $this->db->where('lin_id', $numero);
@@ -271,13 +322,14 @@ class linea_model extends CI_Model{
 
         $verificacion = $this->verificar_estado_cuenta($alquiler);
 
-        $valordatos = ($this->obtener_preciodatos($numero));
+
+
 
 
         if($verificacion == 0)
         {
 
-            $debe = ($this->input->post("vlorminvend") * $result[0]['pla_totalmin']) + $valordatos;
+            $debe = $cargobasico;
             $data = array(
                 "estcue_alq_id" => $this->input->post("alquiler"),
                 "estcue_debe" => $debe,
@@ -287,25 +339,27 @@ class linea_model extends CI_Model{
             );
 
             $this->db->insert("estadocuenta", $data);
-            $valorestadocuenta=$this->obtener_estadocuenta($alquiler);
-            $cliente=$this->obtenercliente($valorestadocuenta);
+
+            $estadocuenta=$this->obtener_estadocuenta($this->input->post("alquiler"));
+            $cliente=$this->obtenercliente($estadocuenta);
             $fecha=date("d-m-Y");
             $data1 = array(
-                "estcuefec_estcue_id" =>  $valorestadocuenta,
+                "estcuefec_estcue_id" =>  $estadocuenta,
                 "estcuefec_cli_id" => $cliente,
                 "estcuefec_estcue_debe" => $debe,
                 "estcuefec_estcue_abono" => 0,
-                "estcuefec_estcue_saldo" => 0,
+                "estcuefec_estcue_saldo" => $debe,
                 "estcuefec_fecha" => $fecha,
 
             );
             $this->db->insert("estadocuenta_fecha", $data1);
+
         }
         else
         {
 
-            $debe = $this->get_debe_estado_cuenta($alquiler)+($this->input->post("vlorminvend") * $result[0]['pla_totalmin'])+ $valordatos;
-            $debe1 = ($this->input->post("vlorminvend") * $result[0]['pla_totalmin']) + $valordatos;
+            $debe = $this->get_debe_estado_cuenta($alquiler)+$cargobasico;
+
             $data = array(
                 "estcue_debe" => $debe,
 
@@ -313,28 +367,32 @@ class linea_model extends CI_Model{
             $this->db->where('estcue_alq_id', $alquiler);
             $this->db->update('estadocuenta', $data);
 
-            $valorestadocuenta=$this->obtener_estadocuenta($alquiler);
-            $cliente=$this->obtenercliente($valorestadocuenta);
+            $estadocuenta=$this->obtener_estadocuenta($this->input->post("alquiler"));
+            $cliente=$this->obtenercliente($estadocuenta);
             $fecha=date("d-m-Y");
             $data1 = array(
-                "estcuefec_estcue_id" =>  $valorestadocuenta,
-                "estcuefec_estcue_debe" => $debe1,
-                "estcuefec_estcue_abono" => "",
-                "estcuefec_estcue_saldo" => 0,
-                "estcuefec_fecha" => $fecha,
+                "estcuefec_estcue_id" =>  $estadocuenta,
                 "estcuefec_cli_id" => $cliente,
+                "estcuefec_estcue_debe" => $debe,
+                "estcuefec_estcue_abono" => 0,
+                "estcuefec_estcue_saldo" => $debe,
+                "estcuefec_fecha" => $fecha,
+
             );
             $this->db->insert("estadocuenta_fecha", $data1);
 
+
+
         }
-        $data2=array(
-            "his_cargobasico"=>($this->input->post("vlorminvend") * $result[0]['pla_totalmin']) + $valordatos
-        );
-        $this->db->where('his_lin_id', $numero);
-        $this->db->update('historialinea', $data2);
+
+
 
     }
 
+    function guardar_estado_cuenta_fecha($estadocuenta,$cliente)
+    {
+
+    }
     function obtener_estadocuenta($alquiler)
     {
         $this->db->select('estcue_id');

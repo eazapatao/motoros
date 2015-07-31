@@ -2,7 +2,9 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            El número líneas de este corte es: <?=$numerodelineas?>
+            El número líneas de este corte es: <?=$numerodelineas?><br>
+            El número líneas de Mys es: <?=$numerodelineasmys?><br>
+            El número líneas de Alejandro es: <?=$numerodelineasalejandro?>
             <small><?= $titulo?></small>
 
         </h1>
@@ -32,12 +34,14 @@
                                 <tr>
                                     <th>Línea</th>
                                     <th>Cliente</th>
+                                    <th>Propietario</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
                                     <th>Línea</th>
                                     <th>Cliente</th>
+                                    <th>Propietario</th>
                                 </tr>
                                 </tfoot>
 
@@ -46,6 +50,7 @@
                                     <tr>
                                         <td><?= $key['lin_numero']?></td>
                                         <td><?= $key['cli_nombre'].' '.$key['cli_apellido']?></td>
+                                        <td><?= $key['lin_propietario']?></td>
                                     </tr>
                                 <?php }?>
 

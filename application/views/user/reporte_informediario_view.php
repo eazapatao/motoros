@@ -73,8 +73,8 @@
                                         <td><?= $key['usu_nombre'].' '.$key['usu_apellido']?></td>
                                         <td><?= $key['ope_nfactura']?></td>
                                         <td><?= $key['ope_tipo']?></td>
-                                        <td><?= $key['inf_entra']?></td>
-                                        <td><?= $key['inf_sale']?></td>
+                                        <td>$<?= number_format ($key['inf_entra'], 0, ',', '.')?></td>
+                                        <td>$<?= number_format ($key['inf_sale'], 0, ',', '.')?></td>
                                         <td><?= $key['ope_observaciones']?></td>
 
 

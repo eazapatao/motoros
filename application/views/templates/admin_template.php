@@ -7,6 +7,7 @@ $content = array(
     "pagos" => $CI->notificacion_model->get_pagos(intval(date('d')),intval(date('m')),intval(date('y'))),
     "suspenciones" => $CI->notificacion_model->get_suspenciones(intval(date('d')),intval(date('m')),intval(date('y'))),
     "sim" => $CI->notificacion_model->get_simcard(intval(date('d')),intval(date('m')),intval(date('y'))),
+
     "user" => $this->session->userdata('logged_in')
 );
 

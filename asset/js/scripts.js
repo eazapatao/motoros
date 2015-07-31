@@ -18,12 +18,15 @@ $("#guardar_alquiler").click(function(){
 });
 
 
+
+
 $("#guardar_historial").click(function(){
     $.ajax({
         type: "POST",
         url: base_url+"index.php/linea/guardar_historial/",
         data: $("#form_historial").serialize()
     }) .done(function( msg ) {
+        //console.log(msg);
         location.reload(true);
     });
 });

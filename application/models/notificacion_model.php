@@ -104,6 +104,7 @@ class Notificacion_model extends CI_Model{
             "prox_cli_id" => $this->input->post("cliente"),
             "prox_lin_corte" => $this->input->post("corte"),
             "prox_fecha" => $this->input->post("fecha"),
+            "prox_observaciones" => $this->input->post("observaciones"),
         );
 
         $this->db->insert("proxpago", $data);
@@ -215,6 +216,54 @@ class Notificacion_model extends CI_Model{
                 "dev_fecha"=>$key['dev_fecha'],
                 "usu_nombre"=>$key['usu_nombre'],
                 "usu_apellido"=>$key['usu_apellido'],
+            );
+            if (substr($key['dev_fecha'],0,2) < $clave && substr($key['dev_fecha'],3,2) == $mes and substr($key['dev_fecha'],6,4) == $ano){
+                $clave2 = 30 - $clave;
+                if($clave2+substr($key['dev_fecha'],0,2) <= 15  ){
+
+                    array_push($result["otros"], $temp);
+                }elseif($clave2+substr($key['dev_fecha'],0,2) <= 2  ){
+                    array_push($result["dos"], $temp);
+                }
+            }elseif (substr($key['dev_fecha'],0,2) >= $clave){
+                if(substr($key['dev_fecha'],0,2)-$clave > 0 && intval(substr($key['dev_fecha'],0,2))-$clave  <= 2  ){
+                    array_push($result["dos"], $temp);
+                }elseif(substr($key['dev_fecha'],0,2)-$clave > 2 && substr($key['dev_fecha'],0,2)-$clave <= 29){
+                    array_push($result["otros"],$temp);
+                }elseif(substr($key['dev_fecha'],0,2) == $clave) {
+                    array_push($result["hoy"], $temp);
+                }
+            }
+
+        }
+        return $result;
+    }
+    function  get_lista_pagosprogramados(){
+        $clave = intval(date('d'));
+        $mes = intval(date('m'));
+        $ano = intval(date('Y'));
+
+
+        $result = array(
+            "hoy" => array(),
+            "dos" => array(),
+            "otros" => array()
+        );
+
+        $this->db->select('*');
+        $this->db->from('proxpago');
+        $this->db->join('cliente','cliente.cli_id=proxpago.prox_cli_id');
+
+        $query = $this->db->get();
+        // $query = $query->result_array();
+
+
+        // $query = $this->db->query("SELECT lin_numero, con_valorapagar,con_facturacion FROM linea,control_adicional WHERE linea.lin_id = control_adicional.con_lin_id");
+        foreach ($query->result_array() as $key){
+            $temp=array(
+                "cli_nombre"=>$key['cli_nombre'],
+                "cli_apellido"=>$key['cli_apellido'],
+                "prox_observaciones"=>$key['prox_observaciones'],
             );
             if (substr($key['dev_fecha'],0,2) < $clave && substr($key['dev_fecha'],3,2) == $mes and substr($key['dev_fecha'],6,4) == $ano){
                 $clave2 = 30 - $clave;
@@ -421,35 +470,38 @@ class Notificacion_model extends CI_Model{
             $this->db->where('estcue_alq_id', $key['id_alq']);
             $query = $this->db->get('estadocuenta');
             $query = $query->result_array();
+            $estadocuenta = $query[0]['estcue_id'];
             $debe = $query[0]['estcue_debe'];
             $debe +=  $key['cargo_basico'];
-
+            $cliente=$this->obtenercliente($key['id_alq']);
             $dato= array(
                 "estcue_debe" => $debe
             );
             $this->db->where("estcue_alq_id", $key['id_alq']);
             $this->db->update('estadocuenta', $dato);
-            $cliente=$this->obtenercliente($query[0]['estcue_id']);
-            $fecha=date("d-m-Y");
-            $data1 = array(
-                "estcuefec_estcue_id" =>  $query[0]['estcue_id'],
-                "estcuefec_estcue_debe" => $debe,
-                "estcuefec_estcue_abono" => 0,
-                "estcuefec_estcue_saldo" => 0,
-                "estcuefec_fecha" => $fecha,
-                "estcuefec_cli_id" => $cliente
-            );
-            $this->db->insert("estadocuenta_fecha", $data1);
+
+
+ //           $fecha=date("d-m-Y");
+   //        $data1 = array(
+     //          "estcuefec_estcue_id" =>  $estadocuenta,
+       //         "estcuefec_estcue_debe" => $debe,
+         //      "estcuefec_estcue_abono" => 0,
+           //     "estcuefec_estcue_saldo" => 0,
+             //  "estcuefec_fecha" => $fecha,
+               // "estcuefec_cli_id" => $cliente
+     //       );
+
+//            $this->db->insert("estadocuenta_fecha", $data1);
         }
     }
 
-    function obtenercliente($estadocuenta)
+    function obtenercliente($alquiler)
     {
         $this->db->select('cli_id');
         $this->db->from('cliente');
         $this->db->join('alquiler','alquiler.alq_cli_id=cliente.cli_id');
         $this->db->join('estadocuenta','estadocuenta.estcue_alq_id=alquiler.alq_id');
-        $this->db->where('estcue_id',$estadocuenta);
+        $this->db->where('estcue_alq_id',$alquiler);
         $query = $this->db->get();
         $result = $query->result_array();
         return $result[0]['cli_id'];
@@ -484,5 +536,16 @@ function vlrapagar()
 
     return $total;
 }
+
+function get_lista_proxpago()
+    {
+        $mes=date('m');
+        $ano=date('Y');
+        $sql = "SELECT * FROM proxpago JOIN cliente ON cliente.cli_id=proxpago.prox_cli_id
+        WHERE SUBSTRING(prox_fecha,4,2) = '$mes' AND SUBSTRING(prox_fecha,7,4) = '$ano'";
+        $query = $this->db->query($sql);
+        $data = $query->result_array();
+        return $data;
+    }
 
 }
